@@ -1,0 +1,2824 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SONFASIL.COM - İlkokul Eğitim ve Oyun Portalı</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-1: #0284c7;
+      --brand-2: #0369a1;
+      --accent: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+      background-color: #e0f2fe;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #0f172a;
+      margin: 0;
+    }
+    .font-display { font-family: 'Fredoka', 'Nunito', sans-serif; }
+    .brand-bg { background: linear-gradient(135deg, var(--brand-1), var(--brand-2)); }
+    .portal-shell {
+      max-width: 1220px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 10px 40px rgba(15, 23, 42, 0.14);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .portal-box {
+      background: #ffffff;
+      border: 1.5px solid #bae6fd;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.06);
+    }
+    .portal-box-header {
+      background: linear-gradient(90deg, #0284c7 0%, #0ea5e9 100%);
+      color: #ffffff;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .portal-card {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 14px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .portal-card:hover {
+      transform: translateY(-2px);
+      border-color: #38bdf8;
+      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.12);
+    }
+    .dropzone {
+      border: 2px dashed #94a3b8;
+      transition: all 0.15s ease;
+    }
+    .dropzone.drag-over, .dropzone:hover {
+      border-color: #0284c7;
+      background-color: #f0f9ff !important;
+    }
+
+    /* Merkezi Yönetim Paneli */
+    .nb-header {
+      background: #ffd447;
+      border-bottom: 2.5px solid #0f172a;
+      color: #0f172a;
+    }
+    .nb-card {
+      background: #ffffff;
+      border: 2px solid #0f172a;
+      border-radius: 1rem;
+      box-shadow: 0 3px 0 #0f172a;
+    }
+    .nb-row {
+      background: #ffffff;
+      border: 1.5px solid #0f172a;
+      border-radius: 0.9rem;
+    }
+    .nb-btn {
+      border: 2px solid #0f172a;
+      border-radius: 0.85rem;
+      box-shadow: 0 3px 0 #0f172a;
+      font-weight: 800;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+      cursor: pointer;
+    }
+    .nb-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #0f172a;
+    }
+    .nb-btn-sm {
+      border: 1.5px solid #0f172a;
+      border-radius: 0.7rem;
+      box-shadow: 0 2px 0 #0f172a;
+      font-weight: 800;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      cursor: pointer;
+    }
+    .nb-btn-sm:active {
+      transform: translateY(1.5px);
+      box-shadow: 0 0.5px 0 #0f172a;
+    }
+    .nb-input {
+      border: 1.5px solid #0f172a;
+      border-radius: 0.75rem;
+      background: #ffffff;
+      font-weight: 600;
+    }
+    .nb-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.35);
+    }
+    .nb-tab {
+      background: #ffffff;
+      border: 2px solid #0f172a;
+      border-radius: 0.9rem;
+      box-shadow: 0 3px 0 #0f172a;
+      color: #0f172a;
+      font-weight: 800;
+      transition: transform 0.1s ease, background-color 0.15s ease;
+      cursor: pointer;
+    }
+    .nb-tab:hover { background: #fef9c3; }
+    .nb-tab.active { background: #ffd447; }
+    .nb-upload-banner {
+      background: linear-gradient(135deg, #ecfdf5 0%, #fefce8 50%, #eff6ff 100%);
+      border: 2.5px solid #0f172a;
+      border-radius: 1.25rem;
+      box-shadow: 0 4px 0 #0f172a;
+    }
+    .rich-content p { margin-bottom: 0.75rem; line-height: 1.65; }
+    .hidden { display: none !important; }
+
+    /* Belirgin Kaydırma Çubukları */
+    .admin-scroll {
+      scrollbar-width: thin;
+      scrollbar-color: #0284c7 #e2e8f0;
+    }
+    .admin-scroll::-webkit-scrollbar { width: 10px; height: 10px; }
+    .admin-scroll::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 999px; }
+    .admin-scroll::-webkit-scrollbar-thumb { background: #0284c7; border-radius: 999px; border: 2px solid #e2e8f0; }
+    .admin-scroll::-webkit-scrollbar-thumb:hover { background: #0369a1; }
+
+    /* Sürükle-Bırak Sıralama */
+    .drag-handle { cursor: grab; user-select: none; }
+    .drag-handle:active { cursor: grabbing; }
+    .dragging-row { opacity: 0.45; border-style: dashed !important; background: #fef9c3 !important; }
+    .drag-over-row { outline: 3px solid #0284c7; outline-offset: 2px; background: #f0f9ff !important; }
+  </style>
+</head>
+<body>
+  <!-- ===================================================================== -->
+  <!-- 1. ZİYARETÇİ WEB SİTESİ (SONFASIL.COM)                                -->
+  <!-- ===================================================================== -->
+  <div id="public-portal" class="portal-shell">
+    <!-- Üst Banner -->
+    <header class="brand-bg text-white relative overflow-hidden">
+      <div class="px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-4 relative z-10">
+        <!-- Sol Üst Logo: OF (5 tıklama ile gizli yönetim girişi) -->
+        <div id="site-logo-trigger" class="flex items-center gap-3 cursor-pointer select-none">
+          <div class="w-12 h-12 rounded-2xl bg-amber-400 border-2 border-white shadow-md flex items-center justify-center font-display font-bold text-slate-900 text-xl">OF</div>
+          <div>
+            <h1 id="public-site-title" class="font-display text-2xl sm:text-3xl font-bold tracking-wide leading-none">SONFASIL.COM</h1>
+            <p class="text-xs sm:text-sm text-sky-100 font-semibold mt-1">İlkokul Eğitim, Etkinlik, Ders Notları ve Eğitsel Oyun Portalı</p>
+          </div>
+        </div>
+        <!-- Arama Çubuğu ve Solunda SF Rozeti -->
+        <div class="flex items-center gap-2">
+          <div id="search-sf-badge" class="w-10 h-10 rounded-xl bg-amber-400 border-2 border-white shadow-md flex items-center justify-center font-display font-bold text-slate-900 text-base shrink-0 select-none">SF</div>
+          <input id="public-search-input" type="search" placeholder="Oyun, ders veya konu ara..." class="px-3.5 py-2 rounded-xl text-xs sm:text-sm text-slate-900 bg-white/95 border-0 shadow-sm w-44 sm:w-64 focus:outline-none focus:ring-2 focus:ring-amber-300">
+        </div>
+      </div>
+
+      <!-- Üst Yatay Menü -->
+      <nav class="bg-sky-900/45 border-t border-white/15 px-3 sm:px-6 py-2">
+        <div id="top-nav-container" class="flex flex-wrap items-center gap-1.5"></div>
+      </nav>
+    </header>
+
+    <!-- Üst Slayt Gösterisi -->
+    <div id="header-slider-wrap" class="px-4 pt-4">
+      <div class="relative rounded-2xl overflow-hidden border-2 border-sky-200 bg-slate-900 h-44 sm:h-56 shadow-sm">
+        <div id="header-slider-content" class="w-full h-full"></div>
+        <button id="slide-prev-btn" type="button" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/85 hover:bg-white text-slate-900 font-black shadow cursor-pointer">‹</button>
+        <button id="slide-next-btn" type="button" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/85 hover:bg-white text-slate-900 font-black shadow cursor-pointer">›</button>
+      </div>
+    </div>
+
+    <!-- 3 Sütunlu Portal Gövdesi -->
+    <main class="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-4 p-4">
+      <!-- SOL SÜTUN -->
+      <aside id="left-sidebar" class="lg:col-span-3 space-y-4 order-2 lg:order-1"></aside>
+
+      <!-- ORTA SÜTUN (ANA İÇERİK) -->
+      <section id="main-content-area" class="lg:col-span-6 space-y-4 order-1 lg:order-2"></section>
+
+      <!-- SAĞ SÜTUN -->
+      <aside id="right-sidebar" class="lg:col-span-3 space-y-4 order-3"></aside>
+    </main>
+
+    <!-- Alt Bilgi (Yönetim butonu gizli tutulur) -->
+    <footer class="bg-slate-900 text-slate-300 px-6 py-4 text-xs flex flex-wrap items-center justify-between gap-3">
+      <div id="public-footer-text" class="font-semibold">© 2026 SONFASIL.COM — Tüm hakları saklıdır.</div>
+      <div class="flex items-center gap-3">
+        <button id="footer-home-btn" type="button" class="hover:text-white cursor-pointer">Ana Sayfa</button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 2. MERKEZİ YÖNETİM PANELİ (CMS)                                       -->
+  <!-- ===================================================================== -->
+  <div id="admin-dashboard" class="hidden fixed inset-0 z-50 bg-[#f8fafc] flex flex-col overflow-hidden text-slate-900">
+    <!-- Sarı Üst Başlık Çubuğu -->
+    <header class="nb-header shrink-0">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-11 h-11 rounded-2xl bg-white border-2 border-slate-900 shadow-[0_2px_0_#0f172a] flex items-center justify-center text-xl shrink-0">⚙️</div>
+          <div class="min-w-0">
+            <div class="font-display font-black text-base sm:text-xl leading-tight truncate">Merkezi Yönetim Paneli</div>
+            <div class="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-800">
+              <span class="truncate">Sürükle-bırak sıralama, ayrı sağ/sol blok yönetimi ve kolay yedekleme</span>
+              <span id="admin-sync-status" class="px-2 py-0.5 rounded-full bg-white/85 border border-slate-900 text-[11px] font-extrabold text-emerald-700">Hazır ✓</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <button id="admin-quick-backup-btn" type="button" title="Hızlı JSON Yedeği İndir" class="nb-btn px-3 py-2 bg-[#34d399] hover:bg-[#10b981] text-slate-900 text-xs sm:text-sm inline-flex items-center gap-1.5">
+            <span>💾</span><span class="hidden sm:inline">Yedek Al</span>
+          </button>
+          <button id="admin-logout-btn" type="button" class="nb-btn px-3.5 py-2 bg-[#fda4af] hover:bg-[#fb7185] text-slate-900 text-xs sm:text-sm inline-flex items-center gap-1.5">
+            <span>🚪</span><span>Çıkış Yap</span>
+          </button>
+          <button id="admin-to-site-btn" type="button" title="Siteyi Gör / Kapat" class="nb-btn w-10 h-10 bg-white hover:bg-slate-100 text-slate-900 text-lg flex items-center justify-center">✕</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Panel Gövdesi -->
+    <div class="flex-1 flex flex-col lg:flex-row overflow-hidden max-w-7xl w-full mx-auto">
+      <!-- Sol Sekme Çubuğu -->
+      <aside class="lg:w-64 shrink-0 bg-[#f1f5f9] lg:border-r-2 lg:border-slate-900 p-3 sm:p-4 overflow-x-auto lg:overflow-y-auto admin-scroll">
+        <nav class="flex lg:flex-col gap-2.5">
+          <button type="button" data-admin-tab="explorer" class="admin-tab-btn nb-tab flex items-center gap-2.5 px-3.5 py-2.5 text-xs sm:text-sm whitespace-nowrap text-left">
+            <span>📂</span><span>Bölüm &amp; İçerik Gezgini</span>
+          </button>
+          <button type="button" data-admin-tab="menus" class="admin-tab-btn nb-tab flex items-center gap-2.5 px-3.5 py-2.5 text-xs sm:text-sm whitespace-nowrap text-left">
+            <span>🧭</span><span>Ana Menü &amp; Bölümler</span>
+          </button>
+          <button type="button" data-admin-tab="widgets" class="admin-tab-btn nb-tab flex items-center gap-2.5 px-3.5 py-2.5 text-xs sm:text-sm whitespace-nowrap text-left">
+            <span>🧩</span><span>Sağ &amp; Sol Bloklar</span>
+          </button>
+          <button type="button" data-admin-tab="announcements" class="admin-tab-btn nb-tab flex items-center gap-2.5 px-3.5 py-2.5 text-xs sm:text-sm whitespace-nowrap text-left">
+            <span>📰</span><span>Duyurular &amp; Slayt</span>
+          </button>
+          <button type="button" data-admin-tab="settings" class="admin-tab-btn nb-tab flex items-center gap-2.5 px-3.5 py-2.5 text-xs sm:text-sm whitespace-nowrap text-left">
+            <span>🎨</span><span>Genel Ayarlar &amp; Tema</span>
+          </button>
+          <button type="button" data-admin-tab="security" class="admin-tab-btn nb-tab flex items-center gap-2.5 px-3.5 py-2.5 text-xs sm:text-sm whitespace-nowrap text-left">
+            <span>🔐</span><span>Güvenlik, Parola &amp; Yedek</span>
+          </button>
+        </nav>
+
+        <!-- Özet İstatistikler -->
+        <div class="hidden lg:grid grid-cols-2 gap-2 mt-5">
+          <div class="nb-row p-2.5 text-center bg-sky-50">
+            <div id="stat-sections-count" class="text-lg font-black text-sky-800">0</div>
+            <div class="text-[11px] font-bold text-slate-600">Bölüm</div>
+          </div>
+          <div class="nb-row p-2.5 text-center bg-emerald-50">
+            <div id="stat-items-count" class="text-lg font-black text-emerald-800">0</div>
+            <div class="text-[11px] font-bold text-slate-600">İçerik</div>
+          </div>
+          <div class="nb-row p-2.5 text-center bg-amber-50">
+            <div id="stat-slides-count" class="text-lg font-black text-amber-800">0</div>
+            <div class="text-[11px] font-bold text-slate-600">Slayt</div>
+          </div>
+          <div class="nb-row p-2.5 text-center bg-purple-50">
+            <div id="stat-guest-count" class="text-lg font-black text-purple-800">0</div>
+            <div class="text-[11px] font-bold text-slate-600">Defter</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Sağ İçerik Alanı -->
+      <div class="flex-1 overflow-y-auto admin-scroll p-4 sm:p-6 bg-white">
+        <!-- SEKME 1: BÖLÜM & İÇERİK GEZGİNİ -->
+        <section id="tab-explorer" class="admin-section space-y-4">
+          <div id="explorer-container" class="space-y-4"></div>
+        </section>
+
+        <!-- SEKME 2: ANA MENÜ & BÖLÜMLER -->
+        <section id="tab-menus" class="admin-section hidden space-y-5">
+          <div class="nb-card p-5">
+            <h2 class="text-base sm:text-lg font-black text-slate-900 mb-1">Yeni Ana Bölüm / Menü Ekle</h2>
+            <p class="text-xs text-slate-500 mb-4">Üst menüye, Sol Bloğa veya Sağ Bloğa yeni bir menü ekleyin. Aşağıdaki listede <strong>⠿</strong> tutamacından sürükleyip bırakarak sırayı değiştirebilirsiniz.</p>
+            <form id="add-section-form" class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+              <div class="sm:col-span-4">
+                <label class="block text-xs font-extrabold text-slate-700 mb-1">Konum / Blok</label>
+                <select id="new-sec-group" class="nb-input w-full px-3 py-2 text-sm"></select>
+              </div>
+              <div class="sm:col-span-5">
+                <label class="block text-xs font-extrabold text-slate-700 mb-1">Menü / Bölüm Adı *</label>
+                <input id="new-sec-title" type="text" required placeholder="Örn: Zeka Oyunları, 5. Sınıf..." class="nb-input w-full px-3.5 py-2 text-sm">
+              </div>
+              <div class="sm:col-span-3 flex items-end">
+                <button type="submit" class="nb-btn w-full py-2 px-4 bg-[#34d399] hover:bg-[#10b981] text-slate-900 text-sm">+ Ekle</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2" id="section-group-filter"></div>
+          <div id="menus-list-container" class="space-y-2.5 max-h-[60vh] overflow-y-auto admin-scroll pr-1"></div>
+        </section>
+
+        <!-- SEKME 3: SAĞ & SOL BLOKLAR -->
+        <section id="tab-widgets" class="admin-section hidden space-y-5">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <!-- SOL BLOK YÖNETİMİ -->
+            <div class="nb-card p-4 sm:p-5 space-y-4 bg-sky-50/40">
+              <div>
+                <h2 class="text-base font-black text-slate-900">⬅️ Sol Blok Yönetimi</h2>
+                <p class="text-[11px] font-semibold text-slate-600">Blokları sürükleyip bırakın, aktif/pasif yapın veya sol bloğa yeni menü ekleyin.</p>
+              </div>
+              <div id="admin-left-blocks-list" class="space-y-2 max-h-72 overflow-y-auto admin-scroll pr-1"></div>
+              <form id="quick-add-left-menu-form" class="pt-3 border-t border-slate-300 space-y-2">
+                <div class="text-xs font-black text-sky-900">+ Sol Bloğa Yeni Menü Ekle</div>
+                <div class="flex flex-wrap gap-2">
+                  <select id="quick-left-group" class="nb-input px-2.5 py-1.5 text-xs">
+                    <option value="left_genel">GENEL içine</option>
+                    <option value="left_sizin_icin">SİZİN İÇİN içine</option>
+                    <option value="left_videolar">VİDEOLAR içine</option>
+                  </select>
+                  <input id="quick-left-title" type="text" required placeholder="Yeni menü adı..." class="nb-input flex-1 min-w-[120px] px-3 py-1.5 text-xs">
+                  <button type="submit" class="nb-btn-sm px-3 py-1.5 bg-[#34d399] text-slate-900 text-xs">+ Ekle</button>
+                </div>
+              </form>
+            </div>
+
+            <!-- SAĞ BLOK YÖNETİMİ -->
+            <div class="nb-card p-4 sm:p-5 space-y-4 bg-amber-50/40">
+              <div>
+                <h2 class="text-base font-black text-slate-900">➡️ Sağ Blok Yönetimi</h2>
+                <p class="text-[11px] font-semibold text-slate-600">Sağdaki kutuların sırasını sürükle-bırakla değiştirin veya sağ bloğa yeni menü ekleyin.</p>
+              </div>
+              <div id="admin-right-blocks-list" class="space-y-2 max-h-72 overflow-y-auto admin-scroll pr-1"></div>
+              <form id="quick-add-right-menu-form" class="pt-3 border-t border-slate-300 space-y-2">
+                <div class="text-xs font-black text-amber-900">+ Sağ Bloğa Yeni Menü Ekle</div>
+                <div class="flex gap-2">
+                  <input id="quick-right-title" type="text" required placeholder="Sağ blok özel menü adı..." class="nb-input flex-1 px-3 py-1.5 text-xs">
+                  <button type="submit" class="nb-btn-sm px-3 py-1.5 bg-[#ffd447] text-slate-900 text-xs">+ Ekle</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="nb-card p-5 space-y-4">
+            <h3 class="text-base font-black text-slate-900">Bayrak Taşıyan Çocuk &amp; Satranç Görselleri</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs font-extrabold text-slate-700">Bayrak Taşıyan Çocuk (GIF/Resim)</span>
+                  <button type="button" id="clear-mascot-img" class="text-[11px] font-bold text-rose-600 hover:underline">Varsayılana Dön</button>
+                </div>
+                <div id="mascot-dropzone" class="dropzone rounded-xl p-3 text-center text-xs font-bold text-slate-600 cursor-pointer bg-slate-50">
+                  bayraktasiyan.gif sürükleyin veya tıklayın
+                  <input id="mascot-file" type="file" accept="image/*" class="hidden">
+                </div>
+              </div>
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs font-extrabold text-slate-700">Satranç Görseli</span>
+                  <button type="button" id="clear-chess-img" class="text-[11px] font-bold text-rose-600 hover:underline">Varsayılana Dön</button>
+                </div>
+                <div id="chess-dropzone" class="dropzone rounded-xl p-3 text-center text-xs font-bold text-slate-600 cursor-pointer bg-slate-50">
+                  Satranç görselini sürükleyin veya tıklayın
+                  <input id="chess-file" type="file" accept="image/*" class="hidden">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <!-- SOLDA: REKLAMLAR KUTUSU (SOL BLOK) -->
+            <div class="nb-card p-5 space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="text-base font-black text-slate-900">⬅️ REKLAMLAR Kutusu (Sol Blok)</h3>
+                <button type="button" id="clear-ad-img" class="text-xs font-bold text-rose-600 hover:underline">Sıfırla</button>
+              </div>
+              <div id="ad-dropzone" class="dropzone rounded-xl p-3 text-center text-xs font-bold text-slate-600 cursor-pointer bg-slate-50">
+                Reklam görseli sürükleyin veya tıklayın
+                <input id="ad-file" type="file" accept="image/*" class="hidden">
+              </div>
+              <form id="ad-settings-form" class="space-y-2">
+                <input id="ad-img-url" type="text" placeholder="Reklam görsel URL" class="nb-input w-full px-3 py-2 text-xs">
+                <input id="ad-link-input" type="text" placeholder="Reklam linki (Örn: sonfasil.com)" class="nb-input w-full px-3 py-2 text-xs">
+                <input id="ad-text-input" type="text" placeholder="Reklam açıklaması" class="nb-input w-full px-3 py-2 text-xs">
+                <button type="submit" class="nb-btn-sm w-full py-2 bg-[#60a5fa] text-slate-900 text-xs">💾 Reklamı Güncelle</button>
+              </form>
+            </div>
+
+            <!-- SAĞDA: SAĞ SÜTUN LİNKLER -->
+            <div class="nb-card p-5 space-y-3">
+              <h3 class="text-base font-black text-slate-900">➡️ Sağ Sütun Linkler (Sürükle-Bırak Sırala)</h3>
+              <form id="link-add-form" class="space-y-2.5">
+                <input id="edit-link-id" type="hidden">
+                <input id="new-link-label" type="text" required placeholder="Bağlantı adı (Örn: EBA)" class="nb-input w-full px-3.5 py-2 text-sm">
+                <div class="flex gap-2">
+                  <input id="new-link-url" type="text" required placeholder="www.sonfasil.com veya https://..." class="nb-input flex-1 px-3.5 py-2 text-sm">
+                  <button id="link-submit-btn" type="submit" class="nb-btn-sm px-4 py-2 bg-[#34d399] text-slate-900 text-xs whitespace-nowrap">+ Ekle</button>
+                  <button id="link-cancel-btn" type="button" class="hidden nb-btn-sm px-3 py-2 bg-slate-200 text-slate-800 text-xs">İptal</button>
+                </div>
+              </form>
+              <div id="admin-links-list" class="space-y-2 max-h-64 overflow-y-auto admin-scroll pr-1"></div>
+            </div>
+          </div>
+
+          <div class="nb-card p-5 space-y-4">
+            <h3 class="text-base font-black text-slate-900">Köşe Yazıları (Sağ Blok)</h3>
+            <form id="col-form" class="grid grid-cols-1 md:grid-cols-2 gap-3 p-4 rounded-xl bg-slate-50 border border-slate-300">
+              <input id="edit-col-id" type="hidden">
+              <input id="col-author-input" type="text" required placeholder="Yazar Adı *" class="nb-input px-3.5 py-2 text-sm">
+              <input id="col-title-input" type="text" required placeholder="Yazı Başlığı *" class="nb-input px-3.5 py-2 text-sm">
+              <div class="md:col-span-2 flex flex-col sm:flex-row gap-2 items-center">
+                <div id="col-img-dropzone" class="dropzone flex-1 w-full rounded-xl p-2.5 bg-white text-center cursor-pointer text-xs font-bold text-slate-600">
+                  Yazar fotoğrafı sürükleyin veya tıklayın
+                  <input id="col-img-file" type="file" accept="image/*" class="hidden">
+                </div>
+                <input id="col-img-url" type="text" placeholder="veya URL..." class="nb-input w-full sm:w-56 px-3 py-2 text-xs">
+              </div>
+              <textarea id="col-body-input" rows="3" required placeholder="Köşe yazısı metni *" class="nb-input md:col-span-2 px-3.5 py-2 text-sm"></textarea>
+              <div class="md:col-span-2 flex justify-end gap-2">
+                <button id="col-cancel-btn" type="button" class="hidden nb-btn-sm px-4 py-2 bg-slate-200 text-slate-800 text-xs">İptal</button>
+                <button id="col-submit-btn" type="submit" class="nb-btn-sm px-5 py-2 bg-[#34d399] text-slate-900 text-xs">+ Köşe Yazısı Ekle</button>
+              </div>
+            </form>
+            <div id="admin-columns-list" class="space-y-2 max-h-60 overflow-y-auto admin-scroll pr-1"></div>
+          </div>
+
+          <div class="nb-card p-5 space-y-3">
+            <h3 class="text-base font-black text-slate-900">Ziyaretçi Defteri Mesajları</h3>
+            <form id="gb-edit-form" class="hidden p-3.5 rounded-xl bg-amber-50 border border-slate-900 space-y-2">
+              <input id="edit-gb-id" type="hidden">
+              <div class="text-xs font-black text-slate-800">✏️ Ziyaretçi Mesajını Düzenle</div>
+              <input id="edit-gb-name" type="text" required placeholder="Ad Soyad" class="nb-input w-full px-3 py-1.5 text-xs">
+              <textarea id="edit-gb-msg" rows="2" required placeholder="Mesaj" class="nb-input w-full px-3 py-1.5 text-xs"></textarea>
+              <div class="flex justify-end gap-2">
+                <button id="gb-cancel-btn" type="button" class="nb-btn-sm px-3 py-1.5 bg-slate-200 text-slate-800 text-xs">İptal</button>
+                <button type="submit" class="nb-btn-sm px-4 py-1.5 bg-[#ffd447] text-slate-900 text-xs">💾 Güncelle</button>
+              </div>
+            </form>
+            <div id="admin-guestbook-list" class="space-y-2 max-h-60 overflow-y-auto admin-scroll pr-1"></div>
+          </div>
+        </section>
+
+        <!-- SEKME 4: DUYURULAR & SLAYT -->
+        <section id="tab-announcements" class="admin-section hidden space-y-5">
+          <div class="nb-card p-5 space-y-4">
+            <h2 class="text-base sm:text-lg font-black text-slate-900">Duyurular (Ekle &amp; Düzenle)</h2>
+            <form id="ann-form" class="space-y-3">
+              <input id="edit-ann-id" type="hidden">
+              <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+                <div class="sm:col-span-4">
+                  <label class="block text-xs font-extrabold text-slate-700 mb-1">Tarih</label>
+                  <input id="ann-date-input" type="text" class="nb-input w-full px-3.5 py-2 text-sm">
+                </div>
+                <div class="sm:col-span-8">
+                  <label class="block text-xs font-extrabold text-slate-700 mb-1">Duyuru Başlığı *</label>
+                  <input id="ann-title-input" type="text" required placeholder="Duyuru başlığını yazın..." class="nb-input w-full px-3.5 py-2 text-sm">
+                </div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
+                <div class="sm:col-span-8">
+                  <label class="block text-xs font-extrabold text-slate-700 mb-1">Açıklama *</label>
+                  <input id="ann-desc-input" type="text" required placeholder="Kısa duyuru metni..." class="nb-input w-full px-3.5 py-2 text-sm">
+                </div>
+                <div class="sm:col-span-4 flex gap-2">
+                  <button id="ann-submit-btn" type="submit" class="nb-btn flex-1 py-2 bg-[#34d399] hover:bg-[#10b981] text-slate-900 text-sm">+ Ekle</button>
+                  <button id="ann-cancel-btn" type="button" class="hidden nb-btn px-3 py-2 bg-slate-200 text-slate-800 text-xs">İptal</button>
+                </div>
+              </div>
+            </form>
+            <div id="admin-announcements-list" class="space-y-2.5 pt-2 max-h-72 overflow-y-auto admin-scroll pr-1"></div>
+          </div>
+
+          <div class="nb-card p-5 space-y-4">
+            <h2 class="text-base sm:text-lg font-black text-slate-900">Üst Slayt Gösterisi (Ekle &amp; Düzenle)</h2>
+            <form id="slide-form" class="grid grid-cols-1 md:grid-cols-2 gap-3 p-4 rounded-xl bg-slate-50 border border-slate-300">
+              <input id="edit-slide-id" type="hidden">
+              <input id="slide-title-input" type="text" required placeholder="Slayt Başlığı *" class="nb-input px-3.5 py-2 text-sm">
+              <input id="slide-link-input" type="text" placeholder="Link (#home veya sonfasil.com)" class="nb-input px-3.5 py-2 text-sm">
+              <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+                <div id="slide-img-dropzone" class="dropzone sm:col-span-7 rounded-xl p-3 bg-white text-center cursor-pointer text-xs font-bold text-slate-600">
+                  Slayt görselini sürükleyin veya tıklayın
+                  <input id="slide-img-file" type="file" accept="image/*" class="hidden">
+                </div>
+                <input id="slide-img-url" type="text" placeholder="veya görsel URL..." class="nb-input sm:col-span-5 px-3 py-2 text-xs">
+              </div>
+              <div class="md:col-span-2 flex justify-end gap-2">
+                <button id="slide-cancel-btn" type="button" class="hidden nb-btn-sm px-4 py-2 bg-slate-200 text-slate-800 text-xs">İptal</button>
+                <button id="slide-submit-btn" type="submit" class="nb-btn-sm px-5 py-2 bg-[#60a5fa] text-slate-900 text-xs">+ Slayt Ekle</button>
+              </div>
+            </form>
+            <div id="admin-slides-list" class="space-y-2 max-h-60 overflow-y-auto admin-scroll pr-1"></div>
+          </div>
+        </section>
+
+        <!-- SEKME 5: GENEL AYARLAR & TEMA -->
+        <section id="tab-settings" class="admin-section hidden space-y-5">
+          <div class="nb-card p-5 sm:p-6">
+            <h2 class="text-base sm:text-lg font-black text-slate-900 mb-4">Genel Ayarlar &amp; Görünüm</h2>
+            <form id="settings-form" class="space-y-5">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-extrabold text-slate-700 mb-1">Site Başlığı</label>
+                  <input id="set-title" type="text" required class="nb-input w-full px-3.5 py-2.5 text-sm">
+                </div>
+                <div>
+                  <label class="block text-xs font-extrabold text-slate-700 mb-1">Alt Bilgi (Footer)</label>
+                  <input id="set-footer" type="text" class="nb-input w-full px-3.5 py-2.5 text-sm">
+                </div>
+              </div>
+
+              <div class="nb-row p-4 bg-slate-50 space-y-2.5">
+                <div class="flex items-center justify-between">
+                  <label class="text-xs font-extrabold text-slate-700">Sayfa Arka Plan Görseli</label>
+                  <button type="button" id="clear-bg-btn" class="text-xs font-bold text-rose-600 hover:underline">Varsayılana Dön</button>
+                </div>
+                <div id="bg-dropzone" class="dropzone rounded-xl p-4 bg-white text-center cursor-pointer text-xs font-bold text-slate-600">
+                  Arka plan görselini sürükleyin veya tıklayın
+                  <input id="bg-file" type="file" accept="image/*" class="hidden">
+                </div>
+                <input id="set-bg-url" type="text" placeholder="veya görsel URL..." class="nb-input w-full px-3.5 py-2 text-xs">
+              </div>
+
+              <div class="nb-row p-4 bg-indigo-50 grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs font-extrabold text-slate-800">
+                <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-slate-300 cursor-pointer"><input id="set-show-header-slider" type="checkbox" class="w-4 h-4 accent-indigo-600"><span>Üst Slayt Gösterisi</span></label>
+                <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-slate-300 cursor-pointer"><input id="set-show-home-featured" type="checkbox" class="w-4 h-4 accent-indigo-600"><span>Öne Çıkanlar</span></label>
+                <label class="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-slate-300 cursor-pointer"><input id="set-show-home-news" type="checkbox" class="w-4 h-4 accent-indigo-600"><span>Haberler &amp; Duyurular</span></label>
+              </div>
+
+              <div class="nb-row p-4 bg-sky-50 space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <label class="text-xs font-black text-sky-900">Ana Sayfa Orta Sütun Oyunu</label>
+                  <div class="flex items-center gap-3">
+                    <button type="button" id="clear-home-game-btn" class="text-[11px] font-bold text-rose-600 hover:underline">Varsayılan Oyuna Dön</button>
+                    <label class="inline-flex items-center gap-2 text-xs font-bold cursor-pointer"><input id="set-home-game-enabled" type="checkbox" class="w-4 h-4 accent-sky-600"><span>Göster</span></label>
+                  </div>
+                </div>
+                <input id="set-home-game-title" type="text" placeholder="Oyun başlığı" class="nb-input w-full px-3.5 py-2 text-sm">
+                <div id="home-game-dropzone" class="dropzone rounded-xl p-3.5 bg-white text-center cursor-pointer">
+                  <div class="text-xs font-extrabold text-sky-800">🎮 Yeni Oyun Dosyası Yükle (.html sürükleyin veya tıklayın)</div>
+                  <div id="home-game-status" class="text-[11px] font-semibold text-slate-500 mt-1">Varsayılan oyun aktif: Eğlenceli Matematik Oyunları 1</div>
+                  <input id="home-game-file" type="file" accept=".html,.htm,text/html" class="hidden">
+                </div>
+                <textarea id="set-home-game-embed" rows="2" placeholder="veya buraya Wordwall/EBA <iframe> kodu, oyun linki (https://...) ya da tam HTML kodu yapıştırın..." class="nb-input w-full px-3.5 py-2 text-xs font-mono"></textarea>
+              </div>
+
+              <div class="flex justify-end">
+                <button type="submit" class="nb-btn px-6 py-2.5 bg-[#ffd447] hover:bg-[#fbbf24] text-slate-900 text-sm">💾 Ayarları Kaydet</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- SEKME 6: GÜVENLİK, PAROLA & YEDEK -->
+        <section id="tab-security" class="admin-section hidden space-y-5">
+          <div class="nb-card p-5 sm:p-6">
+            <h2 class="text-base sm:text-lg font-black text-slate-900 mb-4 flex items-center gap-2"><span>🔑</span><span>Yönetici Parolasını Değiştir</span></h2>
+            <form id="password-form" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <label class="block text-xs font-extrabold text-slate-700 mb-1">Mevcut Parola</label>
+                  <input id="sec-old-pass" type="password" required placeholder="Mevcut parola" class="nb-input w-full px-3.5 py-2.5 text-sm">
+                </div>
+                <div>
+                  <label class="block text-xs font-extrabold text-slate-700 mb-1">Yeni Parola (En az 4 karakter)</label>
+                  <input id="sec-new-pass-1" type="password" required placeholder="Yeni parola" class="nb-input w-full px-3.5 py-2.5 text-sm">
+                </div>
+                <div>
+                  <label class="block text-xs font-extrabold text-slate-700 mb-1">Yeni Parola (Tekrar)</label>
+                  <input id="sec-new-pass-2" type="password" required placeholder="Yeni parola tekrar" class="nb-input w-full px-3.5 py-2.5 text-sm">
+                </div>
+              </div>
+              <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+                <p class="text-xs text-slate-500">Gizli giriş kısayolları: URL sonuna <code class="px-1.5 py-0.5 bg-slate-100 rounded font-bold">#login</code> ekleyin, <code class="px-1.5 py-0.5 bg-slate-100 rounded font-bold">Ctrl+Shift+L</code> yapın veya <strong>OF</strong> logosuna 5 kez tıklayın.</p>
+                <button type="submit" class="nb-btn px-5 py-2.5 bg-[#ffd447] hover:bg-[#fbbf24] text-slate-900 text-sm">🔐 Parolayı Güncelle</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="nb-card p-5 flex flex-col justify-between gap-4">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-sky-100 border-2 border-slate-900 flex items-center justify-center text-lg mb-3">⬇️</div>
+                <h3 class="text-base font-black text-slate-900">Yedeği İndir (.JSON)</h3>
+                <p class="text-xs text-slate-500 mt-1">Tüm bölümleri, alt başlıkları, oyunları, görselleri ve ayarları yedekleyin.</p>
+              </div>
+              <button type="button" id="export-backup-btn" class="nb-btn w-full py-2.5 bg-[#34d399] hover:bg-[#10b981] text-slate-900 text-sm">Yedeği İndir</button>
+            </div>
+
+            <div class="nb-card p-5 flex flex-col justify-between gap-4">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-indigo-100 border-2 border-slate-900 flex items-center justify-center text-lg mb-3">⬆️</div>
+                <h3 class="text-base font-black text-slate-900">Yedekten Geri Yükle</h3>
+                <p class="text-xs text-slate-500 mt-1">İndirdiğiniz .json dosyasını seçerek tüm verilerinizi geri yükleyin.</p>
+              </div>
+              <label class="nb-btn w-full py-2.5 bg-[#7dd3fc] hover:bg-[#38bdf8] text-slate-900 text-sm text-center block">
+                <span>JSON Dosyası Seç</span>
+                <input id="import-backup-file" type="file" accept=".json,application/json" class="hidden">
+              </label>
+            </div>
+
+            <div class="nb-card p-5 flex flex-col justify-between gap-4">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-rose-100 border-2 border-slate-900 flex items-center justify-center text-lg mb-3">🔄</div>
+                <h3 class="text-base font-black text-rose-700">Fabrika Ayarlarına Sıfırla</h3>
+                <p class="text-xs text-slate-500 mt-1">Tüm verileri ve parolayı başlangıçtaki varsayılan değerlere döndürür.</p>
+              </div>
+              <button type="button" id="factory-reset-btn" class="nb-btn w-full py-2.5 bg-[#fb7185] hover:bg-[#f43f5e] text-slate-900 text-sm">Sıfırla</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 3. MODALLAR (GİRİŞ, İÇERİK EDİTÖRÜ, OKUYUCU/OYUNCU, ONAY)             -->
+  <!-- ===================================================================== -->
+  <!-- Yönetici Giriş Modalı -->
+  <div id="login-modal" class="hidden fixed inset-0 z-[70] bg-slate-900/65 flex items-center justify-center p-4">
+    <div class="nb-card max-w-sm w-full overflow-hidden bg-white">
+      <div class="px-5 py-4 bg-[#ffd447] border-b-2 border-slate-900 flex items-center justify-between">
+        <h3 class="font-display font-black text-lg text-slate-900">🔐 Yönetici Girişi</h3>
+        <button id="login-close-btn" type="button" class="nb-btn-sm w-8 h-8 bg-white text-slate-900">✕</button>
+      </div>
+      <form id="login-form" class="p-5 space-y-4">
+        <div>
+          <label class="block text-xs font-extrabold text-slate-700 mb-1">Yönetici Parolası</label>
+          <input id="login-password" type="password" required placeholder="Varsayılan: 1234" class="nb-input w-full px-3.5 py-2.5 text-sm">
+        </div>
+        <button type="submit" class="nb-btn w-full py-2.5 bg-[#34d399] hover:bg-[#10b981] text-slate-900 text-sm">Panele Giriş Yap</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- İçerik Ekle / Düzenle Modalı -->
+  <div id="item-editor-modal" class="hidden fixed inset-0 z-[65] bg-slate-900/65 flex items-center justify-center p-3 sm:p-5">
+    <div class="nb-card max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden bg-white">
+      <div class="px-5 py-3.5 bg-[#ffd447] border-b-2 border-slate-900 flex items-center justify-between gap-3">
+        <div class="min-w-0">
+          <div id="item-editor-subtitle" class="text-[11px] font-black uppercase text-slate-800 truncate">Bölüm › Alt Başlık</div>
+          <h3 id="item-editor-title" class="font-display text-lg font-black text-slate-900 truncate">Yeni İçerik Ekle</h3>
+        </div>
+        <button id="item-editor-close" type="button" class="nb-btn-sm w-9 h-9 bg-white text-slate-900 flex items-center justify-center">✕</button>
+      </div>
+
+      <form id="item-editor-form" class="p-5 overflow-y-auto admin-scroll space-y-4">
+        <input type="hidden" id="ie-id">
+        <input type="hidden" id="ie-section-id">
+        <input type="hidden" id="ie-sub-id">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-extrabold text-slate-700 mb-1">İçerik Türü *</label>
+            <select id="ie-type" class="nb-input w-full px-3 py-2 text-sm">
+              <option value="game">🎮 Oyun (.html Dosyası / Link / Iframe)</option>
+              <option value="image">🖼️ Görsel / Çalışma Sayfası</option>
+              <option value="video">🎬 YouTube Videosu</option>
+              <option value="article">📄 Ders Notu / Yazı / PDF</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-extrabold text-slate-700 mb-1">İçerik Başlığı *</label>
+            <input id="ie-title" type="text" required placeholder="Örn: Gökkuşağı Oyunu" class="nb-input w-full px-3.5 py-2 text-sm">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-extrabold text-slate-700 mb-1">Kısa Açıklama *</label>
+          <input id="ie-summary" type="text" required placeholder="Öğrenciler için kısa açıklama..." class="nb-input w-full px-3.5 py-2 text-sm">
+        </div>
+
+        <!-- Oyun (.html) Yükleme Kutusu -->
+        <div id="ie-game-upload-box" class="nb-row p-3.5 bg-indigo-50 space-y-2.5">
+          <div class="flex items-center justify-between gap-2">
+            <label class="text-xs font-black text-indigo-950">🎮 HTML Oyun Dosyası Yükle (.html)</label>
+            <button type="button" id="ie-game-clear" class="text-[11px] font-bold text-rose-600 hover:underline">HTML Kodu Temizle</button>
+          </div>
+          <div id="ie-game-dropzone" class="dropzone rounded-xl p-3.5 bg-white text-center cursor-pointer">
+            <div class="text-xs font-extrabold text-indigo-800">Bilgisayarınızdan .html oyun dosyasını sürükleyin veya tıklayın</div>
+            <div id="ie-game-file-status" class="text-[11px] font-semibold text-slate-500 mt-1">Henüz HTML oyun dosyası seçilmedi (veya aşağıya link/iframe yapıştırabilirsiniz)</div>
+            <input id="ie-game-file" type="file" accept=".html,.htm,text/html" class="hidden">
+          </div>
+          <textarea id="ie-html-content" rows="2" placeholder="Yüklenen .html oyun kodu veya Wordwall/EBA <iframe> kodu buraya gelir..." class="nb-input w-full px-3 py-2 text-xs font-mono"></textarea>
+        </div>
+
+        <div>
+          <label id="ie-url-label" class="block text-xs font-extrabold text-slate-700 mb-1">Bağlantı / YouTube / PDF Linki (İsteğe Bağlı)</label>
+          <input id="ie-url" type="text" placeholder="https://..." class="nb-input w-full px-3.5 py-2 text-sm">
+        </div>
+
+        <div class="nb-row p-3.5 bg-sky-50 space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-black text-sky-950">🖼️ Görsel / Kapak Fotoğrafı</label>
+            <button type="button" id="ie-img-clear" class="text-[11px] font-bold text-rose-600 hover:underline">Görseli Kaldır</button>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center">
+            <div id="ie-img-dropzone" class="dropzone sm:col-span-7 rounded-xl p-3 bg-white text-center cursor-pointer text-xs font-bold text-slate-600">
+              Görseli sürükleyin veya tıklayın
+              <input id="ie-img-file" type="file" accept="image/*" class="hidden">
+            </div>
+            <div class="sm:col-span-5 space-y-1.5">
+              <input id="ie-img-url" type="text" placeholder="veya görsel URL..." class="nb-input w-full px-3 py-1.5 text-xs">
+              <img id="ie-img-preview" src="" alt="" class="hidden w-full h-16 object-cover rounded-lg border border-slate-300">
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-extrabold text-slate-700 mb-1">Detaylı Metin / Yönerge (İsteğe Bağlı)</label>
+          <textarea id="ie-body" rows="3" placeholder="İçerik metni veya oyun yönergesi..." class="nb-input w-full px-3.5 py-2 text-sm"></textarea>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-200">
+          <div class="flex items-center gap-4 text-xs font-extrabold text-slate-700">
+            <label class="inline-flex items-center gap-1.5 cursor-pointer"><input id="ie-featured" type="checkbox" class="w-4 h-4 accent-sky-600"><span>Öne Çıkan</span></label>
+            <label class="inline-flex items-center gap-1.5 cursor-pointer"><input id="ie-news" type="checkbox" class="w-4 h-4 accent-emerald-600"><span>Duyuru / Haber</span></label>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" id="ie-cancel-btn" class="nb-btn-sm px-4 py-2 bg-slate-100 text-slate-800 text-xs">İptal</button>
+            <button type="submit" class="nb-btn px-6 py-2 bg-[#34d399] hover:bg-[#10b981] text-slate-900 text-sm">💾 Kaydet ve Yayınla</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- İçerik / Oyun Okuyucu Modalı -->
+  <div id="reader-modal" class="hidden fixed inset-0 z-[60] bg-slate-900/70 flex items-center justify-center p-3 sm:p-5">
+    <div id="reader-modal-card" class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[92vh] flex flex-col overflow-hidden border-2 border-slate-900">
+      <div class="px-5 py-3.5 bg-sky-50 border-b border-sky-200 flex items-center justify-between gap-3">
+        <div class="min-w-0">
+          <div id="reader-badge" class="text-[11px] font-extrabold uppercase text-sky-700">İÇERİK</div>
+          <h3 id="reader-title" class="font-display text-lg font-extrabold text-slate-900 truncate">Başlık</h3>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <button id="reader-fullscreen-btn" type="button" class="hidden px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold cursor-pointer">⛶ Tam Ekran</button>
+          <button id="reader-close-btn" type="button" class="w-9 h-9 rounded-xl bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 font-black cursor-pointer">✕</button>
+        </div>
+      </div>
+      <div id="reader-body" class="p-5 overflow-y-auto admin-scroll space-y-4"></div>
+    </div>
+  </div>
+
+  <!-- Onay Modalı -->
+  <div id="confirm-modal" class="hidden fixed inset-0 z-[75] bg-slate-900/65 flex items-center justify-center p-4">
+    <div class="nb-card max-w-sm w-full p-5 bg-white space-y-4">
+      <h3 id="confirm-title" class="font-display text-lg font-black text-slate-900">Onay</h3>
+      <p id="confirm-text" class="text-sm text-slate-600"></p>
+      <div class="flex justify-end gap-2">
+        <button id="confirm-cancel-btn" type="button" class="nb-btn-sm px-4 py-2 bg-slate-100 text-slate-800 text-xs">Vazgeç</button>
+        <button id="confirm-ok-btn" type="button" class="nb-btn-sm px-4 py-2 bg-[#fb7185] text-slate-900 text-xs">Evet, Onayla</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bildirim (Toast) -->
+  <div id="toast-box" class="hidden fixed bottom-5 right-5 z-[80] px-4 py-3 rounded-2xl border-2 border-slate-900 shadow-[0_3px_0_#0f172a] font-extrabold text-xs sm:text-sm"></div>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = "sonfasil_portal_v5";
+      const API_URL = "/api/state";
+
+      const GROUP_LABELS = {
+        top: "Üst Menü",
+        left_genel: "Sol Blok: GENEL",
+        left_sizin_icin: "Sol Blok: SİZİN İÇİN",
+        left_videolar: "Sol Blok: VİDEOLAR",
+        right_custom: "Sağ Blok: ÖZEL MENÜ"
+      };
+
+      const LEFT_BLOCK_LABELS = {
+        left_genel: "📌 GENEL Menü Kutusu",
+        left_sizin_icin: "⭐ SİZİN İÇİN Menü Kutusu",
+        left_videolar: "🎬 VİDEOLAR Menü Kutusu",
+        sitemap: "🗺️ Site Haritası Kutusu",
+        calendar: "📅 Takvim Kutusu",
+        ads: "📢 REKLAMLAR Kutusu"
+      };
+
+      const RIGHT_BLOCK_LABELS = {
+        visitors: "👥 Ziyaretçi Bilgileri (140.000+)",
+        columns: "✍️ Köşe Yazıları",
+        links: "🔗 Linkler",
+        weather: "⛅ Hava Durumu",
+        chess: "♟️ SATRANÇ OYNAYALIM",
+        clock: "🕒 Klasik Analog Saat",
+        right_custom: "📂 Sağ Blok Özel Menüleri",
+        mascot: "🇹🇷 Bayrak Taşıyan Çocuk"
+      };
+
+      const WEATHER_DATA = {
+        Samsun: { temp: "16°C", desc: "Parçalı Bulutlu", icon: "⛅" },
+        İstanbul: { temp: "17°C", desc: "Güneşli", icon: "☀️" },
+        Ankara: { temp: "13°C", desc: "Az Bulutlu", icon: "🌤️" },
+        İzmir: { temp: "21°C", desc: "Açık ve Güneşli", icon: "☀️" },
+        Trabzon: { temp: "15°C", desc: "Hafif Yağmurlu", icon: "🌦️" },
+        Antalya: { temp: "23°C", desc: "Güneşli", icon: "☀️" }
+      };
+
+      const DEFAULT_HOME_GAME_HTML = `<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><style>
+        body{margin:0;font-family:Nunito,sans-serif;background:linear-gradient(135deg,#0ea5e9,#6366f1);color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:16px;box-sizing:border-box}
+        .card{background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,.35);border-radius:24px;padding:24px;max-width:440px;width:100%}
+        h2{margin:0 0 8px;font-size:22px}
+        .q{font-size:44px;font-weight:900;margin:18px 0;text-shadow:0 3px 8px rgba(0,0,0,.2)}
+        .opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+        button{border:2px solid #0f172a;border-radius:14px;padding:14px;font-size:22px;font-weight:900;background:#ffd447;color:#0f172a;cursor:pointer;box-shadow:0 3px 0 #0f172a}
+        button:active{transform:translateY(2px);box-shadow:0 1px 0 #0f172a}
+        .score{font-size:15px;font-weight:800;background:rgba(15,23,42,.35);display:inline-block;padding:6px 14px;border-radius:99px;margin-bottom:8px}
+        .msg{min-height:24px;margin-top:14px;font-weight:800;font-size:16px}
+      </style></head><body><div class="card">
+        <div class="score">⭐ Puan: <span id="sc">0</span></div>
+        <h2>🎯 Eğlenceli Matematik Oyunu</h2>
+        <div class="q" id="q">5 + 3 = ?</div>
+        <div class="opts" id="opts"></div>
+        <div class="msg" id="msg">Doğru cevabı seç!</div>
+      </div><script>
+        let sc=0, ans=0;
+        function nextQ(){
+          const a=Math.floor(Math.random()*12)+2, b=Math.floor(Math.random()*10)+1;
+          const op=Math.random()>0.4?"+":"-";
+          const x=op==="-"&&a<b?b:a, y=op==="-"&&a<b?a:b;
+          ans=op==="+"?x+y:x-y;
+          document.getElementById("q").textContent=x+" "+op+" "+y+" = ?";
+          const set=new Set([ans]);
+          while(set.size<4){ const f=Math.max(0,ans+Math.floor(Math.random()*9)-4); set.add(f); }
+          const arr=[...set].sort(()=>Math.random()-0.5);
+          document.getElementById("opts").innerHTML=arr.map(v=>'<button onclick="pick('+v+')">'+v+'</button>').join("");
+        }
+        window.pick=function(v){
+          if(v===ans){ sc+=10; document.getElementById("sc").textContent=sc; document.getElementById("msg").textContent="🎉 Harika! Doğru cevap!"; setTimeout(nextQ,600); }
+          else { document.getElementById("msg").textContent="💡 Tekrar dene!"; }
+        };
+        nextQ();
+      ` + '<' + '/script></body></html>';
+
+      /* ===================================================================== */
+      /* GÜVENLİ DEPOLAMA VE YARDIMCI FONKSİYONLAR                             */
+      /* ===================================================================== */
+      function safeLocalGet(key) {
+        try { return window.localStorage.getItem(key); } catch (e) { return null; }
+      }
+      function safeLocalSet(key, val) {
+        try { window.localStorage.setItem(key, val); return true; } catch (e) { return false; }
+      }
+      function safeSessionGet(key) {
+        try { return window.sessionStorage.getItem(key); } catch (e) { return null; }
+      }
+      function safeSessionSet(key, val) {
+        try { window.sessionStorage.setItem(key, val); } catch (e) { /* yerel/gizli modda yoksay */ }
+      }
+
+      function todayStr() {
+        const d = new Date();
+        return String(d.getDate()).padStart(2, "0") + "." + String(d.getMonth() + 1).padStart(2, "0") + "." + d.getFullYear();
+      }
+      function genId(prefix) {
+        return (prefix || "id") + "-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 6);
+      }
+      function esc(s) {
+        return String(s == null ? "" : s)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+      function extractYouTubeId(url) {
+        if (!url) return "";
+        const m = String(url).match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/);
+        return m ? m[1] : "";
+      }
+      function normalizeUrl(raw) {
+        const s = String(raw || "").trim();
+        if (!s) return "";
+        if (/^(https?:\/\/|#|\/|mailto:|tel:)/i.test(s)) return s;
+        return "https://" + s;
+      }
+
+      let toastTimer = null;
+      function showToast(msg, type) {
+        const box = document.getElementById("toast-box");
+        if (!box) return;
+        box.textContent = msg;
+        box.className = "fixed bottom-5 right-5 z-[80] px-4 py-3 rounded-2xl border-2 border-slate-900 shadow-[0_3px_0_#0f172a] font-extrabold text-xs sm:text-sm " +
+          (type === "error" ? "bg-[#fda4af] text-slate-900" : type === "info" ? "bg-[#fef08a] text-slate-900" : "bg-[#34d399] text-slate-900");
+        box.classList.remove("hidden");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => box.classList.add("hidden"), 3000);
+      }
+
+      let confirmCb = null;
+      function openConfirm(title, text, onOk) {
+        document.getElementById("confirm-title").textContent = title;
+        document.getElementById("confirm-text").textContent = text;
+        confirmCb = onOk;
+        document.getElementById("confirm-modal").classList.remove("hidden");
+      }
+
+      function enableDragSort(container, itemSelector, onReorder) {
+        if (!container) return;
+        let dragIdx = -1;
+        const rows = Array.from(container.querySelectorAll(itemSelector));
+        rows.forEach((row, idx) => {
+          row.setAttribute("draggable", "true");
+          row.addEventListener("dragstart", (e) => {
+            dragIdx = idx;
+            row.classList.add("dragging-row");
+            if (e.dataTransfer) e.dataTransfer.effectAllowed = "move";
+          });
+          row.addEventListener("dragend", () => {
+            row.classList.remove("dragging-row");
+            container.querySelectorAll(itemSelector).forEach((r) => r.classList.remove("drag-over-row"));
+          });
+          row.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            if (dragIdx !== -1 && dragIdx !== idx) row.classList.add("drag-over-row");
+          });
+          row.addEventListener("dragleave", () => {
+            row.classList.remove("drag-over-row");
+          });
+          row.addEventListener("drop", (e) => {
+            e.preventDefault();
+            row.classList.remove("drag-over-row");
+            if (dragIdx !== -1 && dragIdx !== idx) {
+              onReorder(dragIdx, idx);
+            }
+            dragIdx = -1;
+          });
+        });
+      }
+
+      function setupDropzone(zoneId, fileInputId, onDataUrl, asText) {
+        const zone = document.getElementById(zoneId);
+        const inp = document.getElementById(fileInputId);
+        if (!zone || !inp) return;
+        const handleFile = (file) => {
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = () => onDataUrl(String(reader.result || ""), file.name);
+          if (asText) reader.readAsText(file, "UTF-8");
+          else reader.readAsDataURL(file);
+        };
+        zone.addEventListener("click", (e) => {
+          if (e.target !== inp) inp.click();
+        });
+        inp.addEventListener("change", () => {
+          if (inp.files && inp.files[0]) handleFile(inp.files[0]);
+          inp.value = "";
+        });
+        zone.addEventListener("dragover", (e) => { e.preventDefault(); zone.classList.add("drag-over"); });
+        zone.addEventListener("dragleave", () => zone.classList.remove("drag-over"));
+        zone.addEventListener("drop", (e) => {
+          e.preventDefault();
+          zone.classList.remove("drag-over");
+          if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) {
+            handleFile(e.dataTransfer.files[0]);
+          }
+        });
+      }
+
+      /* ===================================================================== */
+      /* VARSAYILAN VERİLER (EKRAN GÖRÜNTÜLERİNE BİREBİR UYUMLU)               */
+      /* ===================================================================== */
+      function buildDefaultState() {
+        const leftGenel = [
+          { id: "ataturk", title: "ATATÜRK", subs: [] },
+          { id: "rehberlik", title: "REHBERLİK", subs: [] },
+          { id: "belirli-gun-haftalar", title: "Belirli Gün ve Haftalar", subs: [] },
+          { id: "oyunlar", title: "OYUNLAR", subs: [{ id: "gokkusagi-oyunu", title: "gökkuşağı oyunu", active: true }] },
+          { id: "eglence", title: "EĞLENCE", subs: [] },
+          { id: "sarkilar", title: "ŞARKILAR", subs: [] },
+          { id: "cizgi-film-masallar", title: "Çizgi Film Masallar", subs: [] },
+          { id: "gerekliler", title: "GEREKLİLER", subs: [] },
+          { id: "oooo-ne-varmis", title: "OOOO NE VARMIŞ", subs: [] },
+          { id: "gunun-tavsiyeleri", title: "GÜNÜN TAVSİYELERİ", subs: [] },
+          { id: "deneyler", title: "DENEYLER", subs: [] },
+          { id: "canli-online-satranc", title: "CANLI ONLİNE SATRANÇ", subs: [] },
+          { id: "haftalik-ders-programi", title: "HAFTALIK DERS PROGRAMI", subs: [] },
+          { id: "opoyun", title: "OPOYUN", subs: [] }
+        ].map((s) => ({ id: s.id, title: s.title, group: "left_genel", active: true, subs: s.subs }));
+
+        const leftSizinIcin = [
+          "Duyurular", "Sınavlar", "CORONA( KORONA) VİRÜSÜ", "Ödevler",
+          "Öğrencilerden Gelenler", "Eğlenirken Öğrenelim", "Güncellediklerimiz",
+          "Öğrenciler İçin", "Veliler İçin", "İlginç Şeyler", "Bu Ay Doğanlar",
+          "Kamera Arkası", "Ders Programı", "Belirli Günler", "OYUN"
+        ].map((t, i) => ({
+          id: t === "Duyurular" ? "duyurular" : "sizin-" + i,
+          title: t, group: "left_sizin_icin", active: true, subs: []
+        }));
+
+        const leftVideolar = [
+          "Velilere Önerilen Filmler", "Öğrencilerden Gelenler", "Sınıf Videoları",
+          "Eğitim Videoları", "Ders Videoları", "Belirli Gün ve Haftalarla İl...",
+          "Ders Etkinlik Videoları", "Deneyler"
+        ].map((t, i) => ({
+          id: "vid-" + i, title: t, group: "left_videolar", active: true, subs: []
+        }));
+
+        const topMenus = [
+          { id: "sinif-1", title: "1. Sınıf", group: "top", active: true, subs: [
+            { id: "s1-turkce", title: "Türkçe", active: true },
+            { id: "s1-mat", title: "Matematik", active: true },
+            { id: "s1-hb", title: "Hayat Bilgisi", active: true }
+          ]},
+          { id: "sinif-2", title: "2. Sınıf", group: "top", active: true, subs: [] },
+          { id: "sinif-3", title: "3. Sınıf", group: "top", active: true, subs: [] },
+          { id: "sinif-4", title: "4. Sınıf", group: "top", active: true, subs: [] },
+          { id: "defter-notlari", title: "Defter Notları", group: "top", active: true, subs: [] },
+          { id: "hizli-okuma", title: "Hızlı Okuma", group: "top", active: true, subs: [] }
+        ];
+
+        return {
+          config: {
+            siteTitle: "SONFASIL.COM",
+            footerText: "© 2026 SONFASIL.COM — Tüm hakları saklıdır.",
+            adminPassword: "1234",
+            bgImage: "",
+            showHeaderSlider: true,
+            showHomeFeatured: true,
+            showHomeNews: true,
+            homeGameEnabled: true,
+            homeGameTitle: "Eğlenceli Matematik Oyunları 1",
+            homeGameEmbed: "",
+            mascotImg: "bayraktasiyan.gif",
+            chessImg: "",
+            adImg: "",
+            adLink: "https://sonfasil.com",
+            adText: "Nano Teknoloji Üstün Koruma ve Mükemmel Parlaklık",
+            weatherCity: "Samsun",
+            visitorsTotal: 140000,
+            visitorsToday: 1,
+            visitorsDate: todayStr()
+          },
+          leftBlocks: [
+            { key: "left_genel", active: true },
+            { key: "left_sizin_icin", active: true },
+            { key: "left_videolar", active: true },
+            { key: "sitemap", active: true },
+            { key: "calendar", active: true },
+            { key: "ads", active: true }
+          ],
+          rightBlocks: [
+            { key: "visitors", active: true },
+            { key: "columns", active: true },
+            { key: "links", active: true },
+            { key: "weather", active: true },
+            { key: "chess", active: true },
+            { key: "clock", active: true },
+            { key: "right_custom", active: true },
+            { key: "mascot", active: true }
+          ],
+          sections: [...topMenus, ...leftGenel, ...leftSizinIcin, ...leftVideolar],
+          slides: [
+            {
+              id: "sl-1",
+              title: "SONFASIL.COM — Akıllı Tahta ve İlkokul Eğitim Portalına Hoş Geldiniz!",
+              link: "#home",
+              image: ""
+            }
+          ],
+          columns: [
+            {
+              id: "col-1",
+              author: "OSMAN FİLİK",
+              title: "AYRILIK ZAMANI...",
+              image: "",
+              body: "Değerli öğrencilerim ve velilerim, birlikte geçirdiğimiz güzel eğitim yolculuğunda her birinizin emeği çok kıymetli."
+            },
+            {
+              id: "col-2",
+              author: "Yağız Aydın",
+              title: "23 Nisan Ulusal Egemenlik Ve Çocuk Bayramı",
+              image: "",
+              body: "23 Nisan Ulusal Egemenlik ve Çocuk Bayramı tüm dünya çocuklarına kutlu olsun!"
+            },
+            {
+              id: "col-3",
+              author: "Mert Şeref",
+              title: "1 MAYIS EMEK VE DAYANIŞMA GÜNÜ",
+              image: "",
+              body: "Alın teriyle çalışan tüm emekçilerin 1 Mayıs Emek ve Dayanışma Günü kutlu olsun."
+            }
+          ],
+          links: [
+            { id: "lnk-1", label: "OKULUMUZ", url: "https://meb.gov.tr" },
+            { id: "lnk-2", label: "ANİMASYONLU İLKYARDIM", url: "https://sonfasil.com" },
+            { id: "lnk-3", label: "BİLİM ÇOCUK DERGİSİ", url: "https://bilimcocuk.tubitak.gov.tr" },
+            { id: "lnk-4", label: "e-okul", url: "https://e-okul.meb.gov.tr" },
+            { id: "lnk-5", label: "EBA", url: "https://www.eba.gov.tr" },
+            { id: "lnk-6", label: "MASALLAR", url: "https://sonfasil.com" },
+            { id: "lnk-7", label: "BİR DOLAP KİTAP", url: "https://birdolapkitap.com" },
+            { id: "lnk-8", label: "KELİME DÜNYASI", url: "https://sozluk.gov.tr" },
+            { id: "lnk-9", label: "EBRU SANATI", url: "https://sonfasil.com" },
+            { id: "lnk-10", label: "BEN KİMİM", url: "https://sonfasil.com" }
+          ]
+        };
+      }
+
+      function buildDefaultItems() {
+        return [
+          {
+            id: "it-1", sectionId: "duyurular", subId: "", type: "article",
+            title: "Yeni Eğitim Dönemi Akıllı Tahta İçerikleri Yayında!",
+            summary: "Okul öncesinden 4. sınıfa kadar tüm dersler, hızlı okuma metinleri ve etkileşimli oyunlar yenilenen arayüzde sizleri bekliyor.",
+            body: "<p>Yeni dönemde ders notları, etkileşimli HTML oyunları ve videolar tek merkezde toplandı.</p>",
+            url: "", image: "", htmlContent: "", featured: true, isNews: true, date: todayStr()
+          },
+          {
+            id: "it-2", sectionId: "oyunlar", subId: "gokkusagi-oyunu", type: "game",
+            title: "Gökkuşağı Oyunu (Örnek)",
+            summary: "Yönetim panelinden bu içeriği düzenleyerek kendi .html gökkuşağı oyununuzu yükleyebilirsiniz.",
+            body: "<p>Renkli ve eğlenceli sınıf içi etkinlik oyunu.</p>",
+            url: "", image: "", htmlContent: "", featured: true, isNews: false, date: todayStr()
+          }
+        ];
+      }
+
+      function buildDefaultGuestbook() {
+        return [
+          { id: "gb-1", name: "Ziyaretçi", message: "Harika bir eğitim sitesi olmuş, emeğinize sağlık hocam!", date: todayStr() }
+        ];
+      }
+
+      /* ===================================================================== */
+      /* DURUM DEĞİŞKENLERİ VE KAYIT / SENKRONİZASYON                          */
+      /* ===================================================================== */
+      let portalState = buildDefaultState();
+      let portalItems = buildDefaultItems();
+      let guestbookEntries = buildDefaultGuestbook();
+
+      let isAdminLoggedIn = false;
+      let currentRoute = { view: "home", sectionId: "", subId: "", query: "" };
+      let expandedMenus = {}; // Tıklanan ana menülerin açık/kapalı durumu
+      let currentSlideIdx = 0;
+      let activeAdminTab = "explorer";
+      let explorerPath = { sectionId: "", subId: "" };
+      let activeMenuFilter = "all";
+
+      function setSyncStatus(text, isErr) {
+        const el = document.getElementById("admin-sync-status");
+        if (!el) return;
+        el.textContent = text;
+        el.className = "px-2 py-0.5 rounded-full bg-white/85 border border-slate-900 text-[11px] font-extrabold " +
+          (isErr ? "text-rose-700" : "text-emerald-700");
+      }
+
+      function ensureDataIntegrity() {
+        const def = buildDefaultState();
+        if (!portalState || typeof portalState !== "object") portalState = def;
+        portalState.config = Object.assign({}, def.config, portalState.config || {});
+        if (!Array.isArray(portalState.sections) || !portalState.sections.length) portalState.sections = def.sections;
+        if (!Array.isArray(portalState.leftBlocks) || !portalState.leftBlocks.length) portalState.leftBlocks = def.leftBlocks;
+        if (!Array.isArray(portalState.rightBlocks) || !portalState.rightBlocks.length) portalState.rightBlocks = def.rightBlocks;
+        if (!Array.isArray(portalState.slides)) portalState.slides = def.slides;
+        if (!Array.isArray(portalState.columns)) portalState.columns = def.columns;
+        if (!Array.isArray(portalState.links)) portalState.links = def.links;
+        if (!Array.isArray(portalItems)) portalItems = buildDefaultItems();
+        if (!Array.isArray(guestbookEntries)) guestbookEntries = buildDefaultGuestbook();
+
+        // Ziyaretçi sayacı en az 140.000 olmalı
+        if (!portalState.config.visitorsTotal || portalState.config.visitorsTotal < 140000) {
+          portalState.config.visitorsTotal = 140000;
+        }
+        if (portalState.config.visitorsDate !== todayStr()) {
+          portalState.config.visitorsDate = todayStr();
+          portalState.config.visitorsToday = 0;
+        }
+      }
+
+      function loadLocal() {
+        try {
+          const raw = safeLocalGet(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (parsed.portalState) portalState = parsed.portalState;
+            if (parsed.portalItems) portalItems = parsed.portalItems;
+            if (parsed.guestbookEntries) guestbookEntries = parsed.guestbookEntries;
+          }
+        } catch (e) { /* yerel okuma hatası yoksay */ }
+        ensureDataIntegrity();
+      }
+
+      let syncTimer = null;
+      function saveLocal(skipRemote) {
+        const ok = safeLocalSet(STORAGE_KEY, JSON.stringify({ portalState, portalItems, guestbookEntries }));
+        if (!ok && isAdminLoggedIn) {
+          showToast("Tarayıcı hafızasına yazılamadı; JSON yedeği almanız önerilir.", "error");
+        }
+        if (!skipRemote && isAdminLoggedIn) {
+          setSyncStatus("Online kaydediliyor...", false);
+          clearTimeout(syncTimer);
+          syncTimer = setTimeout(pushToCloudflare, 450);
+        }
+      }
+
+      async function pushToCloudflare() {
+        try {
+          const res = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              password: portalState.config.adminPassword || "1234",
+              portalState,
+              portalItems,
+              guestbookEntries
+            })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            if (data && data.ok) {
+              setSyncStatus("Online Kaydedildi ✓", false);
+              return;
+            }
+          }
+          setSyncStatus("Yerel Kaydedildi ✓", false);
+        } catch (e) {
+          setSyncStatus("Yerel Kaydedildi ✓", false);
+        }
+      }
+
+      async function loadFromCloudflare() {
+        if (location.protocol === "file:") return;
+        try {
+          const res = await fetch(API_URL, { cache: "no-store" });
+          if (!res.ok) return;
+          const data = await res.json();
+          if (data && data.portalState && data.portalState.config) {
+            portalState = data.portalState;
+            if (Array.isArray(data.portalItems)) portalItems = data.portalItems;
+            if (Array.isArray(data.guestbookEntries)) guestbookEntries = data.guestbookEntries;
+            ensureDataIntegrity();
+            incrementVisitorCounter();
+            saveLocal(true);
+            renderAll();
+            setSyncStatus("Cloudflare Online Bağlı ✓", false);
+          }
+        } catch (e) { /* çevrimdışı veya önizleme ortamı */ }
+      }
+
+      function incrementVisitorCounter() {
+        if (safeSessionGet("sf_counted_visit")) return;
+        safeSessionSet("sf_counted_visit", "1");
+        portalState.config.visitorsTotal = Math.max(140000, Number(portalState.config.visitorsTotal || 140000)) + 1;
+        portalState.config.visitorsToday = Number(portalState.config.visitorsToday || 0) + 1;
+        portalState.config.visitorsDate = todayStr();
+        saveLocal(true);
+      }
+
+      /* ===================================================================== */
+      /* ZİYARETÇİ PORTALI RENDER                                              */
+      /* ===================================================================== */
+      function renderPublicPortal() {
+        const cfg = portalState.config;
+        document.getElementById("public-site-title").textContent = cfg.siteTitle || "SONFASIL.COM";
+        document.getElementById("public-footer-text").textContent = cfg.footerText || "";
+        document.body.style.backgroundImage = cfg.bgImage ? `url('${cfg.bgImage}')` : "";
+
+        // Üst Menü
+        const topNav = document.getElementById("top-nav-container");
+        const topSecs = portalState.sections.filter((s) => s.group === "top" && s.active !== false);
+        topNav.innerHTML =
+          '<button type="button" data-go-home="1" class="px-3 py-1.5 rounded-xl text-xs font-extrabold transition cursor-pointer ' +
+          (currentRoute.view === "home" ? "bg-amber-400 text-slate-900 shadow-sm" : "text-white hover:bg-white/15") +
+          '">🏠 Ana Sayfa</button>' +
+          topSecs.map((s) => {
+            const isAct = currentRoute.view === "section" && currentRoute.sectionId === s.id;
+            return '<button type="button" data-nav-sec="' + s.id + '" class="px-3 py-1.5 rounded-xl text-xs font-extrabold transition cursor-pointer ' +
+              (isAct ? "bg-amber-400 text-slate-900 shadow-sm" : "text-white hover:bg-white/15") + '">' + esc(s.title) + '</button>';
+          }).join("");
+
+        topNav.querySelectorAll("[data-go-home]").forEach((b) => b.addEventListener("click", () => navigateTo("home")));
+        topNav.querySelectorAll("[data-nav-sec]").forEach((b) => b.addEventListener("click", () => navigateTo("section", b.getAttribute("data-nav-sec"), "")));
+
+        renderHeaderSlider();
+        renderLeftSidebar();
+        renderRightSidebar();
+        renderMainContent();
+      }
+
+      function renderHeaderSlider() {
+        const wrap = document.getElementById("header-slider-wrap");
+        const slides = portalState.slides || [];
+        if (!portalState.config.showHeaderSlider || !slides.length) {
+          wrap.classList.add("hidden");
+          return;
+        }
+        wrap.classList.remove("hidden");
+        if (currentSlideIdx >= slides.length) currentSlideIdx = 0;
+        const sl = slides[currentSlideIdx];
+        const content = document.getElementById("header-slider-content");
+        content.innerHTML =
+          '<div class="relative w-full h-full flex items-end p-5 bg-gradient-to-r from-sky-700 via-sky-600 to-indigo-600">' +
+            (sl.image ? '<img src="' + esc(sl.image) + '" class="absolute inset-0 w-full h-full object-cover opacity-80">' : '') +
+            '<div class="absolute inset-0 bg-gradient-to-t from-slate-900/75 via-transparent to-transparent"></div>' +
+            '<div class="relative z-10 text-white max-w-2xl">' +
+              '<div class="text-xs font-extrabold uppercase tracking-wider text-amber-300 mb-1">SONFASIL.COM</div>' +
+              '<div class="font-display text-lg sm:text-2xl font-bold leading-snug drop-shadow">' + esc(sl.title) + '</div>' +
+            '</div>' +
+          '</div>';
+      }
+
+      function renderMenuGroupList(groupKey) {
+        const secs = portalState.sections.filter((s) => s.group === groupKey && s.active !== false);
+        if (!secs.length) return '<div class="p-3 text-xs text-slate-400">Aktif menü yok.</div>';
+        return '<div class="divide-y divide-sky-100">' + secs.map((s) => {
+          const activeSubs = (s.subs || []).filter((sb) => sb.active !== false);
+          const hasSubs = activeSubs.length > 0;
+          const isOpen = !!expandedMenus[s.id];
+          const isSelected = currentRoute.view === "section" && currentRoute.sectionId === s.id && !currentRoute.subId;
+
+          return '<div>' +
+            '<button type="button" data-side-sec="' + s.id + '" data-has-subs="' + (hasSubs ? "1" : "0") + '" class="w-full text-left px-3 py-2 text-xs font-extrabold flex items-center gap-2 transition cursor-pointer ' +
+              (isSelected ? "bg-sky-100 text-sky-900" : "text-slate-700 hover:bg-sky-50 hover:text-sky-800") + '">' +
+              '<span class="text-sky-600 text-[10px]">' + (hasSubs ? (isOpen ? "▾" : "▸") : "▪") + '</span>' +
+              '<span class="truncate flex-1">' + esc(s.title) + '</span>' +
+            '</button>' +
+            (hasSubs && isOpen ? '<div class="bg-sky-50/70 border-t border-sky-100 pl-6 pr-2 py-1 space-y-0.5">' +
+              activeSubs.map((sb) => {
+                const subSel = currentRoute.view === "section" && currentRoute.sectionId === s.id && currentRoute.subId === sb.id;
+                return '<button type="button" data-side-sub="' + s.id + '|' + sb.id + '" class="w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition cursor-pointer ' +
+                  (subSel ? "bg-sky-200 text-sky-950" : "text-slate-700 hover:bg-sky-100") + '"><span>↳</span><span class="truncate">' + esc(sb.title) + '</span></button>';
+              }).join("") +
+            '</div>' : '') +
+          '</div>';
+        }).join("") + '</div>';
+      }
+
+      function bindSidebarMenuClicks(scope) {
+        scope.querySelectorAll("[data-side-sec]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const secId = btn.getAttribute("data-side-sec");
+            const hasSubs = btn.getAttribute("data-has-subs") === "1";
+            if (hasSubs) {
+              expandedMenus[secId] = !expandedMenus[secId];
+            }
+            navigateTo("section", secId, "");
+          });
+        });
+        scope.querySelectorAll("[data-side-sub]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const [secId, subId] = btn.getAttribute("data-side-sub").split("|");
+            expandedMenus[secId] = true;
+            navigateTo("section", secId, subId);
+          });
+        });
+      }
+
+      function renderCalendarHtml() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const today = now.getDate();
+        const months = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+        const firstDay = (new Date(year, month, 1).getDay() + 6) % 7; // Pzt=0
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        let cells = "";
+        for (let i = 0; i < firstDay; i++) cells += '<span></span>';
+        for (let d = 1; d <= daysInMonth; d++) {
+          cells += '<span class="py-1 rounded-md text-center ' +
+            (d === today ? "bg-sky-600 text-white font-black" : "text-slate-700 font-semibold") + '">' + d + '</span>';
+        }
+        return '<div class="p-3 text-xs">' +
+          '<div class="text-center font-extrabold text-sky-900 mb-2">' + months[month] + ' ' + year + '</div>' +
+          '<div class="grid grid-cols-7 gap-1 text-[10px] font-black text-sky-700 text-center mb-1"><span>Pt</span><span>Sa</span><span>Ça</span><span>Pe</span><span>Cu</span><span>Ct</span><span>Pz</span></div>' +
+          '<div class="grid grid-cols-7 gap-1 text-[11px]">' + cells + '</div>' +
+        '</div>';
+      }
+
+      function renderLeftSidebar() {
+        const el = document.getElementById("left-sidebar");
+        const cfg = portalState.config;
+        const blocks = (portalState.leftBlocks || []).filter((b) => b.active !== false);
+
+        el.innerHTML = blocks.map((b) => {
+          if (b.key === "left_genel") {
+            return '<div class="portal-box"><div class="portal-box-header"><span>GENEL</span></div>' + renderMenuGroupList("left_genel") + '</div>';
+          }
+          if (b.key === "left_sizin_icin") {
+            return '<div class="portal-box"><div class="portal-box-header"><span>SİZİN İÇİN</span></div>' + renderMenuGroupList("left_sizin_icin") + '</div>';
+          }
+          if (b.key === "left_videolar") {
+            return '<div class="portal-box"><div class="portal-box-header"><span>VİDEOLAR</span></div>' + renderMenuGroupList("left_videolar") + '</div>';
+          }
+          if (b.key === "sitemap") {
+            return '<div class="portal-box"><div class="portal-box-header"><span>Site Haritası</span></div>' +
+              '<div class="p-3 text-center"><button type="button" id="open-sitemap-btn" class="text-xs font-extrabold text-sky-700 hover:underline cursor-pointer">🗺️ Site Haritası</button></div></div>';
+          }
+          if (b.key === "calendar") {
+            return '<div class="portal-box"><div class="portal-box-header"><span>Takvim</span></div>' + renderCalendarHtml() + '</div>';
+          }
+          if (b.key === "ads") {
+            return '<div class="portal-box"><div class="portal-box-header"><span>REKLAMLAR</span></div>' +
+              '<a href="' + esc(normalizeUrl(cfg.adLink || "https://sonfasil.com")) + '" target="_blank" rel="noopener" class="block p-3 text-center hover:bg-sky-50/50 transition">' +
+                (cfg.adImg
+                  ? '<img src="' + esc(cfg.adImg) + '" alt="Reklam" class="w-full max-h-36 object-contain mx-auto rounded-lg mb-2">'
+                  : '<div class="py-4 px-2 rounded-xl bg-gradient-to-br from-sky-50 to-indigo-50 border border-sky-200 mb-2"><div class="font-display font-black text-lg text-slate-800 tracking-wide">BEKBARS <span class="text-sky-600 italic">Nano</span></div></div>') +
+                '<div class="text-[11px] font-bold text-slate-600 leading-snug">' + esc(cfg.adText || "") + '</div>' +
+              '</a></div>';
+          }
+          return "";
+        }).join("");
+
+        bindSidebarMenuClicks(el);
+        const smBtn = document.getElementById("open-sitemap-btn");
+        if (smBtn) smBtn.addEventListener("click", () => navigateTo("sitemap"));
+      }
+
+      function renderRightSidebar() {
+        const el = document.getElementById("right-sidebar");
+        const cfg = portalState.config;
+        const blocks = (portalState.rightBlocks || []).filter((b) => b.active !== false);
+        const city = cfg.weatherCity || "Samsun";
+        const w = WEATHER_DATA[city] || WEATHER_DATA.Samsun;
+
+        el.innerHTML = blocks.map((b) => {
+          if (b.key === "visitors") {
+            return '<div class="portal-box"><div class="portal-box-header"><span>👥 Ziyaretçi Bilgileri</span></div>' +
+              '<div class="p-3 text-xs space-y-1.5">' +
+                '<div class="flex justify-between font-bold text-slate-600"><span>Aktif Ziyaretçi:</span><span class="text-emerald-700 font-black">1</span></div>' +
+                '<div class="flex justify-between font-bold text-slate-600"><span>Bugün Toplam:</span><span class="text-sky-700 font-black">' + Number(cfg.visitorsToday || 1).toLocaleString("tr-TR") + '</span></div>' +
+                '<div class="flex justify-between font-bold text-slate-600 pt-1 border-t border-sky-100"><span>Toplam Ziyaret:</span><span class="text-sky-900 font-black">' + Number(cfg.visitorsTotal || 140000).toLocaleString("tr-TR") + '</span></div>' +
+              '</div></div>';
+          }
+          if (b.key === "columns") {
+            return '<div class="portal-box"><div class="portal-box-header"><span>Köşe Yazıları</span></div>' +
+              '<div class="divide-y divide-sky-100">' + (portalState.columns || []).map((c) =>
+                '<button type="button" data-open-col="' + c.id + '" class="w-full text-left p-2.5 flex items-center gap-2.5 hover:bg-sky-50 transition cursor-pointer">' +
+                  (c.image
+                    ? '<img src="' + esc(c.image) + '" class="w-11 h-11 rounded-lg object-cover border border-sky-200 shrink-0">'
+                    : '<div class="w-11 h-11 rounded-lg bg-sky-100 border border-sky-200 flex items-center justify-center font-black text-sky-700 text-sm shrink-0">' + esc((c.author || "Y").slice(0, 2).toUpperCase()) + '</div>') +
+                  '<div class="min-w-0">' +
+                    '<div class="text-[11px] font-black text-rose-700 truncate">' + esc(c.author) + '</div>' +
+                    '<div class="text-xs font-bold text-slate-700 leading-tight line-clamp-2">' + esc(c.title) + '</div>' +
+                  '</div>' +
+                '</button>'
+              ).join("") + '</div></div>';
+          }
+          if (b.key === "links") {
+            return '<div class="portal-box"><div class="portal-box-header"><span>Linkler</span></div>' +
+              '<div class="divide-y divide-sky-100">' + (portalState.links || []).map((l) =>
+                '<a href="' + esc(normalizeUrl(l.url)) + '" target="_blank" rel="noopener" class="px-3 py-2 text-xs font-extrabold text-sky-900 hover:bg-sky-50 flex items-center gap-2 transition">' +
+                  '<span class="text-sky-500 text-[10px]">▪</span><span class="truncate">' + esc(l.label) + '</span></a>'
+              ).join("") + '</div></div>';
+          }
+          if (b.key === "weather") {
+            return '<div class="portal-box"><div class="portal-box-header"><span>Hava Durumu</span></div>' +
+              '<div class="p-3 text-center space-y-2">' +
+                '<div class="p-2.5 rounded-xl bg-sky-50 border border-sky-200">' +
+                  '<div class="text-3xl leading-none mb-1">' + w.icon + '</div>' +
+                  '<div class="text-lg font-black text-slate-900">' + w.temp + '</div>' +
+                  '<div class="text-[11px] font-bold text-slate-600">' + w.desc + '</div>' +
+                '</div>' +
+                '<select id="weather-city-select" class="w-full px-2.5 py-1.5 rounded-lg border border-sky-300 text-xs font-extrabold text-slate-800 bg-white">' +
+                  Object.keys(WEATHER_DATA).map((cn) => '<option value="' + cn + '"' + (cn === city ? " selected" : "") + '>' + cn + '</option>').join("") +
+                '</select>' +
+              '</div></div>';
+          }
+          if (b.key === "chess") {
+            return '<div class="portal-box"><div class="portal-box-header"><span>SATRANÇ OYNAYALIM</span></div>' +
+              '<a href="https://lichess.org" target="_blank" rel="noopener" class="block p-4 text-center hover:bg-sky-50 transition">' +
+                (cfg.chessImg
+                  ? '<img src="' + esc(cfg.chessImg) + '" alt="Satranç" class="w-20 h-20 object-contain mx-auto">'
+                  : '<div class="w-16 h-16 mx-auto rounded-2xl bg-amber-100 border-2 border-amber-300 flex items-center justify-center text-4xl shadow-sm">♟️</div>') +
+                '<div class="text-xs font-extrabold text-sky-800 mt-2">Online Satranç Oyna ↗</div>' +
+              '</a></div>';
+          }
+          if (b.key === "clock") {
+            return '<div class="portal-box"><div class="portal-box-header"><span>Saat</span></div>' +
+              '<div class="p-4 flex flex-col items-center">' +
+                '<svg id="analog-clock-svg" viewBox="0 0 120 120" class="w-32 h-32">' +
+                  '<circle cx="60" cy="60" r="54" fill="#ffffff" stroke="#0f172a" stroke-width="3"/>' +
+                  '<text x="60" y="21" text-anchor="middle" font-size="11" font-weight="900" fill="#0f172a">12</text>' +
+                  '<text x="102" y="64" text-anchor="middle" font-size="11" font-weight="900" fill="#0f172a">3</text>' +
+                  '<text x="60" y="108" text-anchor="middle" font-size="11" font-weight="900" fill="#0f172a">6</text>' +
+                  '<text x="18" y="64" text-anchor="middle" font-size="11" font-weight="900" fill="#0f172a">9</text>' +
+                  '<line id="clk-h" x1="60" y1="60" x2="60" y2="34" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>' +
+                  '<line id="clk-m" x1="60" y1="60" x2="60" y2="24" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>' +
+                  '<line id="clk-s" x1="60" y1="60" x2="60" y2="20" stroke="#e11d48" stroke-width="1.6" stroke-linecap="round"/>' +
+                  '<circle cx="60" cy="60" r="3.5" fill="#0f172a"/>' +
+                '</svg>' +
+                '<div id="digital-clock-text" class="text-xs font-black text-sky-900 mt-1"></div>' +
+              '</div></div>';
+          }
+          if (b.key === "right_custom") {
+            const rSecs = portalState.sections.filter((s) => s.group === "right_custom" && s.active !== false);
+            if (!rSecs.length) return "";
+            return '<div class="portal-box"><div class="portal-box-header"><span>ÖZEL MENÜLER</span></div>' + renderMenuGroupList("right_custom") + '</div>';
+          }
+          if (b.key === "mascot") {
+            const imgSrc = cfg.mascotImg || "bayraktasiyan.gif";
+            return '<div class="portal-box p-4 text-center bg-gradient-to-b from-white to-sky-50/70">' +
+              '<img src="' + esc(imgSrc) + '" alt="Bayrak Taşıyan Çocuk" class="max-h-36 mx-auto object-contain mb-2" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\';">' +
+              '<div style="display:none" class="py-3 px-2 mb-2 rounded-xl bg-sky-50 border border-dashed border-sky-300 text-[11px] font-bold text-sky-800">bayraktasiyan.gif dosyası bekleniyor (Yönetim Paneli › Sağ &amp; Sol Bloklar bölümünden sürükleyip yükleyebilirsiniz)</div>' +
+              '<div class="text-xs font-black text-sky-900">Ne Mutlu Türk\'üm Diyene!</div>' +
+            '</div>';
+          }
+          return "";
+        }).join("");
+
+        bindSidebarMenuClicks(el);
+        el.querySelectorAll("[data-open-col]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const c = portalState.columns.find((x) => x.id === btn.getAttribute("data-open-col"));
+            if (!c) return;
+            const modalCard = document.getElementById("reader-modal-card");
+            modalCard.classList.remove("max-w-4xl");
+            modalCard.classList.add("max-w-2xl");
+            document.getElementById("reader-fullscreen-btn").classList.add("hidden");
+            document.getElementById("reader-badge").textContent = "KÖŞE YAZISI • " + (c.author || "");
+            document.getElementById("reader-title").textContent = c.title || "";
+            document.getElementById("reader-body").innerHTML =
+              (c.image ? '<img src="' + esc(c.image) + '" class="w-28 h-28 rounded-2xl object-cover border border-sky-200">' : '') +
+              '<div class="rich-content text-sm text-slate-700 whitespace-pre-line">' + esc(c.body || "") + '</div>';
+            document.getElementById("reader-modal").classList.remove("hidden");
+          });
+        });
+
+        const wSel = document.getElementById("weather-city-select");
+        if (wSel) {
+          wSel.addEventListener("change", () => {
+            portalState.config.weatherCity = wSel.value;
+            saveLocal(true);
+            renderRightSidebar();
+          });
+        }
+        updateAnalogClock();
+      }
+
+      function updateAnalogClock() {
+        const hEl = document.getElementById("clk-h");
+        const mEl = document.getElementById("clk-m");
+        const sEl = document.getElementById("clk-s");
+        const dEl = document.getElementById("digital-clock-text");
+        if (!hEl || !mEl || !sEl) return;
+        const now = new Date();
+        const s = now.getSeconds();
+        const m = now.getMinutes() + s / 60;
+        const h = (now.getHours() % 12) + m / 60;
+        hEl.setAttribute("transform", `rotate(${h * 30} 60 60)`);
+        mEl.setAttribute("transform", `rotate(${m * 6} 60 60)`);
+        sEl.setAttribute("transform", `rotate(${s * 6} 60 60)`);
+        if (dEl) dEl.textContent = now.toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+      }
+      setInterval(updateAnalogClock, 1000);
+
+      function renderItemCard(it) {
+        const badge = it.type === "game" ? "🎮 Oyun" : it.type === "video" ? "🎬 Video" : it.type === "image" ? "🖼️ Görsel" : "📄 Ders Notu";
+        return '<div class="portal-card p-3.5 flex flex-col justify-between gap-2.5">' +
+          '<div>' +
+            (it.image ? '<img src="' + esc(it.image) + '" class="w-full h-32 object-cover rounded-xl mb-2.5 border border-slate-100">' : '') +
+            '<div class="flex items-center justify-between gap-2 mb-1">' +
+              '<span class="px-2 py-0.5 rounded-full bg-sky-100 text-sky-800 text-[10px] font-black">' + badge + '</span>' +
+              '<span class="text-[10px] font-bold text-slate-400">' + esc(it.date || "") + '</span>' +
+            '</div>' +
+            '<h4 class="font-display font-bold text-sm text-slate-900 leading-snug">' + esc(it.title) + '</h4>' +
+            '<p class="text-xs text-slate-600 mt-1 line-clamp-2">' + esc(it.summary || "") + '</p>' +
+          '</div>' +
+          '<button type="button" data-open-item="' + it.id + '" class="w-full py-2 rounded-xl brand-bg text-white text-xs font-extrabold hover:opacity-95 cursor-pointer">' +
+            (it.type === "game" ? "🎮 Oyunu Başlat" : "📖 İncele") +
+          '</button>' +
+        '</div>';
+      }
+
+      function mountHomeGame() {
+        const container = document.getElementById("home-game-frame-wrap");
+        if (!container) return;
+        const embed = (portalState.config.homeGameEmbed || "").trim();
+        const fsBtn = document.getElementById("home-game-fs-btn");
+        if (!embed) {
+          container.innerHTML = '<iframe id="home-game-iframe" title="Ana Sayfa Oyunu" style="width:100%;height:420px;border:none;display:block;" allowfullscreen></iframe>';
+          const fr = document.getElementById("home-game-iframe");
+          fr.srcdoc = DEFAULT_HOME_GAME_HTML;
+          if (fsBtn) fsBtn.onclick = () => { if (fr.requestFullscreen) fr.requestFullscreen(); };
+        } else if (/^https?:\/\//i.test(embed) && !embed.includes("<")) {
+          container.innerHTML = '<iframe id="home-game-iframe" src="' + esc(embed) + '" style="width:100%;height:440px;border:none;display:block;" allowfullscreen></iframe>';
+          const fr = document.getElementById("home-game-iframe");
+          if (fsBtn) fsBtn.onclick = () => { if (fr.requestFullscreen) fr.requestFullscreen(); };
+        } else if (/^\s*(<!doctype|<html)/i.test(embed) || (/<body[\s>]/i.test(embed) && /<script[\s>]/i.test(embed))) {
+          container.innerHTML = '<iframe id="home-game-iframe" title="Ana Sayfa Oyunu" style="width:100%;height:460px;border:none;display:block;" allowfullscreen></iframe>';
+          const fr = document.getElementById("home-game-iframe");
+          fr.srcdoc = embed;
+          if (fsBtn) fsBtn.onclick = () => { if (fr.requestFullscreen) fr.requestFullscreen(); };
+        } else {
+          container.innerHTML = '<div class="w-full overflow-hidden">' + embed + '</div>';
+          if (fsBtn) fsBtn.classList.add("hidden");
+        }
+      }
+
+      function renderMainContent() {
+        const main = document.getElementById("main-content-area");
+        const cfg = portalState.config;
+
+        if (currentRoute.view === "search") {
+          const q = (currentRoute.query || "").trim().toLowerCase();
+          const matched = portalItems.filter((i) =>
+            (i.title || "").toLowerCase().includes(q) || (i.summary || "").toLowerCase().includes(q)
+          );
+          main.innerHTML = '<div class="portal-box p-4 space-y-4">' +
+            '<div class="flex items-center justify-between"><h2 class="font-display text-lg font-bold text-sky-900">🔍 Arama Sonuçları: "' + esc(currentRoute.query) + '"</h2>' +
+            '<button type="button" id="back-home-btn" class="text-xs font-extrabold text-sky-700 hover:underline cursor-pointer">← Ana Sayfa</button></div>' +
+            (matched.length ? '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">' + matched.map(renderItemCard).join("") + '</div>' : '<p class="text-sm text-slate-500 py-6 text-center">Aramanızla eşleşen içerik bulunamadı.</p>') +
+          '</div>';
+          bindOpenItems(main);
+          document.getElementById("back-home-btn").addEventListener("click", () => navigateTo("home"));
+          return;
+        }
+
+        if (currentRoute.view === "sitemap") {
+          const activeSecs = portalState.sections.filter((s) => s.active !== false);
+          main.innerHTML = '<div class="portal-box p-4 space-y-4">' +
+            '<div class="flex items-center justify-between"><h2 class="font-display text-lg font-bold text-sky-900">🗺️ Site Haritası</h2>' +
+            '<button type="button" id="back-home-btn" class="text-xs font-extrabold text-sky-700 hover:underline cursor-pointer">← Ana Sayfa</button></div>' +
+            '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">' + activeSecs.map((s) =>
+              '<div class="p-3 rounded-xl bg-sky-50/70 border border-sky-200">' +
+                '<button type="button" data-sm-sec="' + s.id + '" class="font-extrabold text-sm text-sky-900 hover:underline cursor-pointer">' + esc(s.title) + '</button>' +
+                ((s.subs || []).filter((sb) => sb.active !== false).length
+                  ? '<div class="mt-1.5 pl-3 space-y-1">' + (s.subs || []).filter((sb) => sb.active !== false).map((sb) =>
+                      '<div><button type="button" data-sm-sub="' + s.id + '|' + sb.id + '" class="text-xs font-bold text-slate-700 hover:text-sky-700 cursor-pointer">↳ ' + esc(sb.title) + '</button></div>'
+                    ).join("") + '</div>'
+                  : '') +
+              '</div>'
+            ).join("") + '</div></div>';
+          document.getElementById("back-home-btn").addEventListener("click", () => navigateTo("home"));
+          main.querySelectorAll("[data-sm-sec]").forEach((b) => b.addEventListener("click", () => navigateTo("section", b.getAttribute("data-sm-sec"), "")));
+          main.querySelectorAll("[data-sm-sub]").forEach((b) => b.addEventListener("click", () => {
+            const [sId, sbId] = b.getAttribute("data-sm-sub").split("|");
+            navigateTo("section", sId, sbId);
+          }));
+          return;
+        }
+
+        if (currentRoute.view === "section") {
+          const sec = portalState.sections.find((s) => s.id === currentRoute.sectionId);
+          if (!sec) { navigateTo("home"); return; }
+          const sub = currentRoute.subId ? (sec.subs || []).find((sb) => sb.id === currentRoute.subId) : null;
+          const activeSubs = (sec.subs || []).filter((sb) => sb.active !== false);
+          const list = portalItems.filter((i) => i.sectionId === sec.id && (sub ? i.subId === sub.id : true));
+
+          main.innerHTML = '<div class="portal-box p-4 space-y-4">' +
+            '<div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-sky-100">' +
+              '<div>' +
+                '<div class="text-[11px] font-bold text-sky-600">' + esc(GROUP_LABELS[sec.group] || "Bölüm") + (sub ? " › " + esc(sec.title) : "") + '</div>' +
+                '<h2 class="font-display text-xl font-bold text-slate-900">' + esc(sub ? sub.title : sec.title) + '</h2>' +
+              '</div>' +
+              '<button type="button" id="back-home-btn" class="px-3 py-1.5 rounded-xl bg-sky-100 text-sky-900 text-xs font-extrabold hover:bg-sky-200 cursor-pointer">← Ana Sayfa</button>' +
+            '</div>' +
+            (activeSubs.length ? '<div class="flex flex-wrap gap-2">' +
+              '<button type="button" data-pick-sub="" class="px-3 py-1.5 rounded-xl text-xs font-extrabold cursor-pointer ' + (!sub ? "brand-bg text-white" : "bg-sky-50 text-sky-900 border border-sky-200") + '">Tümü</button>' +
+              activeSubs.map((sb) => '<button type="button" data-pick-sub="' + sb.id + '" class="px-3 py-1.5 rounded-xl text-xs font-extrabold cursor-pointer ' + (sub && sub.id === sb.id ? "brand-bg text-white" : "bg-sky-50 text-sky-900 border border-sky-200") + '">' + esc(sb.title) + '</button>').join("") +
+            '</div>' : '') +
+            (list.length
+              ? '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">' + list.map(renderItemCard).join("") + '</div>'
+              : '<div class="p-8 text-center rounded-2xl bg-slate-50 border border-dashed border-slate-300 text-sm text-slate-500">Bu bölümde henüz içerik bulunmuyor. Yönetim panelinden kolayca oyun, video, görsel veya ders notu ekleyebilirsiniz.</div>') +
+          '</div>';
+
+          bindOpenItems(main);
+          document.getElementById("back-home-btn").addEventListener("click", () => navigateTo("home"));
+          main.querySelectorAll("[data-pick-sub]").forEach((b) => b.addEventListener("click", () => navigateTo("section", sec.id, b.getAttribute("data-pick-sub"))));
+          return;
+        }
+
+        // ANA SAYFA
+        let html = "";
+        if (cfg.homeGameEnabled !== false) {
+          html += '<div class="portal-box">' +
+            '<div class="portal-box-header"><span>🎮 ' + esc(cfg.homeGameTitle || "Eğlenceli Matematik Oyunları 1") + '</span>' +
+            '<button id="home-game-fs-btn" type="button" class="px-2.5 py-0.5 rounded-lg bg-white/20 hover:bg-white/30 text-[11px] font-extrabold cursor-pointer">⛶ Tam Ekran</button></div>' +
+            '<div id="home-game-frame-wrap" class="bg-slate-900"></div>' +
+          '</div>';
+        }
+
+        if (cfg.showHomeFeatured !== false) {
+          const feats = portalItems.filter((i) => i.featured).slice(0, 6);
+          if (feats.length) {
+            html += '<div class="portal-box p-4 space-y-3">' +
+              '<h3 class="font-display text-base font-bold text-sky-900">⭐ Öne Çıkan İçerikler</h3>' +
+              '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">' + feats.map(renderItemCard).join("") + '</div>' +
+            '</div>';
+          }
+        }
+
+        if (cfg.showHomeNews !== false) {
+          const news = portalItems.filter((i) => i.isNews || i.sectionId === "duyurular").slice(0, 5);
+          html += '<div class="portal-box p-4 space-y-3">' +
+            '<h3 class="font-display text-base font-bold text-sky-900">📰 Haberler &amp; Duyurular</h3>' +
+            (news.length ? '<div class="space-y-2">' + news.map((n) =>
+              '<div class="p-3 rounded-xl bg-sky-50/70 border border-sky-200 flex items-start justify-between gap-3">' +
+                '<div><div class="text-[10px] font-black text-sky-700">' + esc(n.date || "") + '</div>' +
+                '<div class="font-extrabold text-sm text-slate-900">' + esc(n.title) + '</div>' +
+                '<div class="text-xs text-slate-600 mt-0.5">' + esc(n.summary || "") + '</div></div>' +
+                '<button type="button" data-open-item="' + n.id + '" class="shrink-0 px-3 py-1.5 rounded-xl bg-white border border-sky-300 text-sky-800 text-xs font-extrabold hover:bg-sky-100 cursor-pointer">Oku</button>' +
+              '</div>'
+            ).join("") + '</div>' : '<p class="text-xs text-slate-500">Henüz duyuru eklenmemiş.</p>') +
+          '</div>';
+        }
+
+        // Ziyaretçi Defteri
+        html += '<div class="portal-box p-4 space-y-3">' +
+          '<h3 class="font-display text-base font-bold text-sky-900">💬 Ziyaretçi Defteri</h3>' +
+          '<form id="public-gb-form" class="flex flex-col sm:flex-row gap-2">' +
+            '<input id="pub-gb-name" type="text" required placeholder="Adınız" class="px-3 py-2 rounded-xl border border-sky-200 text-xs sm:w-36">' +
+            '<input id="pub-gb-msg" type="text" required placeholder="Mesajınızı yazın..." class="px-3 py-2 rounded-xl border border-sky-200 text-xs flex-1">' +
+            '<button type="submit" class="px-4 py-2 rounded-xl brand-bg text-white text-xs font-extrabold cursor-pointer">Gönder</button>' +
+          '</form>' +
+          '<div class="space-y-1.5 max-h-44 overflow-y-auto admin-scroll pr-1">' +
+            guestbookEntries.slice(0, 10).map((g) =>
+              '<div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs"><strong class="text-sky-900">' + esc(g.name) + '</strong> <span class="text-[10px] text-slate-400">(' + esc(g.date || "") + ')</span>: ' + esc(g.message) + '</div>'
+            ).join("") +
+          '</div>' +
+        '</div>';
+
+        main.innerHTML = html;
+        mountHomeGame();
+        bindOpenItems(main);
+        const gbForm = document.getElementById("public-gb-form");
+        if (gbForm) {
+          gbForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const name = document.getElementById("pub-gb-name").value.trim();
+            const message = document.getElementById("pub-gb-msg").value.trim();
+            if (!name || !message) return;
+            guestbookEntries.unshift({ id: genId("gb"), name, message, date: todayStr() });
+            saveLocal();
+            renderAll();
+            showToast("Mesajınız ziyaretçi defterine eklendi!", "success");
+          });
+        }
+      }
+
+      function navigateTo(view, sectionId, subId, query) {
+        currentRoute = { view, sectionId: sectionId || "", subId: subId || "", query: query || "" };
+        renderPublicPortal();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function openItemReaderById(itemId) {
+        const it = portalItems.find((x) => x.id === itemId);
+        if (!it) return;
+        const modalCard = document.getElementById("reader-modal-card");
+        const fsBtn = document.getElementById("reader-fullscreen-btn");
+        document.getElementById("reader-badge").textContent = (it.type || "İÇERİK").toUpperCase();
+        document.getElementById("reader-title").textContent = it.title;
+        const yt = extractYouTubeId(it.url);
+        const rawHtml = (it.htmlContent || "").trim();
+        const isFullHtmlGame = rawHtml && (/^\s*(<!doctype|<html)/i.test(rawHtml) || (/<body[\s>]/i.test(rawHtml) && /<script[\s>]/i.test(rawHtml)));
+        const isEmbedHtml = rawHtml && !isFullHtmlGame;
+
+        modalCard.classList.toggle("max-w-4xl", !!(isFullHtmlGame || isEmbedHtml));
+        modalCard.classList.toggle("max-w-2xl", !(isFullHtmlGame || isEmbedHtml));
+        fsBtn.classList.toggle("hidden", !isFullHtmlGame);
+
+        document.getElementById("reader-body").innerHTML =
+          (isFullHtmlGame ? '<div class="rounded-2xl overflow-hidden border-2 border-sky-300 bg-[#161219]"><iframe id="reader-game-iframe" title="' + esc(it.title) + '" style="width:100%;height:520px;border:none;display:block;" allowfullscreen></iframe></div>' : '') +
+          (isEmbedHtml ? '<div class="rounded-2xl overflow-hidden">' + rawHtml + '</div>' : '') +
+          (yt ? '<div class="aspect-video w-full rounded-2xl overflow-hidden bg-black"><iframe src="https://www.youtube.com/embed/' + yt + '" class="w-full h-full border-0" allowfullscreen></iframe></div>' : '') +
+          (it.image ? '<img src="' + esc(it.image) + '" class="w-full max-h-96 object-contain bg-slate-50 rounded-2xl">' : '') +
+          '<p class="text-sm font-bold text-slate-600">' + esc(it.summary || "") + '</p><div class="rich-content text-sm">' + (it.body || "") + '</div>' +
+          (it.url ? '<a href="' + esc(normalizeUrl(it.url)) + '" target="_blank" rel="noopener" class="inline-block px-5 py-2.5 rounded-xl brand-bg text-white text-sm font-bold">Bağlantıyı Yeni Sekmede Aç ↗</a>' : '');
+
+        if (isFullHtmlGame) {
+          const gFrame = document.getElementById("reader-game-iframe");
+          if (gFrame) {
+            gFrame.srcdoc = rawHtml;
+            fsBtn.onclick = () => {
+              if (gFrame.requestFullscreen) gFrame.requestFullscreen();
+              else if (gFrame.webkitRequestFullscreen) gFrame.webkitRequestFullscreen();
+            };
+          }
+        }
+        document.getElementById("reader-modal").classList.remove("hidden");
+      }
+
+      function bindOpenItems(scope) {
+        scope.querySelectorAll("[data-open-item]").forEach((btn) => {
+          btn.addEventListener("click", () => openItemReaderById(btn.getAttribute("data-open-item")));
+        });
+      }
+
+      /* ===================================================================== */
+      /* MERKEZİ YÖNETİM PANELİ RENDER                                         */
+      /* ===================================================================== */
+      function switchAdminTab(tabName) {
+        activeAdminTab = tabName;
+        document.querySelectorAll(".admin-tab-btn").forEach((b) => {
+          b.classList.toggle("active", b.getAttribute("data-admin-tab") === tabName);
+        });
+        document.querySelectorAll(".admin-section").forEach((s) => {
+          s.classList.toggle("hidden", s.id !== "tab-" + tabName);
+        });
+        renderAdminDashboard();
+      }
+
+      function renderAdminStats() {
+        document.getElementById("stat-sections-count").textContent = portalState.sections.length;
+        document.getElementById("stat-items-count").textContent = portalItems.length;
+        document.getElementById("stat-slides-count").textContent = portalState.slides.length;
+        document.getElementById("stat-guest-count").textContent = guestbookEntries.length;
+      }
+
+      function renderAdminDashboard() {
+        if (!isAdminLoggedIn) return;
+        renderAdminStats();
+        if (activeAdminTab === "explorer") renderExplorerTab();
+        else if (activeAdminTab === "menus") renderMenusTab();
+        else if (activeAdminTab === "widgets") renderWidgetsTab();
+        else if (activeAdminTab === "announcements") renderAnnouncementsTab();
+        else if (activeAdminTab === "settings") renderSettingsTab();
+      }
+
+      // SEKME 1: BÖLÜM & İÇERİK GEZGİNİ
+      function renderExplorerTab() {
+        const el = document.getElementById("explorer-container");
+        const sec = explorerPath.sectionId ? portalState.sections.find((s) => s.id === explorerPath.sectionId) : null;
+        const sub = (sec && explorerPath.subId) ? (sec.subs || []).find((sb) => sb.id === explorerPath.subId) : null;
+
+        // 1. SEVİYE: TÜM BÖLÜMLER
+        if (!sec) {
+          el.innerHTML =
+            '<div class="nb-card p-4 flex flex-wrap items-center justify-between gap-3 bg-sky-50/50">' +
+              '<div><h2 class="font-display text-lg font-black text-slate-900">📂 Bölüm &amp; İçerik Gezgini</h2>' +
+              '<p class="text-xs font-semibold text-slate-600">İçerik (oyun, görsel, video, PDF) eklemek istediğiniz bölümün yanındaki <strong>İçerikleri Yönet →</strong> butonuna basın.</p></div>' +
+            '</div>' +
+            '<div id="exp-sec-list" class="space-y-2.5 max-h-[65vh] overflow-y-auto admin-scroll pr-1">' +
+              portalState.sections.map((s) => {
+                const count = portalItems.filter((i) => i.sectionId === s.id).length;
+                const isAct = s.active !== false;
+                return '<div class="exp-sec-row nb-row p-3 flex flex-wrap items-center justify-between gap-2">' +
+                  '<div class="flex items-center gap-2.5 min-w-0 flex-1">' +
+                    '<span class="drag-handle text-slate-400 font-black">⠿</span>' +
+                    '<span class="px-2 py-0.5 rounded-lg bg-sky-100 text-sky-900 text-[10px] font-black shrink-0">' + esc(GROUP_LABELS[s.group] || s.group) + '</span>' +
+                    '<span class="font-extrabold text-sm truncate">' + esc(s.title) + '</span>' +
+                    '<span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-100 text-amber-900 shrink-0">' + count + ' içerik</span>' +
+                  '</div>' +
+                  '<div class="flex flex-wrap items-center gap-1.5">' +
+                    '<button type="button" data-exp-toggle-sec="' + s.id + '" class="nb-btn-sm px-2.5 py-1 text-xs ' + (isAct ? "bg-[#bbf7d0] text-emerald-950" : "bg-slate-200 text-slate-600") + '">' + (isAct ? "✓ Aktif" : "✕ Pasif") + '</button>' +
+                    '<button type="button" data-exp-open-sec="' + s.id + '" class="nb-btn-sm px-3 py-1 bg-[#34d399] hover:bg-[#10b981] text-slate-900 text-xs">📂 İçerikleri Yönet →</button>' +
+                  '</div>' +
+                '</div>';
+              }).join("") +
+            '</div>';
+
+          el.querySelectorAll("[data-exp-toggle-sec]").forEach((b) => b.addEventListener("click", () => {
+            const s = portalState.sections.find((x) => x.id === b.getAttribute("data-exp-toggle-sec"));
+            if (s) { s.active = s.active === false ? true : false; saveLocal(); renderAll(); }
+          }));
+          el.querySelectorAll("[data-exp-open-sec]").forEach((b) => b.addEventListener("click", () => {
+            explorerPath = { sectionId: b.getAttribute("data-exp-open-sec"), subId: "" };
+            renderExplorerTab();
+          }));
+          enableDragSort(document.getElementById("exp-sec-list"), ".exp-sec-row", (fromIdx, toIdx) => {
+            const moved = portalState.sections.splice(fromIdx, 1)[0];
+            portalState.sections.splice(toIdx, 0, moved);
+            saveLocal(); renderAll(); showToast("Bölüm sırası güncellendi!", "success");
+          });
+          return;
+        }
+
+        // 2. veya 3. SEVİYE: SEÇİLİ BÖLÜM / ALT BAŞLIK
+        const directItems = portalItems.filter((i) => i.sectionId === sec.id && (sub ? i.subId === sub.id : !i.subId));
+        const targetLabel = sub ? sub.title : sec.title;
+
+        let html =
+          '<div class="nb-row p-3 bg-slate-50 flex flex-wrap items-center justify-between gap-2">' +
+            '<div class="flex flex-wrap items-center gap-1.5 text-xs font-extrabold">' +
+              '<button type="button" id="exp-go-root" class="hover:underline text-sky-700 cursor-pointer">🏠 Tüm Bölümler</button>' +
+              '<span>›</span>' +
+              '<button type="button" id="exp-go-sec" class="px-2.5 py-1 rounded-lg bg-sky-100 text-sky-900 cursor-pointer">' + esc(sec.title) + '</button>' +
+              (sub ? '<span>›</span><span class="px-2.5 py-1 rounded-lg bg-emerald-200 text-emerald-950">' + esc(sub.title) + '</span>' : '') +
+            '</div>' +
+            '<span class="px-2.5 py-1 rounded-full bg-amber-100 border border-slate-900 text-xs font-black">' + directItems.length + ' İçerik</span>' +
+          '</div>';
+
+        // Doğrudan Yükleme Afişi
+        html +=
+          '<div class="nb-upload-banner p-4 sm:p-5 space-y-3">' +
+            '<div class="flex flex-wrap items-center justify-between gap-2">' +
+              '<div><div class="text-[11px] font-black text-emerald-800 uppercase">DOĞRUDAN BU BÖLÜME YÜKLE</div>' +
+              '<h3 class="font-display text-lg sm:text-xl font-black text-slate-900">➕ ' + esc(targetLabel) + ' İçerik Ekle</h3></div>' +
+              (sub ? '<button type="button" id="exp-back-subs" class="nb-btn-sm px-3 py-1.5 bg-white text-slate-900 text-xs">← Alt Başlıklara Dön</button>' : '') +
+            '</div>' +
+            '<div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">' +
+              '<button type="button" data-quick-add="image" class="nb-btn py-2.5 px-3 bg-[#7dd3fc] hover:bg-[#38bdf8] text-slate-900 text-xs sm:text-sm">🖼️ Görsel Yükle</button>' +
+              '<button type="button" data-quick-add="video" class="nb-btn py-2.5 px-3 bg-[#fda4af] hover:bg-[#fb7185] text-slate-900 text-xs sm:text-sm">🎬 Video Ekle</button>' +
+              '<button type="button" data-quick-add="game" class="nb-btn py-2.5 px-3 bg-[#a5b4fc] hover:bg-[#818cf8] text-slate-900 text-xs sm:text-sm">🎮 Oyun Ekle</button>' +
+              '<button type="button" data-quick-add="article" class="nb-btn py-2.5 px-3 bg-[#6ee7b7] hover:bg-[#34d399] text-slate-900 text-xs sm:text-sm">📄 Ders Notu / PDF</button>' +
+            '</div>' +
+          '</div>';
+
+        // Eğer bölüm seviyesindeysek alt başlık ekleme & listeleme
+        if (!sub) {
+          html +=
+            '<div class="nb-card p-4 space-y-3">' +
+              '<div class="text-xs font-black text-slate-800">📁 ' + esc(sec.title) + ' — Alt Başlıklar</div>' +
+              '<form id="exp-add-sub-form" class="flex flex-wrap gap-2">' +
+                '<input id="exp-new-sub-title" type="text" required placeholder="Yeni alt başlık adı (Örn: gökkuşağı oyunu)..." class="nb-input flex-1 min-w-[180px] px-3.5 py-2 text-sm">' +
+                '<button type="submit" class="nb-btn-sm px-4 py-2 bg-[#7dd3fc] text-slate-900 text-xs">+ Yeni Alt Başlık Ekle</button>' +
+              '</form>' +
+              '<div id="exp-subs-list" class="space-y-2 max-h-60 overflow-y-auto admin-scroll pr-1">' +
+                ((sec.subs || []).length ? (sec.subs || []).map((sb) => {
+                  const sc = portalItems.filter((i) => i.sectionId === sec.id && i.subId === sb.id).length;
+                  const sAct = sb.active !== false;
+                  return '<div class="exp-sub-row nb-row p-2.5 flex flex-wrap items-center justify-between gap-2">' +
+                    '<div class="flex items-center gap-2 min-w-0 flex-1">' +
+                      '<span class="drag-handle text-slate-400 font-black">⠿</span>' +
+                      '<span class="font-extrabold text-sm truncate">' + esc(sb.title) + '</span>' +
+                      '<span class="px-2 py-0.5 rounded-full bg-amber-100 text-[10px] font-black">' + sc + ' içerik</span>' +
+                    '</div>' +
+                    '<div class="flex flex-wrap items-center gap-1.5">' +
+                      '<button type="button" data-sub-toggle="' + sb.id + '" class="nb-btn-sm px-2.5 py-1 text-xs ' + (sAct ? "bg-[#bbf7d0] text-emerald-950" : "bg-slate-200 text-slate-600") + '">' + (sAct ? "✓ Aktif" : "✕ Pasif") + '</button>' +
+                      '<button type="button" data-sub-open="' + sb.id + '" class="nb-btn-sm px-3 py-1 bg-[#34d399] text-slate-900 text-xs">📂 İçerikleri Yönet →</button>' +
+                      '<button type="button" data-sub-del="' + sb.id + '" class="nb-btn-sm px-2.5 py-1 bg-[#fda4af] text-slate-900 text-xs">🗑️</button>' +
+                    '</div>' +
+                  '</div>';
+                }).join("") : '<p class="text-xs text-slate-400">Bu bölümde alt başlık yok. İsterseniz yukarıdan ekleyebilir veya doğrudan bu bölüme içerik yükleyebilirsiniz.</p>') +
+              '</div>' +
+            '</div>';
+        }
+
+        // Mevcut İçerikler Listesi
+        html +=
+          '<div class="space-y-2">' +
+            '<div class="text-xs font-black uppercase text-slate-600">BU BÖLÜMDEKİ MEVCUT İÇERİKLER (' + directItems.length + ')</div>' +
+            '<div id="exp-items-list" class="space-y-2 max-h-80 overflow-y-auto admin-scroll pr-1">' +
+              (directItems.length ? directItems.map((it) => {
+                const badge = it.type === "game" ? "🎮 Oyun" : it.type === "video" ? "🎬 Video" : it.type === "image" ? "🖼️ Görsel" : "📄 Ders Notu";
+                return '<div class="exp-item-row nb-row p-3 flex flex-wrap items-center justify-between gap-3">' +
+                  '<div class="flex items-center gap-2.5 min-w-0 flex-1">' +
+                    '<span class="drag-handle text-slate-400 font-black">⠿</span>' +
+                    '<div class="min-w-0">' +
+                      '<span class="inline-block px-2 py-0.5 rounded-full bg-sky-100 text-sky-900 text-[10px] font-black mb-0.5">' + badge + '</span>' +
+                      '<div class="font-extrabold text-sm text-slate-900 truncate">' + esc(it.title) + '</div>' +
+                      '<div class="text-xs text-slate-500 truncate">' + esc(it.summary || "") + '</div>' +
+                    '</div>' +
+                  '</div>' +
+                  '<div class="flex items-center gap-1.5 shrink-0">' +
+                    '<button type="button" data-preview-item="' + it.id + '" class="nb-btn-sm px-3 py-1.5 bg-[#fef08a] hover:bg-[#fde047] text-slate-900 text-xs">👁️ Gör</button>' +
+                    '<button type="button" data-edit-item="' + it.id + '" class="nb-btn-sm px-3.5 py-1.5 bg-[#7dd3fc] hover:bg-[#38bdf8] text-slate-900 text-xs">✏️ Düzenle</button>' +
+                    '<button type="button" data-del-item="' + it.id + '" class="nb-btn-sm px-3 py-1.5 bg-[#fda4af] hover:bg-[#fb7185] text-slate-900 text-xs">🗑️ Sil</button>' +
+                  '</div>' +
+                '</div>';
+              }).join("") : '<div class="nb-row p-6 text-center text-xs text-slate-400">Henüz içerik eklenmemiş. Yukarıdaki butonlarla hemen ekleyebilirsiniz.</div>') +
+            '</div>' +
+          '</div>';
+
+        el.innerHTML = html;
+
+        document.getElementById("exp-go-root").addEventListener("click", () => { explorerPath = { sectionId: "", subId: "" }; renderExplorerTab(); });
+        document.getElementById("exp-go-sec").addEventListener("click", () => { explorerPath = { sectionId: sec.id, subId: "" }; renderExplorerTab(); });
+        const backSub = document.getElementById("exp-back-subs");
+        if (backSub) backSub.addEventListener("click", () => { explorerPath = { sectionId: sec.id, subId: "" }; renderExplorerTab(); });
+
+        el.querySelectorAll("[data-quick-add]").forEach((b) => b.addEventListener("click", () => {
+          openItemEditor(null, sec.id, sub ? sub.id : "", b.getAttribute("data-quick-add"));
+        }));
+
+        const addSubForm = document.getElementById("exp-add-sub-form");
+        if (addSubForm) {
+          addSubForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const title = document.getElementById("exp-new-sub-title").value.trim();
+            if (!title) return;
+            sec.subs = sec.subs || [];
+            sec.subs.push({ id: genId("sub"), title, active: true });
+            saveLocal(); renderAll(); showToast("Alt başlık eklendi!", "success");
+          });
+        }
+
+        el.querySelectorAll("[data-sub-toggle]").forEach((b) => b.addEventListener("click", () => {
+          const sb = (sec.subs || []).find((x) => x.id === b.getAttribute("data-sub-toggle"));
+          if (sb) { sb.active = sb.active === false ? true : false; saveLocal(); renderAll(); }
+        }));
+        el.querySelectorAll("[data-sub-open]").forEach((b) => b.addEventListener("click", () => {
+          explorerPath = { sectionId: sec.id, subId: b.getAttribute("data-sub-open") };
+          renderExplorerTab();
+        }));
+        el.querySelectorAll("[data-sub-del]").forEach((b) => b.addEventListener("click", () => {
+          const sbId = b.getAttribute("data-sub-del");
+          openConfirm("Alt Başlığı Sil", "Bu alt başlık ve içindeki içerikler silinsin mi?", () => {
+            sec.subs = (sec.subs || []).filter((x) => x.id !== sbId);
+            portalItems = portalItems.filter((i) => !(i.sectionId === sec.id && i.subId === sbId));
+            saveLocal(); renderAll(); showToast("Alt başlık silindi.", "info");
+          });
+        }));
+
+        const subListEl = document.getElementById("exp-subs-list");
+        if (subListEl && sec.subs && sec.subs.length > 1) {
+          enableDragSort(subListEl, ".exp-sub-row", (fromIdx, toIdx) => {
+            const moved = sec.subs.splice(fromIdx, 1)[0];
+            sec.subs.splice(toIdx, 0, moved);
+            saveLocal(); renderAll(); showToast("Alt başlık sırası güncellendi!", "success");
+          });
+        }
+
+        el.querySelectorAll("[data-preview-item]").forEach((b) => b.addEventListener("click", () => openItemReaderById(b.getAttribute("data-preview-item"))));
+        el.querySelectorAll("[data-edit-item]").forEach((b) => b.addEventListener("click", () => {
+          const it = portalItems.find((x) => x.id === b.getAttribute("data-edit-item"));
+          if (it) openItemEditor(it, it.sectionId, it.subId || "", it.type);
+        }));
+        el.querySelectorAll("[data-del-item]").forEach((b) => b.addEventListener("click", () => {
+          const id = b.getAttribute("data-del-item");
+          openConfirm("İçeriği Sil", "Bu içeriği kalıcı olarak silmek istiyor musunuz?", () => {
+            portalItems = portalItems.filter((x) => x.id !== id);
+            saveLocal(); renderAll(); showToast("İçerik silindi.", "info");
+          });
+        }));
+
+        const itemsListEl = document.getElementById("exp-items-list");
+        if (itemsListEl && directItems.length > 1) {
+          enableDragSort(itemsListEl, ".exp-item-row", (fromIdx, toIdx) => {
+            const fromItem = directItems[fromIdx];
+            const toItem = directItems[toIdx];
+            const giFrom = portalItems.indexOf(fromItem);
+            const giTo = portalItems.indexOf(toItem);
+            if (giFrom > -1 && giTo > -1) {
+              const moved = portalItems.splice(giFrom, 1)[0];
+              portalItems.splice(giTo, 0, moved);
+              saveLocal(); renderAll(); showToast("İçerik sırası güncellendi!", "success");
+            }
+          });
+        }
+      }
+
+      // SEKME 2: ANA MENÜ & BÖLÜMLER
+      function renderMenusTab() {
+        const sel = document.getElementById("new-sec-group");
+        if (!sel.options.length) {
+          sel.innerHTML = Object.entries(GROUP_LABELS).map(([k, v]) => '<option value="' + k + '">' + esc(v) + '</option>').join("");
+        }
+
+        const filterBar = document.getElementById("section-group-filter");
+        const filters = [["all", "Tümü"], ...Object.entries(GROUP_LABELS)];
+        filterBar.innerHTML = filters.map(([k, v]) =>
+          '<button type="button" data-mflt="' + k + '" class="nb-btn-sm px-3 py-1.5 text-xs ' +
+          (activeMenuFilter === k ? "bg-[#ffd447] text-slate-900" : "bg-white text-slate-700") + '">' + esc(v) + '</button>'
+        ).join("");
+        filterBar.querySelectorAll("[data-mflt]").forEach((b) => b.addEventListener("click", () => {
+          activeMenuFilter = b.getAttribute("data-mflt");
+          renderMenusTab();
+        }));
+
+        const list = document.getElementById("menus-list-container");
+        const filtered = activeMenuFilter === "all"
+          ? portalState.sections
+          : portalState.sections.filter((s) => s.group === activeMenuFilter);
+
+        list.innerHTML = filtered.map((s) => {
+          const isAct = s.active !== false;
+          return '<div class="menu-drag-row nb-row p-3 space-y-2">' +
+            '<div class="flex flex-wrap items-center justify-between gap-2">' +
+              '<div class="flex items-center gap-2 min-w-0 flex-1">' +
+                '<span class="drag-handle text-slate-400 font-black">⠿</span>' +
+                '<span class="px-2 py-0.5 rounded-lg bg-sky-100 text-sky-900 text-[10px] font-black shrink-0">' + esc(GROUP_LABELS[s.group] || s.group) + '</span>' +
+                '<input type="text" data-rename-sec="' + s.id + '" value="' + esc(s.title) + '" class="nb-input px-2.5 py-1 text-xs flex-1 min-w-[140px]">' +
+              '</div>' +
+              '<div class="flex flex-wrap items-center gap-1.5">' +
+                '<button type="button" data-toggle-sec="' + s.id + '" class="nb-btn-sm px-2.5 py-1 text-xs ' + (isAct ? "bg-[#bbf7d0] text-emerald-950" : "bg-slate-200 text-slate-600") + '">' + (isAct ? "✓ Aktif" : "✕ Pasif") + '</button>' +
+                '<button type="button" data-go-exp="' + s.id + '" class="nb-btn-sm px-2.5 py-1 bg-[#7dd3fc] text-slate-900 text-xs">📂 İçerikler</button>' +
+                '<button type="button" data-del-sec="' + s.id + '" class="nb-btn-sm px-2.5 py-1 bg-[#fda4af] text-slate-900 text-xs">Sil</button>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        }).join("");
+
+        list.querySelectorAll("[data-rename-sec]").forEach((inp) => {
+          inp.addEventListener("change", () => {
+            const s = portalState.sections.find((x) => x.id === inp.getAttribute("data-rename-sec"));
+            if (s && inp.value.trim()) { s.title = inp.value.trim(); saveLocal(); renderPublicPortal(); showToast("Menü adı güncellendi!", "success"); }
+          });
+        });
+        list.querySelectorAll("[data-toggle-sec]").forEach((b) => b.addEventListener("click", () => {
+          const s = portalState.sections.find((x) => x.id === b.getAttribute("data-toggle-sec"));
+          if (s) { s.active = s.active === false ? true : false; saveLocal(); renderAll(); }
+        }));
+        list.querySelectorAll("[data-go-exp]").forEach((b) => b.addEventListener("click", () => {
+          explorerPath = { sectionId: b.getAttribute("data-go-exp"), subId: "" };
+          switchAdminTab("explorer");
+        }));
+        list.querySelectorAll("[data-del-sec]").forEach((b) => b.addEventListener("click", () => {
+          const id = b.getAttribute("data-del-sec");
+          openConfirm("Menüyü Sil", "Bu menü ve içindeki tüm içerikler silinsin mi?", () => {
+            portalState.sections = portalState.sections.filter((x) => x.id !== id);
+            portalItems = portalItems.filter((i) => i.sectionId !== id);
+            saveLocal(); renderAll(); showToast("Menü silindi.", "info");
+          });
+        }));
+
+        enableDragSort(list, ".menu-drag-row", (fromIdx, toIdx) => {
+          const fromSec = filtered[fromIdx];
+          const toSec = filtered[toIdx];
+          const giFrom = portalState.sections.indexOf(fromSec);
+          const giTo = portalState.sections.indexOf(toSec);
+          if (giFrom > -1 && giTo > -1) {
+            const moved = portalState.sections.splice(giFrom, 1)[0];
+            portalState.sections.splice(giTo, 0, moved);
+            saveLocal(); renderAll(); showToast("Menü sırası güncellendi!", "success");
+          }
+        });
+      }
+
+      // SEKME 3: SAĞ & SOL BLOKLAR
+      function renderWidgetsTab() {
+        // Sol Bloklar
+        const leftEl = document.getElementById("admin-left-blocks-list");
+        leftEl.innerHTML = portalState.leftBlocks.map((b) => {
+          const isAct = b.active !== false;
+          return '<div class="lblk-row nb-row px-3 py-2 flex items-center justify-between gap-2 text-xs">' +
+            '<div class="flex items-center gap-2 font-extrabold"><span class="drag-handle text-slate-400">⠿</span><span>' + esc(LEFT_BLOCK_LABELS[b.key] || b.key) + '</span></div>' +
+            '<button type="button" data-tlb="' + b.key + '" class="nb-btn-sm px-2.5 py-1 text-[11px] ' + (isAct ? "bg-[#bbf7d0] text-emerald-950" : "bg-slate-200 text-slate-600") + '">' + (isAct ? "✓ Aktif" : "✕ Pasif") + '</button>' +
+          '</div>';
+        }).join("");
+        leftEl.querySelectorAll("[data-tlb]").forEach((btn) => btn.addEventListener("click", () => {
+          const b = portalState.leftBlocks.find((x) => x.key === btn.getAttribute("data-tlb"));
+          if (b) { b.active = b.active === false ? true : false; saveLocal(); renderAll(); }
+        }));
+        enableDragSort(leftEl, ".lblk-row", (fromIdx, toIdx) => {
+          const moved = portalState.leftBlocks.splice(fromIdx, 1)[0];
+          portalState.leftBlocks.splice(toIdx, 0, moved);
+          saveLocal(); renderAll(); showToast("Sol blok sırası güncellendi!", "success");
+        });
+
+        // Sağ Bloklar
+        const rightEl = document.getElementById("admin-right-blocks-list");
+        rightEl.innerHTML = portalState.rightBlocks.map((b) => {
+          const isAct = b.active !== false;
+          return '<div class="rblk-row nb-row px-3 py-2 flex items-center justify-between gap-2 text-xs">' +
+            '<div class="flex items-center gap-2 font-extrabold"><span class="drag-handle text-slate-400">⠿</span><span>' + esc(RIGHT_BLOCK_LABELS[b.key] || b.key) + '</span></div>' +
+            '<button type="button" data-trb="' + b.key + '" class="nb-btn-sm px-2.5 py-1 text-[11px] ' + (isAct ? "bg-[#bbf7d0] text-emerald-950" : "bg-slate-200 text-slate-600") + '">' + (isAct ? "✓ Aktif" : "✕ Pasif") + '</button>' +
+          '</div>';
+        }).join("");
+        rightEl.querySelectorAll("[data-trb]").forEach((btn) => btn.addEventListener("click", () => {
+          const b = portalState.rightBlocks.find((x) => x.key === btn.getAttribute("data-trb"));
+          if (b) { b.active = b.active === false ? true : false; saveLocal(); renderAll(); }
+        }));
+        enableDragSort(rightEl, ".rblk-row", (fromIdx, toIdx) => {
+          const moved = portalState.rightBlocks.splice(fromIdx, 1)[0];
+          portalState.rightBlocks.splice(toIdx, 0, moved);
+          saveLocal(); renderAll(); showToast("Sağ blok sırası güncellendi!", "success");
+        });
+
+        // Reklam formu doldur
+        document.getElementById("ad-img-url").value = portalState.config.adImg || "";
+        document.getElementById("ad-link-input").value = portalState.config.adLink || "";
+        document.getElementById("ad-text-input").value = portalState.config.adText || "";
+
+        // Sağ Sütun Linkler
+        const ll = document.getElementById("admin-links-list");
+        ll.innerHTML = portalState.links.map((l) => '<div class="lnk-drag-row nb-row px-3 py-2 bg-slate-50 flex justify-between items-center text-xs gap-2">' +
+          '<div class="flex items-center gap-2 min-w-0 flex-1"><span class="drag-handle text-slate-400 font-black">⠿</span><div class="min-w-0"><div class="font-extrabold truncate">' + esc(l.label) + '</div><div class="text-[10px] text-slate-500 truncate">' + esc(l.url) + '</div></div></div>' +
+          '<div class="flex items-center gap-1.5 shrink-0">' +
+            '<button type="button" data-elnk="' + l.id + '" class="nb-btn-sm px-2.5 py-1 bg-[#7dd3fc] text-slate-900 text-[11px]">✏️ Düzenle</button>' +
+            '<button type="button" data-dlnk="' + l.id + '" class="nb-btn-sm px-2.5 py-1 bg-[#fda4af] text-slate-900 text-[11px]">Sil</button>' +
+          '</div>' +
+        '</div>').join("");
+        ll.querySelectorAll("[data-elnk]").forEach((b) => b.addEventListener("click", () => {
+          const item = portalState.links.find((x) => x.id === b.getAttribute("data-elnk"));
+          if (!item) return;
+          document.getElementById("edit-link-id").value = item.id;
+          document.getElementById("new-link-label").value = item.label || "";
+          document.getElementById("new-link-url").value = item.url || "";
+          document.getElementById("link-submit-btn").textContent = "💾 Güncelle";
+          document.getElementById("link-cancel-btn").classList.remove("hidden");
+          document.getElementById("new-link-label").focus();
+        }));
+        ll.querySelectorAll("[data-dlnk]").forEach((b) => b.addEventListener("click", () => {
+          portalState.links = portalState.links.filter((x) => x.id !== b.getAttribute("data-dlnk"));
+          saveLocal(); renderAll();
+        }));
+        enableDragSort(ll, ".lnk-drag-row", (fromIdx, toIdx) => {
+          const moved = portalState.links.splice(fromIdx, 1)[0];
+          portalState.links.splice(toIdx, 0, moved);
+          saveLocal(); renderAll(); showToast("Link sırası güncellendi!", "success");
+        });
+
+        // Köşe Yazıları
+        const cl = document.getElementById("admin-columns-list");
+        cl.innerHTML = portalState.columns.map((c) => '<div class="nb-row p-3 bg-slate-50 flex justify-between items-center gap-2"><div class="min-w-0 flex-1"><div class="text-xs font-extrabold text-sky-700">' + esc(c.author) + '</div><div class="text-sm font-bold truncate">' + esc(c.title) + '</div></div><div class="flex items-center gap-1.5 shrink-0"><button type="button" data-ecol="' + c.id + '" class="nb-btn-sm px-3 py-1 bg-[#7dd3fc] text-slate-900 text-xs">✏️ Düzenle</button><button type="button" data-dcol="' + c.id + '" class="nb-btn-sm px-3 py-1 bg-[#fda4af] text-slate-900 text-xs">🗑️ Sil</button></div></div>').join("");
+        cl.querySelectorAll("[data-ecol]").forEach((b) => b.addEventListener("click", () => {
+          const c = portalState.columns.find((x) => x.id === b.getAttribute("data-ecol"));
+          if (!c) return;
+          document.getElementById("edit-col-id").value = c.id;
+          document.getElementById("col-author-input").value = c.author || "";
+          document.getElementById("col-title-input").value = c.title || "";
+          document.getElementById("col-img-url").value = c.image || "";
+          document.getElementById("col-body-input").value = c.body || "";
+          document.getElementById("col-submit-btn").textContent = "💾 Yazıyı Güncelle";
+          document.getElementById("col-cancel-btn").classList.remove("hidden");
+          document.getElementById("col-author-input").focus();
+        }));
+        cl.querySelectorAll("[data-dcol]").forEach((b) => b.addEventListener("click", () => {
+          portalState.columns = portalState.columns.filter((x) => x.id !== b.getAttribute("data-dcol"));
+          saveLocal(); renderAll();
+        }));
+
+        // Ziyaretçi Defteri
+        const gb = document.getElementById("admin-guestbook-list");
+        gb.innerHTML = guestbookEntries.map((g) => '<div class="nb-row p-3 bg-slate-50 flex justify-between items-center text-xs gap-2"><div class="min-w-0 flex-1"><strong>' + esc(g.name) + '</strong>: ' + esc(g.message) + '</div><div class="flex items-center gap-1.5 shrink-0"><button type="button" data-egb="' + g.id + '" class="nb-btn-sm px-2.5 py-1 bg-[#7dd3fc] text-slate-900 text-[11px]">✏️ Düzenle</button><button type="button" data-dgb="' + g.id + '" class="nb-btn-sm px-2.5 py-1 bg-[#fda4af] text-slate-900 text-[11px]">Sil</button></div></div>').join("");
+        gb.querySelectorAll("[data-egb]").forEach((b) => b.addEventListener("click", () => {
+          const g = guestbookEntries.find((x) => x.id === b.getAttribute("data-egb"));
+          if (!g) return;
+          document.getElementById("edit-gb-id").value = g.id;
+          document.getElementById("edit-gb-name").value = g.name || "";
+          document.getElementById("edit-gb-msg").value = g.message || "";
+          document.getElementById("gb-edit-form").classList.remove("hidden");
+          document.getElementById("edit-gb-name").focus();
+        }));
+        gb.querySelectorAll("[data-dgb]").forEach((b) => b.addEventListener("click", () => {
+          guestbookEntries = guestbookEntries.filter((x) => x.id !== b.getAttribute("data-dgb"));
+          saveLocal(); renderAll();
+        }));
+      }
+
+      // SEKME 4: DUYURULAR & SLAYT
+      function renderAnnouncementsTab() {
+        const dInp = document.getElementById("ann-date-input");
+        if (dInp && !dInp.value) dInp.value = todayStr();
+
+        const anns = portalItems.filter((i) => i.isNews || i.sectionId === "duyurular");
+        const annList = document.getElementById("admin-announcements-list");
+        annList.innerHTML = anns.length ? anns.map((a) => '<div class="nb-row p-3.5 space-y-2 bg-white">' +
+          '<div class="flex flex-wrap items-center gap-2">' +
+            '<span class="nb-input px-3 py-1 text-xs bg-slate-50">' + esc(a.date || "") + '</span>' +
+            '<span class="nb-input flex-1 px-3 py-1 text-xs font-extrabold">' + esc(a.title) + '</span>' +
+            '<button type="button" data-eann="' + a.id + '" class="nb-btn-sm px-3 py-1 bg-[#7dd3fc] text-slate-900 text-xs">✏️ Düzenle</button>' +
+            '<button type="button" data-dann="' + a.id + '" class="nb-btn-sm px-3.5 py-1 bg-[#fda4af] text-slate-900 text-xs">🗑️ Sil</button>' +
+          '</div>' +
+          '<div class="nb-input px-3 py-1.5 text-xs text-slate-600 bg-slate-50">' + esc(a.summary || "") + '</div>' +
+        '</div>').join("") : '<p class="text-xs text-slate-500">Henüz duyuru eklenmemiş.</p>';
+        annList.querySelectorAll("[data-eann]").forEach((b) => b.addEventListener("click", () => {
+          const a = portalItems.find((x) => x.id === b.getAttribute("data-eann"));
+          if (!a) return;
+          document.getElementById("edit-ann-id").value = a.id;
+          document.getElementById("ann-date-input").value = a.date || todayStr();
+          document.getElementById("ann-title-input").value = a.title || "";
+          document.getElementById("ann-desc-input").value = a.summary || "";
+          document.getElementById("ann-submit-btn").textContent = "💾 Güncelle";
+          document.getElementById("ann-cancel-btn").classList.remove("hidden");
+          document.getElementById("ann-title-input").focus();
+        }));
+        annList.querySelectorAll("[data-dann]").forEach((b) => b.addEventListener("click", () => {
+          portalItems = portalItems.filter((x) => x.id !== b.getAttribute("data-dann"));
+          saveLocal(); renderAll(); showToast("Duyuru silindi.", "info");
+        }));
+
+        const el = document.getElementById("admin-slides-list");
+        el.innerHTML = portalState.slides.map((s) => '<div class="nb-row p-3 bg-slate-50 flex items-center justify-between gap-2"><span class="font-bold text-sm truncate">' + esc(s.title) + '</span><div class="flex items-center gap-1.5 shrink-0"><button type="button" data-esl="' + s.id + '" class="nb-btn-sm px-3 py-1 bg-[#7dd3fc] text-slate-900 text-xs">✏️ Düzenle</button><button type="button" data-dsl="' + s.id + '" class="nb-btn-sm px-3 py-1 bg-[#fda4af] text-slate-900 text-xs">🗑️ Sil</button></div></div>').join("");
+        el.querySelectorAll("[data-esl]").forEach((b) => b.addEventListener("click", () => {
+          const s = portalState.slides.find((x) => x.id === b.getAttribute("data-esl"));
+          if (!s) return;
+          document.getElementById("edit-slide-id").value = s.id;
+          document.getElementById("slide-title-input").value = s.title || "";
+          document.getElementById("slide-link-input").value = s.link || "";
+          document.getElementById("slide-img-url").value = s.image || "";
+          document.getElementById("slide-submit-btn").textContent = "💾 Slaytı Güncelle";
+          document.getElementById("slide-cancel-btn").classList.remove("hidden");
+          document.getElementById("slide-title-input").focus();
+        }));
+        el.querySelectorAll("[data-dsl]").forEach((b) => b.addEventListener("click", () => {
+          portalState.slides = portalState.slides.filter((x) => x.id !== b.getAttribute("data-dsl"));
+          saveLocal(); renderAll();
+        }));
+      }
+
+      // SEKME 5: GENEL AYARLAR & TEMA
+      function renderSettingsTab() {
+        const c = portalState.config;
+        document.getElementById("set-title").value = c.siteTitle || "";
+        document.getElementById("set-footer").value = c.footerText || "";
+        document.getElementById("set-bg-url").value = c.bgImage || "";
+        document.getElementById("set-show-header-slider").checked = c.showHeaderSlider !== false;
+        document.getElementById("set-show-home-featured").checked = c.showHomeFeatured !== false;
+        document.getElementById("set-show-home-news").checked = c.showHomeNews !== false;
+        document.getElementById("set-home-game-enabled").checked = c.homeGameEnabled !== false;
+        document.getElementById("set-home-game-title").value = c.homeGameTitle || "";
+        document.getElementById("set-home-game-embed").value = c.homeGameEmbed || "";
+        document.getElementById("home-game-status").textContent = c.homeGameEmbed
+          ? "Özel oyun yüklü ✓ (Değiştirmek için yeni .html bırakın)"
+          : "Varsayılan oyun aktif: Eğlenceli Matematik Oyunları 1";
+      }
+
+      /* ===================================================================== */
+      /* İÇERİK EDİTÖRÜ MODALI                                                 */
+      /* ===================================================================== */
+      function openItemEditor(existingItem, sectionId, subId, defaultType) {
+        const sec = portalState.sections.find((s) => s.id === sectionId);
+        const sub = (sec && subId) ? (sec.subs || []).find((sb) => sb.id === subId) : null;
+
+        document.getElementById("item-editor-subtitle").textContent = (sec ? sec.title : "Bölüm") + (sub ? " › " + sub.title : "");
+        document.getElementById("item-editor-title").textContent = existingItem ? "✏️ İçeriği Düzenle" : "➕ Yeni İçerik Ekle";
+
+        document.getElementById("ie-id").value = existingItem ? existingItem.id : "";
+        document.getElementById("ie-section-id").value = sectionId || "";
+        document.getElementById("ie-sub-id").value = subId || "";
+        document.getElementById("ie-type").value = existingItem ? existingItem.type : (defaultType || "game");
+        document.getElementById("ie-title").value = existingItem ? (existingItem.title || "") : "";
+        document.getElementById("ie-summary").value = existingItem ? (existingItem.summary || "") : "";
+        document.getElementById("ie-url").value = existingItem ? (existingItem.url || "") : "";
+        document.getElementById("ie-img-url").value = existingItem ? (existingItem.image || "") : "";
+        document.getElementById("ie-html-content").value = existingItem ? (existingItem.htmlContent || "") : "";
+        document.getElementById("ie-body").value = existingItem ? (existingItem.body || "") : "";
+        document.getElementById("ie-featured").checked = existingItem ? !!existingItem.featured : false;
+        document.getElementById("ie-news").checked = existingItem ? !!existingItem.isNews : false;
+
+        const prev = document.getElementById("ie-img-preview");
+        if (existingItem && existingItem.image) {
+          prev.src = existingItem.image;
+          prev.classList.remove("hidden");
+        } else {
+          prev.classList.add("hidden");
+        }
+        document.getElementById("ie-game-file-status").textContent = (existingItem && existingItem.htmlContent)
+          ? "Mevcut HTML oyun / embed kodu yüklü ✓"
+          : "Henüz HTML oyun dosyası seçilmedi (veya aşağıya link/iframe yapıştırabilirsiniz)";
+
+        document.getElementById("item-editor-modal").classList.remove("hidden");
+      }
+
+      /* ===================================================================== */
+      /* YEDEK ALMA / GERİ YÜKLEME / GİRİŞ                                     */
+      /* ===================================================================== */
+      function downloadJsonBackup() {
+        const blob = new Blob([JSON.stringify({ portalState, portalItems, guestbookEntries }, null, 2)], { type: "application/json" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "sonfasil-yedek-" + todayStr().replace(/\./g, "-") + ".json";
+        a.click();
+        URL.revokeObjectURL(a.href);
+        showToast("JSON yedeği indirildi!", "success");
+      }
+
+      function openAdminPanel() {
+        if (!isAdminLoggedIn) {
+          document.getElementById("login-password").value = "";
+          document.getElementById("login-modal").classList.remove("hidden");
+          setTimeout(() => document.getElementById("login-password").focus(), 50);
+          return;
+        }
+        document.getElementById("admin-dashboard").classList.remove("hidden");
+        renderAdminDashboard();
+      }
+
+      function renderAll() {
+        renderPublicPortal();
+        if (isAdminLoggedIn && !document.getElementById("admin-dashboard").classList.contains("hidden")) {
+          renderAdminDashboard();
+        }
+      }
+
+      /* ===================================================================== */
+      /* OLAY DİNLEYİCİLERİ VE BAŞLATMA                                        */
+      /* ===================================================================== */
+      function bindEvents() {
+        // Gizli Yönetim Girişleri:
+        // 1) OF logosuna hızlıca 5 tıklama
+        let logoClicks = 0, logoTimer = null;
+        document.getElementById("site-logo-trigger").addEventListener("click", () => {
+          logoClicks++;
+          clearTimeout(logoTimer);
+          logoTimer = setTimeout(() => { logoClicks = 0; }, 1600);
+          if (logoClicks >= 5) {
+            logoClicks = 0;
+            openAdminPanel();
+          } else if (logoClicks === 1 && currentRoute.view !== "home") {
+            navigateTo("home");
+          }
+        });
+        // 2) Ctrl + Shift + L
+        document.addEventListener("keydown", (e) => {
+          if (e.ctrlKey && e.shiftKey && (e.key === "L" || e.key === "l")) {
+            e.preventDefault();
+            openAdminPanel();
+          }
+        });
+        // 3) URL hash #login veya #yonetim
+        const checkHash = () => {
+          const h = (location.hash || "").toLowerCase();
+          if (h === "#login" || h === "#yonetim") {
+            try {
+              if (location.protocol !== "file:") {
+                history.replaceState(null, "", location.pathname + location.search);
+              }
+            } catch (e) { /* yoksay */ }
+            openAdminPanel();
+          }
+        };
+        window.addEventListener("hashchange", checkHash);
+        checkHash();
+
+        // Arama & Alt Ana Sayfa
+        document.getElementById("public-search-input").addEventListener("input", (e) => {
+          const val = e.target.value;
+          if (val.trim()) navigateTo("search", "", "", val);
+          else navigateTo("home");
+        });
+        document.getElementById("footer-home-btn").addEventListener("click", () => navigateTo("home"));
+
+        // Slayt Okları
+        document.getElementById("slide-prev-btn").addEventListener("click", () => {
+          const len = portalState.slides.length;
+          if (!len) return;
+          currentSlideIdx = (currentSlideIdx - 1 + len) % len;
+          renderHeaderSlider();
+        });
+        document.getElementById("slide-next-btn").addEventListener("click", () => {
+          const len = portalState.slides.length;
+          if (!len) return;
+          currentSlideIdx = (currentSlideIdx + 1) % len;
+          renderHeaderSlider();
+        });
+
+        // Giriş Modalı
+        document.getElementById("login-close-btn").addEventListener("click", () => document.getElementById("login-modal").classList.add("hidden"));
+        document.getElementById("login-form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const pass = document.getElementById("login-password").value;
+          if (pass === String(portalState.config.adminPassword || "1234")) {
+            isAdminLoggedIn = true;
+            document.getElementById("login-modal").classList.add("hidden");
+            document.getElementById("admin-dashboard").classList.remove("hidden");
+            switchAdminTab(activeAdminTab);
+            showToast("Merkezi Yönetim Paneline hoş geldiniz!", "success");
+          } else {
+            showToast("Parola hatalı!", "error");
+          }
+        });
+
+        // Yönetim Üst Butonları & Sekmeler
+        document.getElementById("admin-quick-backup-btn").addEventListener("click", downloadJsonBackup);
+        document.getElementById("admin-to-site-btn").addEventListener("click", () => document.getElementById("admin-dashboard").classList.add("hidden"));
+        document.getElementById("admin-logout-btn").addEventListener("click", () => {
+          isAdminLoggedIn = false;
+          document.getElementById("admin-dashboard").classList.add("hidden");
+          showToast("Yönetici oturumu kapatıldı.", "info");
+        });
+        document.querySelectorAll(".admin-tab-btn").forEach((b) => {
+          b.addEventListener("click", () => switchAdminTab(b.getAttribute("data-admin-tab")));
+        });
+
+        // Okuyucu & Onay Modalları
+        document.getElementById("reader-close-btn").addEventListener("click", () => {
+          document.getElementById("reader-modal").classList.add("hidden");
+          document.getElementById("reader-body").innerHTML = "";
+        });
+        document.getElementById("confirm-cancel-btn").addEventListener("click", () => document.getElementById("confirm-modal").classList.add("hidden"));
+        document.getElementById("confirm-ok-btn").addEventListener("click", () => {
+          document.getElementById("confirm-modal").classList.add("hidden");
+          if (typeof confirmCb === "function") confirmCb();
+          confirmCb = null;
+        });
+
+        // İçerik Editörü Modalı
+        const closeIE = () => document.getElementById("item-editor-modal").classList.add("hidden");
+        document.getElementById("item-editor-close").addEventListener("click", closeIE);
+        document.getElementById("ie-cancel-btn").addEventListener("click", closeIE);
+        setupDropzone("ie-game-dropzone", "ie-game-file", (text, fname) => {
+          document.getElementById("ie-html-content").value = text;
+          document.getElementById("ie-game-file-status").textContent = "Yüklendi: " + fname + " ✓";
+          if (!document.getElementById("ie-title").value.trim()) {
+            document.getElementById("ie-title").value = fname.replace(/\.html?$/i, "");
+          }
+          showToast("HTML oyun dosyası yüklendi!", "success");
+        }, true);
+        document.getElementById("ie-game-clear").addEventListener("click", () => {
+          document.getElementById("ie-html-content").value = "";
+          document.getElementById("ie-game-file-status").textContent = "HTML kodu temizlendi.";
+        });
+        setupDropzone("ie-img-dropzone", "ie-img-file", (url) => {
+          document.getElementById("ie-img-url").value = url;
+          const p = document.getElementById("ie-img-preview");
+          p.src = url; p.classList.remove("hidden");
+        });
+        document.getElementById("ie-img-clear").addEventListener("click", () => {
+          document.getElementById("ie-img-url").value = "";
+          document.getElementById("ie-img-preview").classList.add("hidden");
+        });
+        document.getElementById("item-editor-form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const id = document.getElementById("ie-id").value;
+          const payload = {
+            sectionId: document.getElementById("ie-section-id").value,
+            subId: document.getElementById("ie-sub-id").value,
+            type: document.getElementById("ie-type").value,
+            title: document.getElementById("ie-title").value.trim(),
+            summary: document.getElementById("ie-summary").value.trim(),
+            url: normalizeUrl(document.getElementById("ie-url").value),
+            image: document.getElementById("ie-img-url").value.trim(),
+            htmlContent: document.getElementById("ie-html-content").value,
+            body: document.getElementById("ie-body").value,
+            featured: document.getElementById("ie-featured").checked,
+            isNews: document.getElementById("ie-news").checked,
+            date: todayStr()
+          };
+          if (id) {
+            const target = portalItems.find((x) => x.id === id);
+            if (target) Object.assign(target, payload);
+            showToast("İçerik güncellendi!", "success");
+          } else {
+            portalItems.unshift(Object.assign({ id: genId("it") }, payload));
+            showToast("Yeni içerik eklendi!", "success");
+          }
+          closeIE();
+          saveLocal();
+          renderAll();
+        });
+
+        // Sekme 2: Yeni Menü Ekle
+        document.getElementById("add-section-form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const group = document.getElementById("new-sec-group").value;
+          const title = document.getElementById("new-sec-title").value.trim();
+          if (!title) return;
+          portalState.sections.push({ id: genId("sec"), title, group, active: true, subs: [] });
+          document.getElementById("new-sec-title").value = "";
+          saveLocal(); renderAll(); showToast("Yeni menü eklendi!", "success");
+        });
+
+        // Sekme 3: Hızlı Sol / Sağ Menü Ekleme
+        document.getElementById("quick-add-left-menu-form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const group = document.getElementById("quick-left-group").value;
+          const title = document.getElementById("quick-left-title").value.trim();
+          if (!title) return;
+          portalState.sections.push({ id: genId("sec"), title, group, active: true, subs: [] });
+          document.getElementById("quick-left-title").value = "";
+          saveLocal(); renderAll(); showToast("Sol bloğa yeni menü eklendi!", "success");
+        });
+        document.getElementById("quick-add-right-menu-form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const title = document.getElementById("quick-right-title").value.trim();
+          if (!title) return;
+          portalState.sections.push({ id: genId("sec"), title, group: "right_custom", active: true, subs: [] });
+          document.getElementById("quick-right-title").value = "";
+          saveLocal(); renderAll(); showToast("Sağ bloğa yeni menü eklendi!", "success");
+        });
+
+        // Bayrak & Satranç & Reklam Görselleri
+        setupDropzone("mascot-dropzone", "mascot-file", (url) => {
+          portalState.config.mascotImg = url;
+          saveLocal(); renderAll(); showToast("Bayrak taşıyan görsel güncellendi!", "success");
+        });
+        document.getElementById("clear-mascot-img").addEventListener("click", () => {
+          portalState.config.mascotImg = "bayraktasiyan.gif";
+          saveLocal(); renderAll(); showToast("Varsayılan bayraktasiyan.gif aktif.", "info");
+        });
+        setupDropzone("chess-dropzone", "chess-file", (url) => {
+          portalState.config.chessImg = url;
+          saveLocal(); renderAll(); showToast("Satranç görseli güncellendi!", "success");
+        });
+        document.getElementById("clear-chess-img").addEventListener("click", () => {
+          portalState.config.chessImg = "";
+          saveLocal(); renderAll();
+        });
+        setupDropzone("ad-dropzone", "ad-file", (url) => {
+          document.getElementById("ad-img-url").value = url;
+          portalState.config.adImg = url;
+          saveLocal(); renderAll(); showToast("Reklam görseli yüklendi!", "success");
+        });
+        document.getElementById("clear-ad-img").addEventListener("click", () => {
+          portalState.config.adImg = "";
+          document.getElementById("ad-img-url").value = "";
+          saveLocal(); renderAll();
+        });
+        document.getElementById("ad-settings-form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          portalState.config.adImg = document.getElementById("ad-img-url").value.trim();
+          portalState.config.adLink = normalizeUrl(document.getElementById("ad-link-input").value);
+          portalState.config.adText = document.getElementById("ad-text-input").value.trim();
+          saveLocal(); renderPublicPortal(); showToast("Reklam kutusu güncellendi!", "success");
+        });
+
+        // Linkler Ekle & Düzenle
+        function resetLinkForm() {
+          document.getElementById("edit-link-id").value = "";
+          document.getElementById("link-add-form").reset();
+          document.getElementById("link-submit-btn").textContent = "+ Ekle";
+          document.getElementById("link-cancel-btn").classList.add("hidden");
+        }
+        document.getElementById("link-cancel-btn").addEventListener("click", resetLinkForm);
+        document.getElementById("link-add-form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const editId = document.getElementById("edit-link-id").value;
+          const label = document.getElementById("new-link-label").value.trim();
+          const url = normalizeUrl(document.getElementById("new-link-url").value);
+          if (!label || !url) return;
+          if (editId) {
+            const target = portalState.links.find((x) => x.id === editId);
+            if (target) { target.label = label; target.url = url; }
+            showToast("Bağlantı güncellendi!", "success");
+          } else {
+            portalState.links.push({ id: genId("lnk"), label, url });
+            showToast("Bağlantı eklendi!", "success");
+          }
+          resetLinkForm(); saveLocal(); renderAll();
+        });
+
+        // Köşe Yazıları Ekle & Düzenle
+        setupDropzone("col-img-dropzone", "col-img-file", (url) => { document.getElementById("col-img-url").value = url; });
+        function resetColForm() {
+          document.getElementById("edit-col-id").value = "";
+          document.getElementById("col-form").reset();
+          document.getElementById("col-submit-btn").textContent = "+ Köşe Yazısı Ekle";
+          document.getElementById("col-cancel-btn").classList.add("hidden");
+        }
+        document.getElementById("col-cancel-btn").addEventListener("click", resetColForm);
+        document.getElementById("col-form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const editId = document.getElementById("edit-col-id").value;
+          const payload = {
+            author: document.getElementById("col-author-input").value.trim(),
+            title: document.getElementById("col-title-input").value.trim(),
+            image: document.getElementById("col-img-url").value.trim(),
+            body: document.getElementById("col-body-input").value.trim()
+          };
+          if (editId) {
+            const target = portalState.columns.find((x) => x.id === editId);
+            if (target) Object.assign(target, payload);
+            showToast("Köşe yazısı güncellendi!", "success");
+          } else {
+            portalState.columns.unshift(Object.assign({ id: genId("col") }, payload));
+            showToast("Köşe yazısı eklendi!", "success");
+          }
+          resetColForm(); saveLocal(); renderAll();
+        });
+
+        // Ziyaretçi Defteri Düzenle
+        document.getElementById("gb-cancel-btn").addEventListener("click", () => {
+          document.getElementById("edit-gb-id").value = "";
+          document.getElementById("gb-edit-form").classList.add("hidden");
+        });
+        document.getElementById("gb-edit-form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const id = document.getElementById("edit-gb-id").value;
+          const g = guestbookEntries.find((x) => x.id === id);
+          if (g) {
+            g.name = document.getElementById("edit-gb-name").value.trim();
+            g.message = document.getElementById("edit-gb-msg").value.trim();
+            saveLocal(); renderAll(); showToast("Ziyaretçi mesajı güncellendi!", "success");
+          }
+          document.getElementById("edit-gb-id").value = "";
+          document.getElementById("gb-edit-form").classList.add("hidden");
+        });
+
+        // Duyurular Ekle & Düzenle
+        function resetAnnForm() {
+          document.getElementById("edit-ann-id").value = "";
+          document.getElementById("ann-title-input").value = "";
+          document.getElementById("ann-desc-input").value = "";
+          document.getElementById("ann-date-input").value = todayStr();
+          document.getElementById("ann-submit-btn").textContent = "+ Ekle";
+          document.getElementById("ann-cancel-btn").classList.add("hidden");
+        }
+        document.getElementById("ann-cancel-btn").addEventListener("click", resetAnnForm);
+        document.getElementById("ann-form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const editId = document.getElementById("edit-ann-id").value;
+          const title = document.getElementById("ann-title-input").value.trim();
+          const summary = document.getElementById("ann-desc-input").value.trim();
+          const date = document.getElementById("ann-date-input").value.trim() || todayStr();
+          if (editId) {
+            const target = portalItems.find((x) => x.id === editId);
+            if (target) { target.title = title; target.summary = summary; target.body = "<p>" + esc(summary) + "</p>"; target.date = date; }
+            showToast("Duyuru güncellendi!", "success");
+          } else {
+            portalItems.unshift({
+              id: genId("ann"), sectionId: "duyurular", subId: "", type: "article",
+              title, summary, body: "<p>" + esc(summary) + "</p>",
+              url: "", image: "", htmlContent: "", featured: false, isNews: true, date
+            });
+            showToast("Duyuru eklendi!", "success");
+          }
+          resetAnnForm(); saveLocal(); renderAll();
+        });
+
+        // Slaytlar Ekle & Düzenle
+        setupDropzone("slide-img-dropzone", "slide-img-file", (url) => { document.getElementById("slide-img-url").value = url; });
+        function resetSlideForm() {
+          document.getElementById("edit-slide-id").value = "";
+          document.getElementById("slide-form").reset();
+          document.getElementById("slide-submit-btn").textContent = "+ Slayt Ekle";
+          document.getElementById("slide-cancel-btn").classList.add("hidden");
+        }
+        document.getElementById("slide-cancel-btn").addEventListener("click", resetSlideForm);
+        document.getElementById("slide-form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const editId = document.getElementById("edit-slide-id").value;
+          const title = document.getElementById("slide-title-input").value.trim();
+          const link = normalizeUrl(document.getElementById("slide-link-input").value) || "#home";
+          const image = document.getElementById("slide-img-url").value.trim();
+          if (editId) {
+            const target = portalState.slides.find((x) => x.id === editId);
+            if (target) { target.title = title; target.link = link; target.image = image; }
+            showToast("Slayt güncellendi!", "success");
+          } else {
+            portalState.slides.push({ id: genId("sl"), title, link, image });
+            showToast("Slayt eklendi!", "success");
+          }
+          resetSlideForm(); saveLocal(); renderAll();
+        });
+
+        // Sekme 5: Genel Ayarlar
+        setupDropzone("bg-dropzone", "bg-file", (url) => { document.getElementById("set-bg-url").value = url; });
+        document.getElementById("clear-bg-btn").addEventListener("click", () => { document.getElementById("set-bg-url").value = ""; });
+        setupDropzone("home-game-dropzone", "home-game-file", (text, fname) => {
+          document.getElementById("set-home-game-embed").value = text;
+          document.getElementById("home-game-status").textContent = "Yüklendi: " + fname + " ✓ (Kaydet butonuna basın)";
+          showToast("Yeni ana sayfa oyunu hazır!", "success");
+        }, true);
+        document.getElementById("clear-home-game-btn").addEventListener("click", () => {
+          document.getElementById("set-home-game-embed").value = "";
+          document.getElementById("home-game-status").textContent = "Varsayılan oyun aktif: Eğlenceli Matematik Oyunları 1";
+        });
+        document.getElementById("settings-form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const c = portalState.config;
+          c.siteTitle = document.getElementById("set-title").value.trim() || "SONFASIL.COM";
+          c.footerText = document.getElementById("set-footer").value.trim();
+          c.bgImage = document.getElementById("set-bg-url").value.trim();
+          c.showHeaderSlider = document.getElementById("set-show-header-slider").checked;
+          c.showHomeFeatured = document.getElementById("set-show-home-featured").checked;
+          c.showHomeNews = document.getElementById("set-show-home-news").checked;
+          c.homeGameEnabled = document.getElementById("set-home-game-enabled").checked;
+          c.homeGameTitle = document.getElementById("set-home-game-title").value.trim() || "Eğlenceli Matematik Oyunları 1";
+          c.homeGameEmbed = document.getElementById("set-home-game-embed").value;
+          saveLocal(); renderAll(); showToast("Genel ayarlar kaydedildi!", "success");
+        });
+
+        // Sekme 6: Parola & Yedek
+        document.getElementById("password-form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const oldP = document.getElementById("sec-old-pass").value;
+          const n1 = document.getElementById("sec-new-pass-1").value;
+          const n2 = document.getElementById("sec-new-pass-2").value;
+          if (oldP !== String(portalState.config.adminPassword || "1234")) return showToast("Mevcut parola yanlış!", "error");
+          if (n1.length < 4) return showToast("Yeni parola en az 4 karakter olmalı!", "error");
+          if (n1 !== n2) return showToast("Yeni parolalar eşleşmiyor!", "error");
+          portalState.config.adminPassword = n1;
+          saveLocal();
+          document.getElementById("password-form").reset();
+          showToast("Yönetici parolası güncellendi!", "success");
+        });
+
+        document.getElementById("export-backup-btn").addEventListener("click", downloadJsonBackup);
+        document.getElementById("import-backup-file").addEventListener("change", (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            try {
+              const parsed = JSON.parse(String(reader.result || "{}"));
+              if (parsed.portalState) portalState = parsed.portalState;
+              if (Array.isArray(parsed.portalItems)) portalItems = parsed.portalItems;
+              if (Array.isArray(parsed.guestbookEntries)) guestbookEntries = parsed.guestbookEntries;
+              ensureDataIntegrity();
+              saveLocal(); renderAll();
+              showToast("Yedek başarıyla geri yüklendi!", "success");
+            } catch (err) {
+              showToast("Geçersiz JSON yedek dosyası!", "error");
+            }
+          };
+          reader.readAsText(file, "UTF-8");
+          e.target.value = "";
+        });
+
+        document.getElementById("factory-reset-btn").addEventListener("click", () => {
+          openConfirm("Fabrika Ayarlarına Sıfırla", "Tüm içerikler, menüler ve ayarlar başlangıç durumuna dönecektir. Emin misiniz?", () => {
+            portalState = buildDefaultState();
+            portalItems = buildDefaultItems();
+            guestbookEntries = buildDefaultGuestbook();
+            saveLocal(); renderAll();
+            showToast("Site fabrika ayarlarına sıfırlandı.", "info");
+          });
+        });
+      }
+
+      // BAŞLAT
+      function initPortal() {
+        try {
+          loadLocal();
+          incrementVisitorCounter();
+          bindEvents();
+          renderPublicPortal();
+          loadFromCloudflare();
+        } catch (err) {
+          console.error("Portal başlatma hatası:", err);
+        }
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initPortal);
+      } else {
+        initPortal();
+      }
+    })();
+  </script>
+</body>
+</html>

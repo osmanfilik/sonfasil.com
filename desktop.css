@@ -1,0 +1,25 @@
+.sf-menu {
+    /*display: inherit;*/
+}
+.select-menu {
+    display: none !important;
+}
+
+#stnz_mobile-middleContent {
+    /*display: none !important;*/
+}
+
+#stnz_middleContent {
+    /*display: block;*/
+}
+
+#live-support-footer { 
+    position:fixed;
+    right:0px;
+    bottom:0px;
+}
+
+iframe.mibew-chat-frame {
+        width: 520px;
+        height: 480px;
+}

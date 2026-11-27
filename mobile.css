@@ -1,0 +1,677 @@
+@media only screen and (max-width: 768px) {
+    input { padding: 5px 4px; font: 14px Calibri, Helvetica, Arial, sans-serif; color: #333; background: #fff; border: 1px solid #ccc !important;  -moz-border-radius:    4px; -webkit-border-radius: 4px; border-radius: 4px; -moz-box-shadow: all 0.4s ease-in-out; behavior: url(PIE.htc)/*tpa=http://www.sonfasil.com/assets/css/PIE.htc*/; }
+    textarea { width: 300px; height: 100px; overflow: auto; border: 1px solid #ccc !important;}
+    input:focus { border: 1px solid #7fbbf9; -moz-box-shadow:    inset 0 0 1px rgba(0, 0, 0, 0.3), 0 0 3px #7fbbf9; -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3), 0 0 3px #7fbbf9; box-shadow:         inset 0 0 1px rgba(0, 0, 0, 0.3), 0 0 3px #7fbbf9; }
+    
+    input:-moz-ui-invalid { border: 1px solid #e00; -moz-box-shadow:    inset 0 0 1px rgba(0, 0, 0, 0.3), 0 0 3px #e00; -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3), 0 0 3px #e00; box-shadow:         inset 0 0 1px rgba(0, 0, 0, 0.3), 0 0 3px #e00;}
+    input.invalid { border: 1px solid #e00; -moz-box-shadow:    inset 0 0 1px rgba(0, 0, 0, 0.3), 0 0 3px #e00; -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3), 0 0 3px #e00; box-shadow:         inset 0 0 1px rgba(0, 0, 0, 0.3), 0 0 3px #e00; }
+    
+    button,input[type="button"],input[type="submit"] { padding: 0 15px; height: 30px; font: bold 13px Calibri, Helvetica, Arial, sans-serif; text-align: center; color: #fff !important; text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5); cursor: pointer; border: 1px solid #1eb8c6; outline: none; position: relative; background-color: #1d83e2; background-image: -webkit-gradient(linear, left top, left bottom, from(#72e2ec), to(#1eb8c6)); /* Saf4+, Chrome */ background-image: -webkit-linear-gradient(top, #72e2ec, #1eb8c6); /* Chrome 10+, Saf5.1+, iOS 5+ */ background-image:    -moz-linear-gradient(top, #72e2ec, #1eb8c6); /* FF3.6 */ background-image:     -ms-linear-gradient(top, #72e2ec, #1eb8c6); /* IE10 */ background-image:      -o-linear-gradient(top, #72e2ec, #1eb8c6); /* Opera 11.10+ */ background-image:         linear-gradient(top, #72e2ec, #1eb8c6); -pie-background:          linear-gradient(top, #72e2ec, #1eb8c6); /* IE6-IE9 */ -moz-border-radius:    16px; -webkit-border-radius: 8; border-radius:         8; -moz-box-shadow:    inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.5); -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.5); box-shadow:         inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.5); -moz-background-clip:    padding; -webkit-background-clip: padding-box; background-clip:         padding-box; behavior: url(PIE.htc)/*tpa=http://www.sonfasil.com/assets/css/PIE.htc*/; }
+    button:active { border: 1px solid #72e2ec; background-color: #1eb8c6; background-image: -webkit-gradient(linear, left top, left bottom, from(#1eb8c6), to(#72e2ec)); /* Saf4+, Chrome */ background-image: -webkit-linear-gradient(top, #1eb8c6, #72e2ec); /* Chrome 10+, Saf5.1+, iOS 5+ */ background-image:    -moz-linear-gradient(top, #1eb8c6, #72e2ec); /* FF3.6 */ background-image:     -ms-linear-gradient(top, #1eb8c6, #72e2ec); /* IE10 */ background-image:      -o-linear-gradient(top, #1eb8c6, #72e2ec); /* Opera 11.10+ */ background-image:         linear-gradient(top, #1eb8c6, #72e2ec); -pie-background:          linear-gradient(top, #1eb8c6, #72e2ec); /* IE6-IE9 */ -moz-box-shadow:    inset 0 0 5px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.5); -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.5); box-shadow:         inset 0 0 5px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.5); }
+    input[type="submit"]::-moz-focus-inner { border: 0; padding: 0;}
+    button:hover,input[type="button"]:hover,input[type="submit"]:hover{opacity:0.8;}
+    
+    body.tpl {        
+        background-attachment: fixed;
+        z-index: 1;
+    }
+    .tpl #stnz_wrap {
+        background-color: #fff;
+    }
+    .tpl .stnz_pageTitle {
+        display: none;
+    }
+
+    .tpl #stnz_content .stnz_widget {
+        background: white;
+        border: 0px;
+        margin: 0px;
+        padding: 0px 0px 2px 0px;
+    }
+    .tpl #stnz_content .stnz_widgetTitle {
+        -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.5);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 2px rgba(100, 100, 100, 0.5);
+        padding: 8px 2px 0px 4px !important;
+        color: #8ba8b9;
+        background: #ffffff;        
+        text-align: left;
+        min-height: 32px;
+        padding: 4px 2px 4px 2px;        
+        font-weight: normal;
+    }
+
+    .tpl #stnz_content .stnz_widgetContent {
+        padding: 12px 0;
+        margin: 0 0 5px 0px;
+        font-size: 14px;
+        color: #7f7f7f;
+    }
+    .tpl #stnz_content .stnz_widgetFooter {
+        border-bottom: 0px solid #DADFE6;
+        margin-bottom: 5px;
+    }
+
+    .tpl #stnz_content .stnz_widget.stnz_uyelik .stnz_formRow {
+        clear: both;
+        margin: 0 0 3px 0;
+        text-align: right;
+        margin-right: 20px;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_uyelik .stnz_formRow a {
+        color: #888;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_uyelik .stnz_formRow a:hover {
+        color: #00CDF7;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_uyelik .stnz_tubip_login_text, .tpl #stnz_content .stnz_widget.stnz_uyelik .stnz_tubip_login_pass {
+        width: 70px;
+        font-size: 12px;
+        margin-right: 10px;
+    }
+
+    .tpl #stnz_content .stnz_widget.stnz_uyelik .stnz_formHelper {
+        margin: 8px 20px 0 0px;
+        font-size: 10px;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_uyelik .stnz_formInput {
+        width: 80px;
+        background: white !important;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_uyelik .stnz_formSubmit {
+        margin-right: 5px;
+        width: 80px;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_uyelik label {
+        width: 55px;
+        text-align: right;
+        font-size: 10px;
+        display: inline-block;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_ziyaret .stnz_widgetContent {
+        padding-left: 8px;
+        font-size: 13px;
+        color: #ffa500;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_ziyaret .stnz_widgetContent .online_users {
+        border-top: 1px solid #ABAAAA;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_ziyaret .stnz_strong {
+        font-size: 11px;
+        color: #1eb8c6;
+        padding-right: 15px;
+    }
+
+    .tpl #stnz_content .stnz_widget.stnz_ziyaret table {
+        width: 140px;
+    }
+
+    .tpl #stnz_content .stnz_widget.stnz_duyuru .stnz_widgetContent ul {
+        padding-left: 0;
+        list-style: none;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_duyuru .stnz_widgetContent li {
+        padding-bottom: 5px;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_duyuru .stnz_widgetContent .stnz_newsSliderLink {
+        background: url(arrow-3.jpg)/*tpa=http://www.sonfasil.com/assets/css/images/arrow.jpg*/ 0 50% no-repeat;
+        padding-left: 12px;
+        font-size: 11px;
+        color: #636363;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_duyuru .stnz_widgetContent .stnz_newsSliderLink:hover {
+        font-size: 11px;
+        color: #005eae;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_anket .stnz_pollHeader {
+        font-size: 11px;
+        color: #636363;
+        display: block;
+        margin: 0 0 5px 5px;
+        font-weight: normal;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_anket .stnz_pollActionWrapper div {
+        display: inline-block;
+        margin-right: 5px
+    }
+    .tpl #stnz_content .stnz_widget.stnz_anket .stnz_pollAction {
+        font-size: 11px;
+        color: #636363;
+        margin-bottom: 5px;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_anket .stnz_pollOption {
+        font-size: 11px;
+        color: #636363;
+        margin: 0 0 5px 5px;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_anket .stnz_pollOption label input {
+        margin-right: 5px;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_takvim #stnz_calendar {
+        width: 195px;
+        margin: 0 auto;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_takvim #calendar_header {
+        height: 20px;
+        padding: 4px 0 0 5px;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_takvim .calendar_navigation {
+        float: left;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_takvim .calendar_navigation a {
+        color: #8ba8b9;
+        font-size: 12px;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_takvim .calendar_navigation a:hover {
+        color: #ffa500;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_takvim .calendar_date {
+        width: 160px;
+        float: left;
+        color: #8ba8b9;
+        font-size: 14px;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_takvim .calendar_date_number {
+        font-family: Calibri, Helvetica, Arial, sans-serif;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_takvim .selected_td {
+        background: #ffa500;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_takvim .selected_day {
+        color: #fff;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_takvim .calendar_day_title {
+        background: #e5e5e5;
+        height: 22px;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_takvim .calendar_weekend {
+        color: #bbb !important;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_takvim .calendar_weekend_title {
+        background: #c6d0db;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_takvim .calendar_title_first {
+        border-radius: 4px 0 0 4px;
+        -moz-border-radius: 4px 0 0 4px;
+        -webkit-border-radius: 4px 0 0 4px;
+        -ms-border-radius: 4px 0 0 4px;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_takvim .calendar_title_last {
+        border-radius: 0 4px 4px 0;
+        -moz-border-radius: 0 4px 4px 0;
+        -webkit-border-radius: 0 4px 4px 0;
+        -ms-border-radius: 0 4px 4px 0;
+    }
+
+    .tpl #stnz_content .stnz_widget.stnz_saat .stnz_widgetContent {
+        text-align: center;
+        padding: 14px 0 0;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_sitemap .stnz_siteMapWidgetContent {
+        text-align: left;
+        margin-left: 4px;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_doviz .stnz_exchanceRates {
+        width: 200px;
+        text-align: center;
+        color: #1eb8c6;
+        font-size: 14px;
+    }
+    
+    .tpl #stnz_content .stnz_widget.stnz_product_search {
+        text-align: center;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_product_search a {
+        color: #0078A3;
+        font-family: georgia;
+        font-style: normal;
+        padding-left: 30px;
+        line-height: 20px;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_product_search a:hover {
+        color: #00CDF7;
+        text-decoration: none;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_product_search .stnz_widgetContent {
+        width: 170px !important;
+        margin-left: 10px;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_product_search .stnz_widgetContent .UyeGirisi {
+        margin-bottom: 10px;
+    }
+
+    .tpl #stnz_content .stnz_widget.stnz_hava_durumu .stnz_widgetContent table {
+        display: inline-block;
+        color: #999;
+        font-size: 14px !important;
+        width: 200px !important;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_hava_durumu .stnz_widgetContent table span {
+        font-size: 14px !important;
+    }
+    .tpl #stnz_content .stnz_widget.stnz_hava_durumu .stnz_widgetContent table td {
+        width: 110px;
+        text-align: center;
+    }
+
+    /* old style */
+    .header {
+        font-family: sans-serif;
+        font-size: 28px;
+        font-weight: normal;
+        color: #FFFFFF;
+    }
+    .header2 {
+        font-family: sans-serif;
+        font-size: 16px;
+        font-weight: normal;
+        color: #CDC4A5;
+    }
+
+    .tubipmodulheadtd {
+        font-family: arial;
+        font-size: 11px;
+        font-weight: bold;
+        color: #FFFFFF;
+    }
+    .tubipmodulheadtd2 {
+        font-family: arial;
+        font-size: 10px;
+        font-weight: bold;
+        color: #636363;
+    }
+    .tubip_modules_sayac_text1 {
+        font-size: 12px;
+        color: #DCDCDC;
+    }
+    .tubip_modules_sayac_text2 {
+        font-size: 11px;
+        color: #636363;
+    }
+    .tubip_modules_doviz_headtd {
+        font-size: 10px;
+        background-color: #E1E1E1;
+        text-align: center;
+        color: #585858;
+    }
+    .tubip_modules_doviz_bodytd {
+        font-size: 10px;
+        text-align: center;
+        color: #DCDCDC;
+    }
+    .tubip_modules_doviz_bodytext {
+        font-size: 10px;
+        text-align: center;
+        color: #636363;
+    }
+    .tubip_login_text {
+        font-size: 10px;
+        color: #303030;
+    }
+    .tubip_login_text1 {
+        font-size: 11px;
+        color: #303030;
+    }
+    .tubip_login_text2 {
+        font-size: 11px;
+        color: #303030;
+    }
+    .tubip_login_text2:hover {
+        color: #C00000;
+    }
+    .tubip_login_link {
+        font-size: 9px;
+        color: #303030;
+    }
+    .tubip_login_link:hover {
+        color: #C00000;
+    }
+    .UyeGirisi {
+    }
+    .FormBeyaz {
+    }
+    .FormSiyah {
+    }
+    .FormKirmizi {
+    }
+    .kisisel_sayfa_basligi {
+        font-size: 18px;
+        color: #303030;
+        font-weight: bold;
+    }
+    .kisisel_sayfa_alt_basligi {
+        font-size: 12px;
+        color: #303030;
+        font-weight: bold;
+    }
+    .kisisel_sayfa_basligi_cizgi {
+        background-color: #4C3E30;
+    }
+    .kisisel_sayfa_alt_basligi_cizgi {
+        background-color: #4C3E30;
+    }
+    .footer_link {
+        font-family: sans-serif;
+        font-size: 11px;
+        color: #FFFF00;
+    }
+
+    .tpl #stnz_content .stnz_widget.kose_yazilari .stnz_yazi_basligi {
+        color: #636363;
+        font-size: 11px;
+    }
+    .tpl #stnz_content .stnz_widget.kose_yazilari .stnz_yazar_adi {
+        color: #636363;
+        font-size: 11px;
+    }
+    .new_baslik_class {
+        text-align: center;
+        color: #636363;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .anasayfa_baslik_header {
+        color: #303030;
+    }
+    .anasayfa_baslik_header:hover {
+        color: #303030;
+        text-decoration: underline;
+    }
+    .anasayfa_baslik_header:visited {
+        color: #303030;
+    }
+
+    .calendar_date {
+        font-size: 11px;
+        color: #636363;
+    }
+    a.calendar_date {
+        color: #0000aa;
+        text-decoration: none;
+    }
+    a.calendar_date:hover {
+        color: #000080;
+        text-decoration: underline;
+    }
+    .calendar_navigation {
+        font-size: 9px;
+        color: #636363;
+    }
+    .calendar_day {
+        font-size: 11px;
+        color: #636363;
+    }
+    a.calendar_day {
+        color: #0000aa;
+        text-decoration: none;
+    }
+    a.calendar_day:hover {
+        color: #000080;
+        text-decoration: underline;
+    }
+    .calendar_date_number {
+        font-size: 10px;
+        color: #636363;
+    }
+    a.calendar_date_number {
+        color: #0000aa;
+        text-decoration: none;
+    }
+    a.calendar_date_number:hover {
+        color: #000080;
+        text-decoration: underline;
+    }
+    .calendar_date_small {
+        font-size: 12px;
+        color: #636363;
+    }
+    a.calendar_date_small {
+        color: #0000aa;
+        text-decoration: none;
+    }
+    a.calendar_date_small:hover {
+        color: #000080;
+        text-decoration: underline;
+    }
+    .calendar_navigation_small {
+        font-size: 12px;
+        color: #636363;
+    }
+    a.calendar_navigation_small {
+        color: #0000aa;
+        text-decoration: none;
+    }
+    a.calendar_navigation_small:hover {
+        color: #000080;
+        text-decoration: underline;
+    }
+    .calendar_day_small {
+        font-size: 10px;
+        color: #636363;
+    }
+    a.calendar_day_small {
+        color: #0000aa;
+        text-decoration: none;
+    }
+    a.calendar_day_small:hover {
+        color: #000080;
+        text-decoration: underline;
+    }
+    .calendar_date_number_small {
+        font-size: 9px;
+        color: #636363;
+    }
+    a.calendar_date_number_small {
+        color: #0000aa;
+        text-decoration: none;
+    }
+    a.calendar_date_number_small:hover {
+        color: #000080;
+        text-decoration: underline;
+    }
+    .text {
+        font-size: 13px;
+        color: #555555;
+    }
+    a.text {
+        color: #0000aa;
+        text-decoration: none;
+    }
+    a.text:hover {
+        color: #555555;
+        text-decoration: underline;
+    }
+
+    #search_result {
+        min-height: 100px;
+        word-wrap: break-word;
+    }
+    #search_result ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    h3#search_header {
+        color: #1474b3;
+        margin-left: 10px;
+    }
+    h3#search_header b {
+        color: #ffa500;
+    }
+    h3.search_result_title {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 0;
+        margin: 20px 0 2px 0;
+    }
+    h3.search_result_title a {
+        color: #1e0fbe;
+        text-decoration: underline;
+    }
+    h3.search_result_title a:visited {
+        color: #609;
+    }
+    .search_result_content {
+        font-size: small;
+        font-family: arial, sans-serif;
+    }
+    .search_result_content a.view_result {
+        font-size: 11px;
+        color: #013CFF;
+    }
+
+    .clear {
+        clear: both;
+    }
+    #stnz_topModul {
+        float: right;
+        margin: 7px 20px 7px 0;
+    }
+
+    .stnz_ust_modul_search {
+        float: left;
+        margin-left: 50px;
+    }
+    #search {
+        cursor: pointer;
+    }
+    #search_mercek {
+        float: left;
+        margin: 0 0 0 -20px;
+    }
+    #ust_search {
+        width: 220px;
+        height: 12px;
+        padding: 2px;
+        font-size: 11px !important;
+        color: #bbb !important;
+        float: left;
+    }
+    #ust_search {
+        padding: 5px 4px;
+        font: 14px 'Open Sans', sans-serif;
+        color: #333;
+        background: #fff;
+        border: 1px solid #ccc !important;
+        outline: none;
+    }
+
+    .stnz_ust_modul_social {
+        float: left;
+        margin-left: 40px;
+    }
+    #ust_social_icons {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    #ust_social_icons li {
+        float: left;
+        margin-left: 7px;
+    }
+    #ust_social_icons li img {
+        height: 20px;
+    }
+
+    .stnz_ust_modul_icons {
+        float: left;
+        margin-left: 40px;
+    }
+    #ust_custom_icons {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    #ust_custom_icons li {
+        float: left;
+        margin-left: 7px;
+    }
+    #ust_custom_icons li img {
+        height: 18px;
+    }
+
+    .stnz_ust_modul_login {
+        float: left;
+        margin-left: 50px;
+    }
+    #ust_modul_login {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    #ust_modul_login li {
+        float: left;
+    }
+    #ust_login_caption {
+        margin-top: 5px;
+        font-size: 11px;
+    }
+    #ust_modul_login li input[type="text"], #ust_modul_login li input[type="password"] {
+        width: 100px;
+        height: 18px;
+        padding: 2px;
+        font-size: 11px;
+        margin-left: 7px;
+        color: #bbb;
+    }
+    #ust_modul_login li input[type="button"] {
+        width: 60px;
+        height: 24px;
+        padding: 2px !important;
+        font-size: 11px;
+        margin-left: 5px;
+        background: #add8e6;
+        -webkit-gradient: none;
+        -moz-gradient: none;
+        -ms-gradient: none;
+        -moz-text-shadow: none;
+        -webkit-text-shadow: none;
+        text-shadow: none;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border: none !important;
+    }
+    #ust_member_caption {
+        margin: 5px 8px 0 0;
+        padding-right: 8px;
+        font-size: 11px;
+        border-right: 1px solid #999;
+    }
+        
+    iframe.mibew-chat-frame {
+        width: 330px;
+        height: 300px;
+    }
+  
+    #live-support-footer {
+        width: 130px; 
+        position:fixed;
+        right:0px;
+        bottom:0px;
+    }
+    
+    .makale-container{        
+        min-height:60px;        
+        border: 0.5px solid #CCCCCC;
+    }
+    
+    .makale-content{
+        padding: 3px 5px 3px 5px;
+        margin-top:20px;
+    }
+    
+    .bx-wrapper .bx-pager.bx-default-pager a{
+        margin: 0 2px;
+        width: 24px !important;
+        height: 24px !important;
+        line-height: 24px !important;
+    }
+    
+    .HaberBox img.HaberBoxImage{
+        height:auto !important;
+    }
+}

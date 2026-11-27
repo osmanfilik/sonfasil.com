@@ -1,0 +1,48 @@
+﻿
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Puan Ver</title>
+<style type="text/css">
+<!--
+.style1 {
+	color: #D56A00;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+
+
+<body>
+<script type="text/javascript">
+function yildizver()
+{
+
+   var w = document.puan.puani.selectedIndex;
+   var deger = document.puan.puani.options[w].value;
+
+   document.puan.submit();
+
+}
+
+</script>
+<form name="puan" action="http://www.sonfasil.com/templates/include/yildiz_ver.php?Id=128696" method="POST">
+<div align ="center">
+  <label>
+  <select name="puani" id="select" onChange="yildizver();">
+    <option>--Puan Verin--</option>
+    <option value="5">5</option>
+    <option value="4">4</option>
+    <option value="3">3</option>
+    <option value="2">2</option>
+    <option value="1">1</option>
+  </select>
+  </label>
+</div>
+</form>
+</body>
+
+</html>
+

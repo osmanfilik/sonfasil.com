@@ -1,0 +1,12 @@
+#stnz_wrap>div{display: block; float: left;}
+#stnz_header{display:block;}
+#stnz_content{float:left;display:block;}
+#stnz_content>div{float:left;display:block;}
+#stnz_left_border,#stnz_right_border,#stnz_top,#stnz_bottom,#stnz_orta{display: none; visibility: hidden;}
+#stnz_leftContent{width:175px;}
+#stnz_rightContent{width:175px;}
+#stnz_container{ float:left;display:block; }
+#stnz_container>div{float:left;display:block;}
+#stnz_left_widgets{top: 0;margin-top: 15px;}
+ul.stnz_dropdown li{height: 26px;}
+ul.stnz_radius li{height: 26px;}

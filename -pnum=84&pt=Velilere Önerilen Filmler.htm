@@ -1,0 +1,752 @@
+﻿<!DOCTYPE html>
+                        <html lang="tr">
+                        <!--[if lt IE 8]> <html lang="tr-TR" class="stnz_no-js ie6"> <![endif]-->
+<head>
+<title>3/B SINIFI</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link rel="shortcut icon" href="favicon.ico.png" type="image/x-icon">
+
+
+
+<!--[if lt IE 7]>						
+							<script src="IE7.jgz.js">IE7_PNG_SUFFIX=".png";</script>
+							<link href="ie6.css" rel="stylesheet" type="text/css" />
+						<![endif]-->
+<!--[if lt IE 8]>							
+							<link href="ie7.css" rel="stylesheet" type="text/css" />
+						<![endif]-->
+<script type="text/javascript" src="js.js-v=3.js" ></script>
+<script src="jquery-1.8.3.min.jgz.js"></script>
+<script src="jquery.bxslider.min.js"></script>
+<link href="jquery.bxslider.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="magnific-popup.css">
+                                <link rel="stylesheet" href="wookmark-main.css">
+                                <script src="imagesloaded.pkgd.min.js"></script>
+                                <script src="jquery.magnific-popup.min.js"></script>
+                                <script src="wookmark.js"></script><link rel="stylesheet" href="banner-rotator.min.css">
+<script type="text/javascript" src="jquery.banner-rotator.min.js"></script>
+<link rel="stylesheet" type="text/css" href="wt-rotator.css"/>
+<script type="text/javascript" src="jquery.wt-rotator-prod.min.jgz.js"></script>
+
+
+
+
+<style>
+    @import url("grid.css")/*tpa=http://www.sonfasil.com/assets/css/grid.css*/ screen and (max-width: 768px);
+    @import url("stil.css")/*tpa=http://www.sonfasil.com/templates/tpl/38/stil.css*/ screen and (min-width: 769px);
+    @import url("desktop.css")/*tpa=http://www.sonfasil.com/assets/css/desktop.css*/ screen and (min-width: 769px);
+    @import url("mobile.css")/*tpa=http://www.sonfasil.com/assets/css/mobile.css*/ screen and (max-width: 768px);    
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="jquery.mobilemenu.js"></script><style type="text/css">body{ background-image: url(bg.jpg)/*tpa=http://www.sonfasil.com/FileUpload/bs577852/bg.jpg*/ !important; background-attachment: fixed; }</style>
+
+<!--[if lt IE 8]>               
+                    <style type="text/css">#stnz_middleContent{width:538px !important;}</style>         
+                <![endif]-->
+
+</head>
+
+<body id="mobileTmp" class="tpl">
+
+<div class="container" id="stnz_wrap">  
+        <div id="stnz_containerTop">
+        <div id="stnz_left_bg"></div>
+        <div class="row" id="stnz_containerMiddle">
+        <div class="grid_12" id="stnz_headerWrap"><script type="text/javascript">
+                    $(function() {
+                        $("#ust_icon_favorite").click(function() {
+                            // Mozilla Firefox Bookmark
+                            if ('sidebar' in window && 'addPanel' in window.sidebar) { 
+                                window.sidebar.addPanel(location.href,document.title,"");
+                            } else if( /*@cc_on!@*/false) { // IE Favorite
+                                window.external.AddFavorite(location.href,document.title); 
+                            } else { // webkit - safari/chrome
+                                alert('Sık Kullanılanlara eklemek için '+(navigator.userAgent.toLowerCase().indexOf('mac') != - 1 ? 'Command/Cmd' : 'CTRL') + ' + D tuşlarına basınız.');
+                            }
+                        });
+                        
+                        $("#ust_login_button").click(function() {
+                            $("#ust_uye_form").submit();                          
+                        });
+                        $("#ust_search").keyup(function(e) {
+                            if (e.keyCode==13)                          
+                            {
+                                if ($(this).val().length > 2){
+                                    $(location).attr('href','/?Syf=39&search='+$(this).val());
+                                }else{
+                                    alert('Lütfen en az 3 harf giriniz.');
+                                }   
+                            }
+                        });
+                        $("#search").click(function() {
+                            if ($('#ust_search').val().length > 2){
+                                    $(location).attr('href','/?Syf=39&search='+$('#ust_search').val());
+                                }else{
+                                    alert('Lütfen en az 3 harf giriniz.');
+                                }                           
+                        });
+                        
+                    });
+                </script><div id="stnz_topModul"><div class="stnz_widget stnz_ust_modul_icons">
+<div class="stnz_widgetContent"><ul id="ust_custom_icons"><li class="ust_custom_icons_li"><a href="-SyfNmb=1.htm" id="ust_icon_homepage"><img alt="Anasayfa" src="homepage.png" border="0"></a></li><li class="ust_custom_icons_li"><a href="#" id="ust_icon_favorite"><img alt="Favorilere Ekle" src="favorite.png" border="0"></a></li><li class="ust_custom_icons_li"><a href="-Syf=20.htm" id="ust_icon_sitemap"><img alt="Site Haritası" src="sitemap.png" border="0"></a></li></ul></div>
+</div><!-- /widget -->
+
+
+
+
+
+</div><div class="clear"></div><div class="grid_12" id="stnz_headerTop"></div><div id="stnz_header" style="background-image: none;"><style>#stnz_header{min-height:1px;}</style><div id="stnz_jsHeader">
+<script type="text/javascript">
+$(document).ready( function() {    
+$(".jquery_header_container").wtRotator({
+width:900,
+height:300,
+transition_speed:1000,
+block_size:50,
+vert_size:50,
+horz_size:50,
+transition:"random",
+text_effect:"right",
+tooltip_type:"image",
+cpanel_align:"BC",
+display_thumbs:true,
+cpanel_position:"inside",
+display_playbutton:false,
+display_dbuttons:false,
+display_timer:true,
+thumb_width:25,
+thumb_height:25,
+display_thumbimg:false,
+display_numbers:true,
+mouseover_pause:false,
+text_mouseover:false,
+cpanel_mouseover:false,
+display_side_buttons:false,
+auto_start:true,
+delay:3000,
+button_width:0,
+button_height:0,
+button_margin:3,        
+text_sync:true,
+shuffle:false,
+block_delay:15,
+vstripe_delay:73,
+hstripe_delay:183,          
+auto_center:true
+});
+});
+</script>
+<div class="jquery_header_container"> 
+<div class="wt-rotator">
+<div class="screen"></div>
+<div class="c-panel">
+<div class="thumbnails">
+<ul><li><a href="331053.jpg"><img src="331053-1.jpg"/></a></li><li><a href="319040.jpg"><img src="319040-1.jpg"/></a></li><li><a href="319034.jpg"><img src="319034-1.jpg"/></a></li><li><a href="319038.jpg"><img src="319038-1.jpg"/></a></li><li><a href="319039.jpg"><img src="319039-1.jpg"/></a></li><li><a href="319041.jpg"><img src="319041-1.jpg"/></a></li><li><a href="319042.jpg"><img src="319042-1.jpg"/></a></li></ul>
+</div>
+<div class="buttons"><div class="prev-btn"></div><div class="play-btn"></div><div class="next-btn"></div></div> 
+</div>
+</div> 
+</div></div><!-- /jsHeader --></div><div class="grid_12" id="stnz_headerFooter" style="margin-top:0;"></div><!-- /header --><script type="text/javascript">
+                    $(function() {
+                        $("#ust-menu-search").keyup(function(e) {
+                            if (e.keyCode==13)                          
+                            {
+                                if ($(this).val().length > 2){
+                                    $(location).attr('href','/?Syf=39&search='+$(this).val());
+                                }else{
+                                    alert('Lütfen en az 3 harf giriniz.');
+                                }   
+                            }
+                        });
+                        
+                        $("#search-ust").click(function() {
+                            if ($('#ust-menu-search').val().length > 2){
+                                    $(location).attr('href','/?Syf=39&search='+$('#ust-menu-search').val());
+                                }else{
+                                    alert('Lütfen en az 3 harf giriniz.');
+                                }                           
+                        });
+                        
+                    });
+                </script><div class="grid_12 mobile-menu" id="topMenu"><style>@import url("default.css")/*tpa=http://www.sonfasil.com/templates/tpl/83/menucss/default.css*/ screen and (min-width: 769px);</style><div class="stnz_widget stnz_ust_menu83">
+<div class="stnz_widgetContent"><div class="stnz_dropdown83_root stnz_dropdown83_root_center"><div id="ust_menu_root"><nav><ul class="sf-menu stnz_dropdown83 stnz_dropdown83-horizontal" id="nav" data-title="Menu">
+		
+			<li><a class="root"  href="-SyfNmb=1&pt=ANASAYFA.htm" rel="alternate" hreflang="tr">ANASAYFA</a></li>
+			<li><a class="root"  href="#" rel="alternate" hreflang="tr">1.SINIF</a>
+				<ul>
+					<li><a  target="_blank" href="https://f.eba.gov.tr/uygulama/KelimeTreni/story_html5.html" rel="alternate" hreflang="tr">Kelime Türetmece</a></li>
+					<li><a   href="https://dersekranda.com/tag/ilk-okuma-oyunlari/" rel="alternate" hreflang="tr">İlk Okuma Oyunları</a></li>
+					<li><a   href="https://dersekranda.com/hizli-okuma-etkinlikleri-pdf/" rel="alternate" hreflang="tr">Hızlı Okuma Etkinlikleri</a></li>
+					<li><a   href="https://wordwall.net/tr-tr/community/1-s%C4%B1n%C4%B1f-e%C4%9Flenceli-etkinlikler" rel="alternate" hreflang="tr">Eğlenceli Etkinlikler</a></li>
+				</ul>
+			</li>
+			<li><a class="root"  href="#" rel="alternate" hreflang="tr">2.SINIF</a></li>
+			<li><a class="root"  href="#" rel="alternate" hreflang="tr">3.SINIF</a>
+				<ul>
+					<li><a   href="#" rel="alternate" hreflang="tr">OYUNLAR</a></li>
+					<li><a class="dir"  href="-pnum=19&pt=Eba+Uzaktan+Eğitim.htm" rel="alternate" hreflang="tr">Eba Uzaktan Eğitim</a>
+						<ul>
+							<li><a   href="-pnum=37&pt=Eba+Şifresi+Nasıl+Alınır.htm" rel="alternate" hreflang="tr">EBA Şifresi Nasıl alınır?</a></li>
+							<li><a class="dir"  href="-pnum=32&pt=Matematik.htm" rel="alternate" hreflang="tr">Matematik</a>
+								<ul>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-1-paralarimiz-lira-ve-kurus-iliskisi-1474497" rel="alternate" hreflang="tr">Ders 1: Paralarımız- Lira ve Kuruş İlişkisi</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-2-tartma-gram-ve-kilogramlar-1678945" rel="alternate" hreflang="tr">Ders 2: Tartma - Gram ve Kilogramlar</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-3-tartma-2-nesneleri-gram-ve-kilogram-cinsinden-olcelim-1798653" rel="alternate" hreflang="tr">Ders 3: Tartma 2 (Nesneleri Gram ve Kilogram Cinsinden Ölçelim)</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-4-geometrik-cisimler-ve-sekillerin-ozellikleri-1807432" rel="alternate" hreflang="tr">Ders 4: Geometrik Cisimler ve Şekillerin Özellikleri</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-5-geometrik-cisimlerin-benzerlik-ve-farkliliklari-1810147" rel="alternate" hreflang="tr">Ders 5: Geometrik Cisimlerin Benzerlik ve Farklılıkları</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-6-geometrik-cisimler-ve-sekiller-geometrik-sekiller-ozellikleri-1-1816699" rel="alternate" hreflang="tr">Ders 6: Geometrik Cisimler ve Şekiller- Geometrik Şekiller Özellikleri - 1</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-7-geometrik-cisimler-ve-sekiller-geometrik-sekiller-ozellikleri-2-1819596" rel="alternate" hreflang="tr">Ders 7: Geometrik Cisimler ve Şekiller- Geometrik Şekiller Özellikleri - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-8-geometrik-cisimler-ve-sekiller-geometrik-oruntuler-1860480" rel="alternate" hreflang="tr">Ders 8: Geometrik Cisimler ve Şekiller - Geometrik Örüntüler</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-9-geometrik-cisimler-ve-sekiller-geometride-temel-kavramlar-1864148" rel="alternate" hreflang="tr">Ders 9: Geometrik Cisimler ve Şekiller - Geometride Temel Kavramlar</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-10-geomertrik-cisimler-ve-sekiller-geometride-temel-kavramlar-2-1936072" rel="alternate" hreflang="tr">Ders 10: Geomertrik Cisimler ve Şekiller - Geometride Temel Kavramlar - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-11-geometrik-cisimler-ve-sekiller-uzamsal-iliskiler-1961805" rel="alternate" hreflang="tr">Ders 11: Geometrik Cisimler ve Şekiller - Uzamsal İlişkiler</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-12-geometrik-cisimler-ve-sekiller-5-unite-degerlendirme-calismalari-1981951" rel="alternate" hreflang="tr">Ders 12: Geometrik Cisimler ve Şekiller - 5. Ünite Değerlendirme Çalışmaları</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-13-uzunluk-cevre-alan-ve-sivi-olcme-uzunluk-olcme-1993920" rel="alternate" hreflang="tr">Ders 13: Uzunluk, Çevre, Alan ve Sıvı Ölçme - Uzunluk Ölçme</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-14-uzunluk-cevre-alan-ve-sivi-olcme-uzunluk-olcme-2-2013385" rel="alternate" hreflang="tr">Ders 14: Uzunluk, Çevre, Alan ve Sıvı Ölçme - Uzunluk Ölçme - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-15-uzunluk-cevre-alan-ve-sivi-olcme-uzunluk-olcme-3-2014465" rel="alternate" hreflang="tr">Ders 15: Uzunluk, Çevre, Alan ve Sıvı Ölçme - Uzunluk Ölçme - 3</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-16-uzunluk-cevre-alan-ve-sivi-olcme-uzunluk-olcme-4-2017772" rel="alternate" hreflang="tr">Ders 16: Uzunluk, Çevre, Alan ve Sıvı Ölçme - Uzunluk Ölçme - 4</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-17-uzunluk-cevre-alan-ve-sivi-olcme-cevre-olcme-2018880" rel="alternate" hreflang="tr">Ders 17: Uzunluk, Çevre, Alan ve Sıvı Ölçme - Çevre Ölçme</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-18-uzunluk-cevre-alan-ve-sivi-olcme-cevre-olcme-2-2022294" rel="alternate" hreflang="tr">Ders 18: Uzunluk, Çevre, Alan ve Sıvı Ölçme - Çevre Ölçme - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-19-uzunluk-cevre-alan-ve-sivi-olcme-cevre-olcme-3-2025543" rel="alternate" hreflang="tr">Ders 19: Uzunluk, Çevre, Alan ve Sıvı Ölçme - Çevre Ölçme - 3</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-20-uzunluk-cevre-alan-ve-sivi-olcme-cevre-olcme-4-2026746" rel="alternate" hreflang="tr">Ders 20: Uzunluk, Çevre, Alan ve Sıvı Ölçme - Çevre Ölçme - 4</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-21-uzunluk-cevre-alan-ve-sivi-olcme-alan-olcme-2029256" rel="alternate" hreflang="tr">Ders 21: Uzunluk, Çevre, Alan ve Sıvı Ölçme - Alan Ölçme</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-22-uzunluk-cevre-alan-ve-sivi-olcme-sivi-olcme-2030462" rel="alternate" hreflang="tr">Ders 22: Uzunluk, Çevre, Alan ve Sıvı Ölçme - Sıvı Ölçme</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-23-uzunluk-cevre-alan-ve-sivi-olcme-sivi-olcme-problemleri-2033139" rel="alternate" hreflang="tr">Ders 23: Uzunluk, Çevre, Alan ve Sıvı Ölçme - Sıvı Ölçme Problemleri</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-matematik/ders-24-uzunluk-cevre-alan-ve-sivi-olcme-unite-degerlendirme-calismalari-2034581" rel="alternate" hreflang="tr">Ders 24: Uzunluk, Çevre, Alan ve Sıvı Ölçme - Ünite Değerlendirme Çalışmaları</a></li>
+								</ul>
+							</li>
+							<li><a class="dir"  href="-pnum=33&pt=Fen+Bilimleri.htm" rel="alternate" hreflang="tr">Fen Bilimleri</a>
+								<ul>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-1-bitkilerin-yasam-dongusu-1475768" rel="alternate" hreflang="tr">Ders 1: Bitkilerin Yaşam Döngüsü</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-2-canlilarin-dunyasina-yolculuk-cevremizdeki-varliklari-taniyalim-1478584" rel="alternate" hreflang="tr">Ders 2: Canlıların Dünyasına Yolculuk - Çevremizdeki Varlıkları Tanıyalım</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-3-canlilar-dunyasina-yolculuk-cevremi-taniyorum-1744198" rel="alternate" hreflang="tr">Ders 3: Canlılar Dünyasına Yolculuk - Çevremi Tanıyorum</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-4-canlilar-dunyasina-yolculuk-hatirlayalim-1802294" rel="alternate" hreflang="tr">Ders 4: Canlılar Dünyasına Yolculuk - Hatırlayalım</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-5-canlilar-dunyasina-yolculuk-dogal-ve-yapay-cevre-1808766" rel="alternate" hreflang="tr">Ders 5: Canlılar Dünyasına Yolculuk - Doğal ve Yapay Çevre</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-6-canlilar-dunyasina-yolculuk-dogal-ve-yapay-cevre-farklilik-ve-benzerlik-1811259" rel="alternate" hreflang="tr">Ders 6: Canlılar Dünyasına Yolculuk - Doğal ve Yapay Çevre - Farklılık ve Benzerlik</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-7-canlilar-dunyasina-yolculuk-cevremizi-koruyalim-1818141" rel="alternate" hreflang="tr">Ders 7: Canlılar Dünyasına Yolculuk - Çevremizi Koruyalım</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-8-canlilar-dunyasina-yolculuk-milli-parklar-ve-dogal-anitlar-1854547" rel="alternate" hreflang="tr">Ders 8: Canlılar Dünyasına Yolculuk - Milli Parklar ve Doğal Anıtla</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-9-canlilar-dunyasina-yolculuk-cevremizi-koruyalim-2-1862266" rel="alternate" hreflang="tr">Ders 9: Canlılar Dünyasına Yolculuk - Çevremizi Koruyalım - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-10-elektrikli-araclar-elektrikli-araclar-ve-gerecler-1939880" rel="alternate" hreflang="tr">Ders 10: Elektrikli Araçlar - Elektrikli Araçlar ve Gereçler</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-11-elektrikli-araclar-elektrikli-araclar-ve-gerecler-2-1965703" rel="alternate" hreflang="tr">Ders 11: Elektrikli Araçlar - Elektrikli Araçlar ve Gereçler - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-12-elektrikli-araclar-elektrikli-araclargerecler-3-1983532" rel="alternate" hreflang="tr">Ders 12: Elektrikli Araçlar - Elektrikli Araçlar,Gereçler - 3</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-13-elektrikli-araclar-elektrikli-araclar-gerecler-4-1995573" rel="alternate" hreflang="tr">Ders 13: Elektrikli Araçlar - Elektrikli Araçlar, Gereçler - 4</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-14-elektrikli-araclar-elektrikli-araclar-gerecler-5-2013963" rel="alternate" hreflang="tr">Ders 14: Elektrikli Araçlar- Elektrikli Araçlar, Gereçler - 5</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-15-elektrikli-araclar-elektrikli-araclar-gerecler-6-2015388" rel="alternate" hreflang="tr">Ders 15: Elektrikli Araçlar - Elektrikli Araçlar, Gereçler - 6</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-16-elektrikli-araclar-elektrikli-araclar-gerecler-7-2019269" rel="alternate" hreflang="tr">Ders 16: Elektrikli Araçlar - Elektrikli Araçlar, Gereçler - 7</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-17-elektrikli-araclar-elektrikli-araclar-gerecler-8-2023215" rel="alternate" hreflang="tr">Ders 17: Elektrikli Araçlar - Elektrikli Araçlar, Gereçler - 8</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-18-elektrikli-araclar-elektrigin-guvenli-kullanimi-1-2026150" rel="alternate" hreflang="tr">Ders 18: Elektrikli Araçlar - Elektriğin Güvenli Kullanımı - 1</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-19-elektrikli-araclar-elektrigin-guvenli-kullanimi-2-2027149" rel="alternate" hreflang="tr">Ders 19: Elektrikli Araçlar - Elektriğin Güvenli Kullanımı - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-20-elektrikli-araclar-elektrigin-guvenli-kullanimi-3-2029903" rel="alternate" hreflang="tr">Ders 20: Elektrikli Araçlar - Elektriğin Güvenli Kullanımı - 3</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-21-elektrikli-araclar-elektrigin-guvenli-kullanimi-4-2030977" rel="alternate" hreflang="tr">Ders 21: Elektrikli Araçlar - Elektriğin Güvenli Kullanımı - 4</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-22-elektrikli-araclar-elektirigin-guvenli-kullanimi-5-2033950" rel="alternate" hreflang="tr">Ders 22: Elektrikli Araçlar - Elektiriğin Güvenli Kullanımı - 5</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-fen-bilimleri/ders-23-elektrikli-araclar-elektrigin-guvenli-kullanimi-6-2035138" rel="alternate" hreflang="tr">Ders 23: Elektrikli Araçlar - Elektriğin Güvenli Kullanımı - </a></li>
+								</ul>
+							</li>
+							<li><a class="dir"  href="-pnum=34&pt=Türkçe.htm" rel="alternate" hreflang="tr">Türkçe</a>
+								<ul>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-1-doga-ve-evren-yesil-ilkbahar-1474495" rel="alternate" hreflang="tr">Ders 1: Doğa ve Evren-Yeşil İlkbahar</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-2-bilim-ve-teknoloji-bir-ani-1678944" rel="alternate" hreflang="tr">Ders 2: Bilim ve Teknoloji - Bir Anı</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-3-dinleme-metni-sengulum-mengulum-sungulum-1798461" rel="alternate" hreflang="tr">Ders 3: Dinleme Metni - Şengülüm, Mengülüm, Şüngülüm</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-4-bilim-ve-teknoloji-harf-hece-noktalama-isaretleri-1803739" rel="alternate" hreflang="tr">Ders 4: Bilim ve Teknoloji - Harf, Hece, Noktalama İşaretleri</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-5-bilim-ve-teknoloji-buluslar-1807430" rel="alternate" hreflang="tr">Ders 5: Bilim ve Teknoloji - Buluşlar</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-6-bilim-ve-teknoloji-uzaya-ilk-yolculuk-1810146" rel="alternate" hreflang="tr">Ders 6: Bilim ve Teknoloji - Uzaya İlk Yolculuk</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-7-dinleme-metni-gulen-nar-aglayan-ayva-masali-1812500" rel="alternate" hreflang="tr">Ders 7: Dinleme Metni - Gülen Nar Ağlayan Ayva Masalı</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-8-bilim-ve-teknoloji-telefonun-icadi-1816697" rel="alternate" hreflang="tr">Ders 8: Bilim ve Teknoloji - Telefonun İcadı</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-9-bilim-ve-teknoloji-tema-sonu-degerlendirme-1819594" rel="alternate" hreflang="tr">Ders 9: Bilim ve Teknoloji - Tema Sonu Değerlendirme</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-10-okudugunu-anlama-hediye-masali-1855941" rel="alternate" hreflang="tr">Ders 10: Okuduğunu Anlama - Hediye Masalı</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-11-cocuk-dunyasi-dunya-cocuk-bayrami-1-1860477" rel="alternate" hreflang="tr">Ders 11: Çocuk Dünyası - Dünya Çocuk Bayramı -1</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-12-cocuk-dunyasi-dunya-cocuk-bayrami-2-1864144" rel="alternate" hreflang="tr">Ders 12: Çocuk Dünyası - Dünya Çocuk Bayramı - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-13-okuma-metni-vefali-agac-masali-1904729" rel="alternate" hreflang="tr">Ders 13: Okuma Metni - Vefalı Ağaç Masalı</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-14-cocuk-dunyasi-tum-dunya-oyunda-1936069" rel="alternate" hreflang="tr">Ders 14: Çocuk Dünyası - Tüm Dünya Oyunda</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-15-cocuk-dunyasi-tum-dunya-oyunda-2-1961802" rel="alternate" hreflang="tr">Ders 15: Çocuk Dünyası - Tüm Dünya Oyunda - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-16-cocuk-dunyasi-geceyi-sevmeyen-cocuk-1981949" rel="alternate" hreflang="tr">Ders 16: Çocuk Dünyası - Geceyi Sevmeyen Çocuk</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-17-cocuk-dunyasi-cesur-portakal-1993916" rel="alternate" hreflang="tr">Ders 17: Çocuk Dünyası - Cesur Portakal</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-18-dinledigini-anlama-cifte-kamburlar-masali-2010137" rel="alternate" hreflang="tr">Ders 18: Dinlediğini Anlama - Çifte Kamburlar Masalı</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-19-cocuk-dunyasi-agac-2013383" rel="alternate" hreflang="tr">Ders 19: Çocuk Dünyası - Ağaç</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-20-cocuk-dunyasi-tema-sonu-degerlendirme-2014462" rel="alternate" hreflang="tr">Ders 20: Çocuk Dünyası - Tema Sonu Değerlendirme</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-21-okudugunu-anlama-pancar-masali-2015988" rel="alternate" hreflang="tr">Ders 21: Okuduğunu Anlama - Pancar Masalı</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-22-saglik-ve-spor-19-mayis-2017769" rel="alternate" hreflang="tr">Ders 22: Sağlık ve Spor - 19 Mayıs</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-23-saglik-ve-spor-bir-dunya-birakin-2018877" rel="alternate" hreflang="tr">Ders 23: Sağlık ve Spor - Bir Dünya Bırakın</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-24-dinledigini-anlama-tasci-masali-2019733" rel="alternate" hreflang="tr">Ders 24: Dinlediğini Anlama - Taşçı Masalı</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-25-saglik-ve-spor-neseli-ispanak-2022292" rel="alternate" hreflang="tr">Ders 25: Sağlık ve Spor - Neşeli Ispanak</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-26-okuma-metni-bir-yaprak-dustu-dalindan-masali-2023949" rel="alternate" hreflang="tr">Ders 26: Okuma Metni - Bir Yaprak Düştü Dalından Masalı</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-27-saglik-ve-spor-izcilik-2025540" rel="alternate" hreflang="tr">Ders 27: Sağlık ve Spor - İzcilik</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-28-tema-saglik-ve-spor-mor-balik-2026744" rel="alternate" hreflang="tr">Ders 28: Tema: Sağlık ve Spor - Mor Balık</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-29-okudugunu-anlama-iki-komsu-masali-2027794" rel="alternate" hreflang="tr">Ders 29: Okuduğunu Anlama - İki Komşu Masalı</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-turkce/ders-30-saglik-ve-spor-ataturk-ve-cocuklar-2029255" rel="alternate" hreflang="tr">Ders 30: Sağlık ve Spor - Atatürk ve Çocuklar</a></li>
+								</ul>
+							</li>
+							<li><a class="dir"  href="-pnum=35&pt=Hayat+Bilgisi.htm" rel="alternate" hreflang="tr">Hayat Bilgisi</a>
+								<ul>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-1-guvenli-hayat-oyun-araclarini-guvenli-kullanirim-1475927" rel="alternate" hreflang="tr">Ders 1: Güvenli Oyun Alanları</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-1-guvenli-hayat-oyun-araclarini-guvenli-kullanirim-1475927" rel="alternate" hreflang="tr">Ders 2:  Güvenli Hayat - Oyun Araçlarını Güvenli Kullanırım</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-3-ulkemizde-hayat-yonetim-birimleri-1743398" rel="alternate" hreflang="tr">Ders 3: Ülkemizde Hayat - Yönetim Birimleri</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-4-ulkemizde-hayat-yonetim-birimleri-2-1802293" rel="alternate" hreflang="tr">Ders 4: Ülkemizde Hayat - Yönetim Birimleri - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-5-ulkemizde-hayat-ulkemizin-yonetim-sekli-1808765" rel="alternate" hreflang="tr">Ders 5: Ülkemizde Hayat - Ülkemizin Yönetim Şekli</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-6-ulkemizde-hayat-ulkemizin-yonetim-sekli-hak-ve-ozgurlukler-1811257" rel="alternate" hreflang="tr">Ders 6: Ülkemizde Hayat - Ülkemizin Yönetim Şekli, Hak ve Özgürlükler</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-7-ulkemizde-hayat-tarihi-ve-dogal-guzelliklerimiz-1-1818139" rel="alternate" hreflang="tr">Ders 7: Ülkemizde Hayat - Tarihi ve Doğal Güzelliklerimiz - 1</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-8-ulkemizde-hayat-tarihi-ve-dogal-guzelliklerimiz-2-1854544" rel="alternate" hreflang="tr">Ders 8: Ülkemizde Hayat - Tarihi ve Doğal Güzelliklerimiz - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-9-ulkemizde-hayat-gorev-ve-sorumluluklar-1862262" rel="alternate" hreflang="tr">Ders 9: Ülkemizde Hayat - Görev ve Sorumluluklar</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-10-ulkemizde-hayat-ortak-kullanim-alanlari-1939726" rel="alternate" hreflang="tr">Ders 10: Ülkemizde Hayat - Ortak Kullanım Alanları</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-11-ulkemizde-hayat-ortak-kullanim-alanlari-2-1965699" rel="alternate" hreflang="tr">Ders 11: Ülkemizde Hayat- Ortak Kullanım Alanları - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-12-ulkemizde-hayat-birlikte-gucluyuz-1983530" rel="alternate" hreflang="tr">Ders 12: Ülkemizde Hayat - Birlikte Güçlüyüz</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-13-ulkemizde-hayat-yeni-ulke-yeni-arkadas-1995571" rel="alternate" hreflang="tr">Ders 13: Ülkemizde Hayat - Yeni Ülke Yeni Arkadaş</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-14-ulkemizde-hayat-ataturkun-kisilik-ozellikleri-1-2013962" rel="alternate" hreflang="tr">Ders 14: Ülkemizde Hayat - Atatürk&#039;ün Kişilik Özellikleri - 1</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-15-ulkemizde-hayat-ataturkun-kisilik-ozellikleri-2-2015383" rel="alternate" hreflang="tr">Ders 15: Ülkemizde Hayat - Atatürk&#039;ün Kişilik Özellikleri - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-16-ulkemizde-hayat-ulkemize-hizmet-etmis-kisiler-2019267" rel="alternate" hreflang="tr">Ders 16: Ülkemizde Hayat - Ülkemize Hizmet Etmiş Kişiler</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-17-dogada-hayat-bitki-ve-hayvanlarin-hayatimizdaki-onemi-2023214" rel="alternate" hreflang="tr">Ders 17: Doğada Hayat - Bitki ve Hayvanların Hayatımızdaki Önemi</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-18-dogada-hayat-meyveler-ve-sebzeler-nasil-yetisir-2026147" rel="alternate" hreflang="tr">Ders 18: Doğada Hayat - Meyveler ve Sebzeler Nasıl Yetişir?</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-19-ulkemizde-hayat-yonumu-buluyorum-2027148" rel="alternate" hreflang="tr">Ders 19: Ülkemizde Hayat - Yönümü Buluyorum</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-20-dogada-hayat-doga-ve-insan-2029901" rel="alternate" hreflang="tr">Ders 20: Doğada Hayat - Doğa ve İnsan</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-21-dogada-hayat-dogayi-koruyalim-2030975" rel="alternate" hreflang="tr">Ders 21: Doğada Hayat - Doğayı Koruyalım</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-22-dogada-hayat-donusuyorum-2033946" rel="alternate" hreflang="tr">Ders 22: Doğada Hayat - Dönüşüyorum</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-hayat-bilgisi/ders-23-dogada-hayat-degerlendirme-2035137" rel="alternate" hreflang="tr">Ders 23: Doğada Hayat - Değerlendirme</a></li>
+								</ul>
+							</li>
+							<li><a class="dir"  href="-pnum=36&pt=İngilizce.htm" rel="alternate" hreflang="tr">İngilizce</a>
+								<ul>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-ingilizce/ders-1-in-my-city-1-1488335" rel="alternate" hreflang="tr">Ders1: In My City - 1</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-ingilizce/ders-2-in-my-city-2-1495959" rel="alternate" hreflang="tr">Ders1: In My City - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-ingilizce/ders-3-transportation-1-1803679" rel="alternate" hreflang="tr">Ders 3: Transportation-1</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-ingilizce/ders-4-transportation-2-1812498" rel="alternate" hreflang="tr">Ders 4: Transportation-2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-ingilizce/ders-5-transportation-3-1855937" rel="alternate" hreflang="tr">Ders 5: Transportation - 3</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-ingilizce/ders-6-weather-1-1904728" rel="alternate" hreflang="tr">Ders 6: Weather - 1</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-ingilizce/ders-7-weather-2-2010135" rel="alternate" hreflang="tr">Ders 7: Weather - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-ingilizce/ders-8-weather-3-2015985" rel="alternate" hreflang="tr">Ders 8: Weather - 3</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-ingilizce/ders-9-nature-1-2019732" rel="alternate" hreflang="tr">Ders 9: Nature - 1</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-ingilizce/ders-10-nature-2-2023948" rel="alternate" hreflang="tr">Ders 10: Nature - 2</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-ingilizce/ders-11-nature-3-2027792" rel="alternate" hreflang="tr">Ders 11: Nature - 3</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-ingilizce/ders-12-nature-4-2031637" rel="alternate" hreflang="tr">Ders 12: Nature - 4</a></li>
+									<li><a  target="_blank" href="https://www.trtizle.com/sinif3/3-sinif-ingilizce/ders-13-nature-5-2043700" rel="alternate" hreflang="tr">Ders 13: Nature - 5</a></li>
+									<li><a  target="_blank" href="https://drive.google.com/drive/folders/1axUBnZajuWiwO4atuE-M4JwZtWO4-IUt" rel="alternate" hreflang="tr">İngilizce  Dinleme  Metinleri</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li><a class="dir"  href="#" rel="alternate" hreflang="tr">DENEME SINAVLARI</a>
+						<ul>
+							<li><a  target="_blank" href="https://www.ilkokul1.com/3-sinif-online-deneme-sinavi/" rel="alternate" hreflang="tr">Deneme Sınavı - 1</a></li>
+							<li><a  target="_blank" href="https://www.ilkokul1.com/3-siniflar-online-deneme-sinavi-2/" rel="alternate" hreflang="tr">Deneme Sınavı - 2</a></li>
+							<li><a  target="_blank" href="https://www.ilkokul1.com/3-siniflar-online-deneme-sinavi-3/" rel="alternate" hreflang="tr">Deneme Sınavı - 3</a></li>
+							<li><a   href="https://www.ilkokul1.com/3-siniflar-online-2-donem-4-deneme-sinavi/" rel="alternate" hreflang="tr">Deneme Sınavı - 4</a></li>
+							<li><a  target="_blank" href="https://www.ilkokul1.com/3-siniflar-2-donem-5-online-deneme-sinavi/" rel="alternate" hreflang="tr">Deneme Sınavı - 5</a></li>
+							<li><a  target="_blank" href="https://www.ilkokul1.com/evdekal-3-siniflar-genel-deneme-sinavi/" rel="alternate" hreflang="tr">Deneme Sınavı - 6</a></li>
+						</ul>
+					</li>
+					<li><a   href="-pnum=16&pt=Matematik.htm" rel="alternate" hreflang="tr">Matematik</a></li>
+					<li><a   href="http://www.sonfasil.com/?pnum=15&pt=Fen+Bilimleri" rel="alternate" hreflang="tr">Fen Bilimleri</a></li>
+					<li><a  target="_blank" href="https://turkceodevim.com/3-sinif-turkce-dinleme-metinleri/" rel="alternate" hreflang="tr">TÜRKÇE DİNLEME METİNLERİ</a></li>
+					<li><a   href="-Syf=10&pt=Sınavlar.htm" rel="alternate" hreflang="tr">SINAVLAR</a></li>
+				</ul>
+			</li>
+			<li><a class="root"  href="#" rel="alternate" hreflang="tr">4.SINIF</a>
+				<ul>
+					<li><a   href="https://www.ilkokul1.com/4-sinif-alt-kategoriler/" rel="alternate" hreflang="tr">Ders Etkinlikleri</a></li>
+				</ul>
+			</li>
+			<li><a class="root"  href="http://www.sonfasil.com/?pnum=27&pt=Mesaj" rel="alternate" hreflang="tr">Mesaj</a>
+				<ul>
+					<li><a   href="-pnum=20&pt=Mesaj+Gönder.htm" rel="alternate" hreflang="tr">Mesaj Gönder</a></li>
+					<li><a  target="_blank" href="http://www.sonfasil.com/?Syf=6&UI=7" rel="alternate" hreflang="tr">Yöneticiye Veri Gönder</a></li>
+					<li><a   href="http://www.sonfasil.com/?pnum=21&pt=Mesajlar%C4%B1m" rel="alternate" hreflang="tr">Mesajlarım</a></li>
+				</ul>
+			</li>
+			<li><a class="root"  href="-Syf=3&pt=Dosyalar.htm" rel="alternate" hreflang="tr">Dosyalar</a></li>
+			<li><a class="root"  href="http://www.sonfasil.com/?SyfNmb=3&pt=%C4%B0leti%C5%9Fim" rel="alternate" hreflang="tr">İletişim</a></li>
+			<li><a class="root"  href="-Syf=0&pt=Ziyaretçi
+Defteri.htm" rel="alternate" hreflang="tr">Ziyaretçi
+Defteri</a></li></ul></nav></div></div></div>
+</div><!-- /widget -->
+
+</div><!-- /topMenu --></div><div id="stnz_content"><div class="grid_12" id="stnz_leftContent"><div class="stnz_widget"><style>@import url("default-1.css")/*tpa=http://www.sonfasil.com/templates/tpl/91/menucss/default.css*/ screen and (min-width: 769px);</style><div class="stnz_widget stnz_menu">
+<div class="stnz_widgetTitle"><div class="stnz_widgetTitle_text">GENEL</div></div>
+<div class="stnz_widgetContent"><ul class="sf-menu stnz_dropdown91 stnz_dropdown91-vertical" id="nav1958864" data-title="GENEL">
+				
+					<li><a class="root" target="_blank" href="-pnum=65&pt=ATATÜRK.htm" rel="alternate" hreflang="tr">ATATÜRK</a></li>
+					<li><a class="root"  href="http://www.sonfasil.com/?pnum=63&pt=REHBERL%C4%B0K" rel="alternate" hreflang="tr">REHBERLİK</a></li>
+					<li><a class="root"  href="-pnum=67&pt=Belirli+Gün+ve+Haftalar.htm" rel="alternate" hreflang="tr">Belirli Gün ve Haftalar</a></li>
+					<li><a class="root"  href="http://www.sonfasil.com/?pnum=68&pt=OYUNLAR" rel="alternate" hreflang="tr">OYUNLAR</a>
+				<ul>
+					<li><a   href="-pnum=83&pt=Matematik+Oyunları.htm" rel="alternate" hreflang="tr">Matematik Oyunları</a></li>
+					<li><a   href="http://www.sonfasil.com/?pnum=82&pt=Fen+Bilimleri+Oyunlar%C4%B1" rel="alternate" hreflang="tr">Fen Bilimleri Oyunları</a></li>
+					<li><a   href="-pnum=80&pt=Türkçe+Oyunları.htm" rel="alternate" hreflang="tr">Türkçe Oyunları</a></li>
+					<li><a   href="http://www.sonfasil.com/?pnum=81&pt=Sosyal+Bilgiler+Oyunlar%C4%B1" rel="alternate" hreflang="tr">Sosyal Bilgiler Oyunları</a></li>
+				</ul>
+					</li>
+					<li><a class="root"  href="-pnum=69&pt=EĞLENCE.htm" rel="alternate" hreflang="tr">EĞLENCE</a></li>
+					<li><a class="root"  href="-pnum=71&pt=ŞARKILAR.htm" rel="alternate" hreflang="tr">ŞARKILAR</a>
+				<ul>
+					<li><a   href="http://www.sonfasil.com/?pnum=40&pt=Dance+Monkey+Cup+Song" rel="alternate" hreflang="tr">Dance Monkey Cup Song</a></li>
+					<li><a   href="-pnum=43&pt=Uptown+Funk+Home+Challenge.htm" rel="alternate" hreflang="tr">Uptown Funk Home Challenge</a></li>
+					<li><a   href="http://www.sonfasil.com/?pnum=39&pt=8+Mart+D%C3%BCnya+Kad%C4%B1nlar+G%C3%BCn%C3%BC+%C5%9Eark%C4%B1s%C4%B1" rel="alternate" hreflang="tr">8 Mart Dünya Kadınlar Günü Şarkısı</a></li>
+					<li><a   href="http://www.sonfasil.com/?pnum=38&pt=23+Nisan+%C5%9Eark%C4%B1s%C4%B1" rel="alternate" hreflang="tr">23 Nisan Şarkısı</a></li>
+					<li><a   href="-pnum=41&pt=CORONA+DIŞARIDA+MÜZİK+EVDE.htm" rel="alternate" hreflang="tr">CORONA DIŞARIDA MÜZİK EVDE</a></li>
+					<li><a   href="-pnum=42&pt=CORONA+DIŞARIDA+MÜZİK+EVDE+ZİMBOLE.htm" rel="alternate" hreflang="tr">CORONA DIŞARIDA MÜZİK EVDE ZİMBOLE</a></li>
+				</ul>
+					</li>
+					<li><a class="root"  href="http://www.sonfasil.com/?pnum=22&pt=%C3%87izgi+Film+Masallar" rel="alternate" hreflang="tr">Çizgi Film Masallar</a></li>
+					<li><a class="root"  href="-pnum=45&pt=GEREKLİLER.htm" rel="alternate" hreflang="tr">GEREKLİLER</a>
+				<ul>
+					<li><a  target="_blank" href="https://e-okul.meb.gov.tr/" rel="alternate" hreflang="tr">e-okul</a></li>
+					<li><a  target="_blank" href="https://sozluk.gov.tr/?kelime=" rel="alternate" hreflang="tr">Türkçe Sözlük</a></li>
+					<li><a class="dir"  href="http://www.sonfasil.com/?pnum=46&pt=T%C3%BCbitak" rel="alternate" hreflang="tr">Tübitak</a>
+						<ul>
+							<li><a  target="_blank" href="https://merakliminik.tubitak.gov.tr/" rel="alternate" hreflang="tr">Meraklı Minik</a></li>
+							<li><a  target="_blank" href="https://bilimcocuk.tubitak.gov.tr/" rel="alternate" hreflang="tr">Bilim Çocuk</a></li>
+							<li><a  target="_blank" href="https://bilimteknik.tubitak.gov.tr/" rel="alternate" hreflang="tr">Bilim ve Teknik</a></li>
+							<li><a  target="_blank" href="https://bilimgenc.tubitak.gov.tr/" rel="alternate" hreflang="tr">Bilim Genç</a></li>
+						</ul>
+					</li>
+					<li><a  target="_blank" href="https://www.egitimpedia.com/" rel="alternate" hreflang="tr">eğitimpedia</a></li>
+					<li><a  target="_blank" href="https://www.okulistik.com/anasayfa/index.html" rel="alternate" hreflang="tr">Okulistik</a></li>
+					<li><a  target="_blank" href="https://www.morpakampus.com/giris.html?m=&c=" rel="alternate" hreflang="tr">Morpakampüs</a></li>
+				</ul>
+					</li>
+					<li><a class="root"  href="-pnum=51&pt=OOOO+NE+VARMIŞ.htm" rel="alternate" hreflang="tr">OOOO NE VARMIŞ</a>
+				<ul>
+					<li><a  target="_blank" href="http://www.fourmilab.ch/cgi-bin/Earth?imgsize=500&opt=-l&lat=43.5417&ns=North&lon=-42.5833&ew=West&alt=1000000&img=learth.evif" rel="alternate" hreflang="tr">Dünyamızın Uydudan Görüntüsü</a></li>
+					<li><a class="dir" target="_blank" href="#" rel="alternate" hreflang="tr">3D Mekanlar</a>
+						<ul>
+							<li><a  target="_blank" href="https://www.360tr.com/anitkabir-giris-panorama-sanal-tur_068bb011b_tr.html" rel="alternate" hreflang="tr">Anıtkabir</a></li>
+							<li><a  target="_blank" href="http://www.3dmekanlar.com/index.html" rel="alternate" hreflang="tr">Diğerleri</a></li>
+						</ul>
+					</li>
+					<li><a  target="_blank" href="http://www.worldwidetelescope.org/Home.aspx" rel="alternate" hreflang="tr">Sanal Teleskop</a></li>
+				</ul>
+					</li>
+					<li><a class="root"  href="-pnum=52&pt=GÜNÜN+TAVSİYELERİ.htm" rel="alternate" hreflang="tr">GÜNÜN TAVSİYELERİ</a>
+				<ul>
+					<li><a  target="_blank" href="https://filmlane.com/hickirik-hichki-izle-turkce-dublaj/" rel="alternate" hreflang="tr">Günün Filmi: Hicki (Hıçkırık)</a></li>
+					<li><a  target="_blank" href="https://youtu.be/ovlqcWRei1g" rel="alternate" hreflang="tr">Günün Oyunu: Hafıza Oyunu</a></li>
+					<li><a  target="_blank" href="https://youtu.be/6sMfDErm3TI" rel="alternate" hreflang="tr">Yaşam Becerisi: Meyveli Yoğurt Yapımı</a></li>
+					<li><a  target="_blank" href="https://youtu.be/NZ14gfZqTK0" rel="alternate" hreflang="tr">Günün Masalı: Susamış Karga</a></li>
+					<li><a  target="_blank" href="https://youtu.be/0wPLVwt-Vas" rel="alternate" hreflang="tr">Günün Deneyi: Yanardağ Patlaması</a></li>
+					<li><a  target="_blank" href="https://youtu.be/_OnwDQFgsUQ" rel="alternate" hreflang="tr">Bani ve Virüsten Korunma Yolları</a></li>
+				</ul>
+					</li>
+					<li><a class="root"  href="#" rel="alternate" hreflang="tr">DENEYLER</a>
+				<ul>
+					<li><a  target="_blank" href="https://www.youtube.com/watch?v=SFKL--H3xYk" rel="alternate" hreflang="tr">26 Eğlenceli Deney</a></li>
+					<li><a  target="_blank" href="https://www.youtube.com/watch?v=Xisj8PBDTRw" rel="alternate" hreflang="tr">16 Deney</a></li>
+					<li><a  target="_blank" href="https://www.youtube.com/watch?v=auFtbnOhGi0" rel="alternate" hreflang="tr">29 Bait Deney</a></li>
+				</ul>
+					</li>
+					<li><a class="root" target="_blank" href="https://lichess.org/" rel="alternate" hreflang="tr">CANLI ONLİNE SATRANÇ</a></li>
+					<li><a class="root"  href="http://www.sonfasil.com/?pnum=59&pt=HAFTALIK+DERS+PROGRAMI" rel="alternate" hreflang="tr">HAFTALIK DERS PROGRAMI</a></li>
+					<li><a class="root"  href="-pnum=92&pt=OFOYUN.htm" rel="alternate" hreflang="tr">OFOYUN</a></li></ul></div>
+<div class="stnz_widgetFooter"></div>
+</div><!-- /widget -->
+
+<style>@import url("default-2.css")/*tpa=http://www.sonfasil.com/templates/tpl/38/menucss/default.css*/ screen and (min-width: 769px);</style><div class="stnz_widget stnz_menu">
+<div class="stnz_widgetTitle"><div class="stnz_widgetTitle_text">VİDEOLAR</div></div>
+<div class="stnz_widgetContent"><ul class="sf-menu stnz_dropdown38 stnz_dropdown38-vertical" id="nav543823" data-title="VİDEOLAR">
+				
+					<li><a class="root"  href="http://www.sonfasil.com/?pnum=84&pt=Velilere+%C3%96nerilen+Filmler" rel="alternate" hreflang="tr">Velilere Önerilen Filmler</a></li>
+					<li><a class="root"  href="-pnum=91&pt=Öğrencilerden+Gelenler.htm" rel="alternate" hreflang="tr">Öğrencilerden Gelenler</a></li>
+					<li><a class="root"  href="-pnum=85&pt=Sınıf+Videoları.htm" rel="alternate" hreflang="tr">Sınıf Videoları</a></li>
+					<li><a class="root"  href="http://www.sonfasil.com/?pnum=86&pt=E%C4%9Fitim+Videolar%C4%B1" rel="alternate" hreflang="tr">Eğitim Videoları</a></li>
+					<li><a class="root"  href="-pnum=87&pt=Ders+Videoları.htm" rel="alternate" hreflang="tr">Ders Videoları</a></li>
+					<li><a class="root"  href="-pnum=88&pt=Belirli+Gün+ve+Haftalarla+İlgili+Videolar.htm" rel="alternate" hreflang="tr">Belirli Gün ve Haftalarla İlgili Videolar</a></li>
+					<li><a class="root"  href="http://www.sonfasil.com/?pnum=89&pt=Ders+Etkinlik+Videolar%C4%B1" rel="alternate" hreflang="tr">Ders Etkinlik Videoları</a></li>
+					<li><a class="root"  href="http://www.sonfasil.com/?pnum=90&pt=Deneyler" rel="alternate" hreflang="tr">Deneyler</a></li></ul></div>
+<div class="stnz_widgetFooter"></div>
+</div><!-- /widget -->
+
+<div class="stnz_widget stnz_sitemap">
+<div class="stnz_widgetTitle"><div class="stnz_widgetTitle_text">Site Haritası</div></div>
+<div class="stnz_widgetContent"><div class="stnz_siteMapWidgetContent"><a href="-Syf=20&pt=Site Haritası.htm">Site Haritası</a></div></div>
+<div class="stnz_widgetFooter"></div>
+</div><!-- /widget -->
+
+<div class="stnz_widget stnz_takvim">
+<div class="stnz_widgetTitle"><div class="stnz_widgetTitle_text">Takvim</div></div>
+<div class="stnz_widgetContent">      
+        <script type="text/javascript" src="calendar.js-20131218012.js"></script>
+        <script type="text/javascript">
+            navigate('','','135bea1fd1145db8bdda103948817a45');
+        </script>
+        <div>       
+            <div id="stnz_calendar"></div>            
+        </div></div>
+<div class="stnz_widgetFooter"></div>
+</div><!-- /widget -->
+
+<div class="stnz_widget stnz_reklam_blok">
+<div class="stnz_widgetTitle"><div class="stnz_widgetTitle_text">REKLAMLAR</div></div>
+<div class="stnz_widgetContent"><a href="http://www.bekbars.com/" target="_blank"><img src="201304071323bekbars_logo_small_2.jpg" width="171" height="128" alt=" " /><br /></a>Nano Teknoloji&nbsp;<br />&Uuml;st&uuml;n Koruma ve M&uuml;kemmel Parlaklık</div>
+<div class="stnz_widgetFooter"></div>
+</div><!-- /widget -->
+
+</div></div><!-- /leftContent --><div id="stnz_middleContent" class="grid_12 stnz_coklu stnz_sol_var stnz_sag_var"><div class="stnz_pageTitle"><h2><span>Velilere Önerilen Filmler</span></h2></div>
+<style type="text/css">
+.sablon_yazi_img {
+   padding:3px;
+   border:0.5px;
+   background-color:#fff;
+}
+
+.sablon_yazi_img:hover {
+   padding:3px;
+   border:1px;
+   background-color:#cccccc;
+}
+
+</style>
+
+<script>
+
+$(document).ready(function () {
+    $(".fade_effect img").fadeTo(0, 1.0);
+
+    $(".fade_effect img").hover(function () {
+        $(this).fadeTo("slow", 0.7);
+        },
+        function () {$(this).fadeTo("slow", 1.0);
+        }
+    );
+});
+
+</script><p><iframe src="A9GqvIN6VnQ" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></p>
+<p><span style="color: #e74c3c; font-size: 14pt;"><strong>ŞERİFE BACI</strong></span></p>
+<p>Kurtuluş savaşının en zorlu günleri yaşanmaktadır. Kocası Osman’ı vatan savunması için cepheye gönderen Şerife; kucağında küçücük kızı ve iki öküzün çektiği kağnısıyla İnebolu limanından Kastamonu kışlasına cephane taşımaktadır.</p>
+<p> </p>
+<p> </p>
+<p><iframe src="yTcrtkWWpcM-t=1639s" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></p>
+<p><span style="color: #e74c3c; font-size: 14pt;"><strong>MOMMO KIZ KARDEŞİM</strong></span></p>
+<p>4. Sınıf Öğrencileri için uygundur. Dokuz yaşında bir çocuk; hem ağabey, hem baba, hem anne, hem de bir bilge olabilir mi? Ayşe için olur. Ve hatta Ayşe’nin gözünde hiçbir şeyden korkmayan bir ağabeydir Ahmet. Ama Ahmet’te bir çocuktur ve korkuları vardır. Her şeyi bilmesi de imkansızdır. Başka bir kadınla evlenip, evden ayrılan babaları Kazım, çocuklarını Hasan Dede’nin yanında kaderlerine terk etmiştir. Yaşlı ve yarı felçli bir dedeyle yaşayan iki kardeş her şeye rağmen yaşama umudunu yitirmezler.</p>
+<p><iframe src="BTpcd27jBp4" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></p>
+<p><span style="color: #e74c3c; font-size: 14pt;"><strong>120</strong></span></p>
+<p>Birinci Dünya Savaşı esnasında sınır birliklerinde cephane tükenir. Osmanlı ordusu cephanesiz kalır ve Van’da dehşet top sesleri duyulmaktadır. Kışın en sert zamanıdır. Ordu, Van’ın insanlarından yardım ister. Onların kaynakları mevcuttur. Ancak Türk-Rus harbi nedeni ile bölgenin tüm erkekleri imparatorluğun dört bir köşesinde savaşmaktadırlar. O nedenle de bu yardım çağrısına cevap veremezler. Van’ın çocukları bir şeyler yapmak isterler. Oğlunu savaşta kaybetmiş bir okulu müdürü cephanenin Sarıkamış’a nakledilmesini önerince 12-17 yaş aralığında 120 gönüllü çocuk yola koyulurlar. Film, annelerini dahi gözleri yaşlı, geride bırakan bu çocukların gerçek hikayesini anlatır.</p>
+<p><iframe src="yjJZGWlwIBY" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></p>
+<p><span style="color: #e74c3c;"><strong><span style="font-size: 14pt;">3 İDİOTS</span></strong></span></p>
+<p>3 Aptal'da Rancho Chhanched, Farhan Qureshi ve Raju Rastogi Hindistan'ın en önemli bir okulunda mühendislik okuyan ve okulun yurdunda aynı odada kalan üç öğrencidir. Raju ailesini fakirlikten kurtarma gibi bir ideale sahipken Farhan ailesinin isteği doğrultunda bu bölümü seçmiştir. Rancho ise makinelere duyduğu tutku nedeniyle mühendis olmayı istemektedir. Bu üçlü ve profesörleri Viru arasında yaşananlar, dostluk kavramını beyaz perdeye yansıtırken eğitim sistemini de sert ve eğlenceli bir şekilde eleştirir niteliktedir.</p>
+<p><iframe src="hlCxe8RHGhY-t=1s" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></p>
+<p><span style="color: #e74c3c; font-size: 14pt;"><strong>HER ÇOCUK ÖZELDİR</strong></span></p>
+<p>Her Çocuk Özeldir. (Yerdeki Yıldızlar) İlkokul 4. sınıf üzeri seviyesi için uygundur. Harfleri sayıları algılama problemi yaşayan Ishaan çevresi ve ailesi tarafından tembel geri zekalı muamelesi görür. Çalışmayı öğrenebilmesi için yatılı okula verildikten sonra tanıştığı resim öğretmeni ile değişen hayatı ve başarısını anlatan bir film</p>
+<p> </p></div><!-- /middleContent --><div class="grid_12" id="stnz_rightContent"><div class="stnz_widget"><div class="stnz_widget stnz_ziyaret">
+<div class="stnz_widgetTitle"><div class="stnz_widgetTitle_text">Ziyaretçi Bilgileri</div></div>
+<div class="stnz_widgetContent">
+        
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr><td>Aktif Ziyaretçi</td><td class="stnz_strong">1</td></tr>
+            <tr><td>Bugün Toplam</td><td class="stnz_strong">91</td></tr>
+            <tr><td>Toplam Ziyaret</td><td class="stnz_strong">139069</td></tr></table></div>
+<div class="stnz_widgetFooter"></div>
+</div><!-- /widget -->
+
+<div class="stnz_widget stnz_kose_yazilari">
+<div class="stnz_widgetTitle"><div class="stnz_widgetTitle_text">Köşe Yazıları</div></div>
+<div class="stnz_widgetContent">
+            
+                <table width="100%" cellpadding="0" cellspacing="2">
+                <tr>
+                <td width="50" rowspan="3">
+                <img  height="50" width="45" border="0" src="8000552.jpg">
+                </td>
+                </tr>
+                <tr>
+                <td width="118" valign="middle">
+                <a href="http://www.sonfasil.com/?Syf=22&Mkl=1148719&pt=OSMAN FİLİK&AYRILIK-ZAMANI..." class="stnz_yazar_adi stnz_strong">OSMAN FİLİK</a>
+                </td>
+                </tr>
+                <tr>
+                <td valign="top">
+                <a href="http://www.sonfasil.com/?Syf=22&Mkl=1148719&pt=OSMAN FİLİK&AYRILIK-ZAMANI..." class="stnz_yazi_basligi">AYRILIK ZAMANI...</a>
+                </td>
+                </tr>
+                <tr><td colspan="2"><hr size="1" width="100%"></td></tr>
+                </table>
+            
+                <table width="100%" cellpadding="0" cellspacing="2">
+                <tr>
+                <td width="50" rowspan="3">
+                <img  height="50" width="45" border="0" src="8000557.jpg">
+                </td>
+                </tr>
+                <tr>
+                <td width="118" valign="middle">
+                <a href="-Syf=22&Mkl=1134953&pt=Yağız Aydın&23-Nisan-Ulusal-Egemenlik-Ve-Çocuk-Bayramı.htm" class="stnz_yazar_adi stnz_strong">Yağız Aydın</a>
+                </td>
+                </tr>
+                <tr>
+                <td valign="top">
+                <a href="-Syf=22&Mkl=1134953&pt=Yağız Aydın&23-Nisan-Ulusal-Egemenlik-Ve-Çocuk-Bayramı.htm" class="stnz_yazi_basligi">23 Nisan Ulusal Egemenlik Ve Çocuk Bayramı</a>
+                </td>
+                </tr>
+                <tr><td colspan="2"><hr size="1" width="100%"></td></tr>
+                </table>
+            
+                <table width="100%" cellpadding="0" cellspacing="2">
+                <tr>
+                <td width="50" rowspan="3">
+                <img  height="50" width="45" border="0" src="8000811.jpg">
+                </td>
+                </tr>
+                <tr>
+                <td width="118" valign="middle">
+                <a href="-Syf=22&Mkl=1136278&pt=Mert Şeref&1-MAYIS-EMEK-VE-DAYANIŞMA-GÜNÜ.htm" class="stnz_yazar_adi stnz_strong">Mert Şeref</a>
+                </td>
+                </tr>
+                <tr>
+                <td valign="top">
+                <a href="-Syf=22&Mkl=1136278&pt=Mert Şeref&1-MAYIS-EMEK-VE-DAYANIŞMA-GÜNÜ.htm" class="stnz_yazi_basligi">1 MAYIS EMEK VE DAYANIŞMA GÜNÜ</a>
+                </td>
+                </tr>
+                <tr><td colspan="2"><hr size="1" width="100%"></td></tr>
+                </table></div>
+<div class="stnz_widgetFooter"></div>
+</div><!-- /widget -->
+
+<div class="stnz_widget stnz_menu">
+<div class="stnz_widgetTitle"><div class="stnz_widgetTitle_text">Linkler</div></div>
+<div class="stnz_widgetContent"><ul class="sf-menu stnz_dropdown38 stnz_dropdown38-vertical stnz_dropdown38-vertical-rtl" id="nav543824" data-title="Linkler">
+				
+					<li><a class="root"  href="-pnum=49&pt=Linkler.htm" rel="alternate" hreflang="tr">Linkler</a>
+				<ul>
+					<li><a  target="_blank" href="https://milliegitimvakfiilkokulu.meb.k12.tr/" rel="alternate" hreflang="tr">OKULUMUZ</a></li>
+					<li><a   href="http://www.ilkyardim.org.tr/ilk-yardim-animasyonlari.html" rel="alternate" hreflang="tr">ANİMASYONLU İLKYARDIM</a></li>
+					<li><a   href="https://bilimcocuk.tubitak.gov.tr/" rel="alternate" hreflang="tr">BİLİM ÇOCUK DERGİSİ</a></li>
+					<li><a   href="https://e-okul.meb.gov.tr/" rel="alternate" hreflang="tr">e-okul</a></li>
+					<li><a   href="http://www.eba.gov.tr/" rel="alternate" hreflang="tr">EBA</a></li>
+					<li><a   href="http://www.masaldinle.com/" rel="alternate" hreflang="tr">MASALLAR</a></li>
+					<li><a   href="http://www.birdolapkitap.com/" rel="alternate" hreflang="tr">BİR DOLAP KİTAP</a></li>
+					<li><a   href="http://kelimedunyasi.eba.gov.tr/" rel="alternate" hreflang="tr">KELİME DÜNYASI</a></li>
+					<li><a   href="http://f.eba.gov.tr/ebru/" rel="alternate" hreflang="tr">EBRU SANATI</a></li>
+					<li><a   href="http://f.eba.gov.tr/BenKimim/" rel="alternate" hreflang="tr">BEN KİMİM</a></li>
+				</ul>
+					</li></ul></div>
+<div class="stnz_widgetFooter"></div>
+</div><!-- /widget -->
+
+<div class="stnz_widget stnz_reklam_blok">
+<div class="stnz_widgetContent" style="background:none !important;"><p><img src="bayraktasiyan.gif" alt="" width="130" height="130" /></p></div>
+</div><!-- /widget -->
+
+<div class="stnz_widget stnz_hava_durumu">
+<div class="stnz_widgetTitle"><div class="stnz_widgetTitle_text">Hava Durumu</div></div>
+<div class="stnz_widgetContent"><input type="hidden" value = "SAMSUN"/>
+        <form name="havaform" method="post">
+                 <table align="center" cellpadding="0" cellspacing="0" style="display:table;">    
+                    <tr>
+                      <td align="center">                  
+                        <img src="tahmin-show-2.aspx-m=SAMSUN&basla=1&bitir=2&rC=111&rZ=fff" name="preview1" id="preview1">
+                      </td>
+                    </tr>                  
+                    <tr>
+                      <td align="center">                      
+                          <select name="il" class="stnz_FormBeyaz" onchange="showimage()" style="width:130px;"><option value="ADANA" >Adana</option><option value="ADIYAMAN" >Adıyaman</option><option value="AFYONKARAHISAR" >Afyonkarahisar</option><option value="AGRI" >Ağrı</option><option value="AMASYA" >Amasya</option><option value="ANKARA" >Ankara</option><option value="ANTALYA" >Antalya</option><option value="ARTVIN" >Artvin</option><option value="AYDIN" >Aydın</option><option value="BALIKESIR" >Balıkesir</option><option value="BILECIK" >Bilecik</option><option value="BINGOL" >Bingöl</option><option value="BITLIS" >Bitlis</option><option value="BOLU" >Bolu</option><option value="BURDUR" >Burdur</option><option value="BURSA" >Bursa</option><option value="CANAKKALE" >Çanakkale</option><option value="CANKIRI" >Çankırı</option><option value="CORUM" >Çorum</option><option value="DENIZLI" >Denizli</option><option value="DIYARBAKIR" >Diyarbakır</option><option value="EDIRNE" >Edirne</option><option value="ELAZIG" >Elazığ</option><option value="ERZINCAN" >Erzincan</option><option value="ERZURUM" >Erzurum</option><option value="ESKISEHIR" >Eskişehir</option><option value="GAZIANTEP" >Gaziantep</option><option value="GIRESUN" >Giresun</option><option value="GUMUSHANE" >Gümüşhane</option><option value="HAKKARI" >Hakkari</option><option value="HATAY" >Hatay</option><option value="ISPARTA" >Isparta</option><option value="MERSIN" >İçel</option><option value="ISTANBUL" >İstanbul</option><option value="IZMIR" >İzmir</option><option value="KARS" >Kars</option><option value="KASTAMONU" >Kastamonu</option><option value="KAYSERI" >Kayseri</option><option value="KIRKLARELI" >Kırklareli</option><option value="KIRSEHIR" >Kırşehir</option><option value="KOCAELI" >Kocaeli</option><option value="KONYA" >Konya</option><option value="KUTAHYA" >Kütahya</option><option value="MALATYA" >Malatya</option><option value="MANISA" >Manisa</option><option value="K.MARAS" >Kahramanmaraş</option><option value="MARDIN" >Mardin</option><option value="MUGLA" >Muğla</option><option value="MUS" >Muş</option><option value="NEVSEHIR" >Nevşehir</option><option value="NIGDE" >Niğde</option><option value="ORDU" >Ordu</option><option value="RIZE" >Rize</option><option value="SAKARYA" >Sakarya</option><option value="SAMSUN" selected>Samsun</option><option value="SIIRT" >Siirt</option><option value="SINOP" >Sinop</option><option value="SIVAS" >Sivas</option><option value="TEKIRDAG" >Tekirdağ</option><option value="TOKAT" >Tokat</option><option value="TRABZON" >Trabzon</option><option value="TUNCELI" >Tunceli</option><option value="SANLIURFA" >Şanlıurfa</option><option value="USAK" >Uşak</option><option value="VAN" >Van</option><option value="YOZGAT" >Yozgat</option><option value="ZONGULDAK" >Zonguldak</option><option value="AKSARAY" >Aksaray</option><option value="BAYBURT" >Bayburt</option><option value="KARAMAN" >Karaman</option><option value="KIRIKKALE" >Kırıkkale</option><option value="BATMAN" >Batman</option><option value="SIRNAK" >Şırnak</option><option value="BARTIN" >Bartın</option><option value="ARDAHAN" >Ardahan</option><option value="IGDIR" >Iğdır</option><option value="YALOVA" >Yalova</option><option value="KARABUK" >Karabük</option><option value="KILIS" >Kilis</option><option value="OSMANIYE" >Osmaniye</option><option value="DUZCE" >Düzce</option>
+                          </select>
+                     
+                      </td>
+                    </tr>
+                  </table>
+                  </form></div>
+<div class="stnz_widgetFooter"></div>
+</div><!-- /widget -->
+
+<div class="stnz_widget stnz_reklam_blok">
+<div class="stnz_widgetTitle"><div class="stnz_widgetTitle_text">SATRANÇ OYNAYALIM</div></div>
+<div class="stnz_widgetContent"><p><a href="https://www.chess.com/tr/3d-chess"><img src="satranc5.jpg" alt=" " width="72" height="71" /></a></p></div>
+<div class="stnz_widgetFooter"></div>
+</div><!-- /widget -->
+
+<div class="stnz_widget stnz_saat">
+<div class="stnz_widgetTitle"><div class="stnz_widgetTitle_text">Saat</div></div>
+<div class="stnz_widgetContent"><style type="text/css">
+        .stnz_saat * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .stnz_saat #clock {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 0 auto;
+            background: url(clockface.png)/*tpa=http://www.sonfasil.com/images/clockface.png*/;
+            list-style: none;
+            }
+        
+        .stnz_saat #sec, .stnz_saat #min, .stnz_saat #hour {
+            position: absolute;
+            width: 9px;
+            height: 180px;
+            top: 0px;
+            left: 85px;
+            }
+        
+        .stnz_saat #sec {
+            background: url(sechand.png)/*tpa=http://www.sonfasil.com/images/sechand.png*/;
+            z-index: 3;
+            }
+           
+        .stnz_saat #min {
+            background: url(minhand.png)/*tpa=http://www.sonfasil.com/images/minhand.png*/;
+            z-index: 2;
+            }
+           
+        .stnz_saat #hour {
+            background: url(hourhand.png)/*tpa=http://www.sonfasil.com/images/hourhand.png*/;
+            z-index: 1;
+            }
+            
+    </style>
+    
+    <script type="text/javascript">
+    
+        $(document).ready(function() {
+         
+              setInterval( function() {
+              var seconds = new Date().getSeconds();
+              var sdegree = seconds * 6;
+              var srotate = "rotate(" + sdegree + "deg)";
+              
+              $("#sec").css({"-moz-transform" : srotate, "-webkit-transform" : srotate});
+                  
+              }, 1000 );
+              
+         
+              setInterval( function() {
+              var hours = new Date().getHours();
+              var mins = new Date().getMinutes();
+              var hdegree = hours * 30 + (mins / 2);
+              var hrotate = "rotate(" + hdegree + "deg)";
+              
+              $("#hour").css({"-moz-transform" : hrotate, "-webkit-transform" : hrotate});
+                  
+              }, 1000 );
+        
+        
+              setInterval( function() {
+              var mins = new Date().getMinutes();
+              var mdegree = mins * 6;
+              var mrotate = "rotate(" + mdegree + "deg)";
+              
+              $("#min").css({"-moz-transform" : mrotate, "-webkit-transform" : mrotate});
+                  
+              }, 1000 );
+         
+        }); 
+    
+    </script>
+        <ul id="clock"> 
+          <li id="sec"></li>
+          <li id="hour"></li>
+          <li id="min"></li>
+        </ul></div>
+<div class="stnz_widgetFooter"></div>
+</div><!-- /widget -->
+
+</div></div><!-- /rightContent> --></div><!-- /content -->     
+    </div><!-- /containerMiddle -->
+    <div id="stnz_right_bg"></div>
+    </div><!-- /containerTop -->
+</div> <!-- /wrap --><div class="grid_12" id="stnz_footer"></div><!-- /footer --><!--[if lt IE 8]> 
+    <script type="text/javascript">           
+        document.getElementById('stnz_left_bg').style.display = 'none';
+        document.getElementById('stnz_right_bg').style.display = 'none';
+    </script>
+    <![endif]--></html>

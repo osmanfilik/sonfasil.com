@@ -1,0 +1,94 @@
+
+.product-list {
+    max-width: 100%;
+    font-family: Calibri, sans-serif; 
+}
+
+.product-list .product-item {
+    padding: 5px;
+    display: inline-table;
+    text-align: center;
+    border-left: #DCDCDC 0px solid;
+    width: 130px;
+    min-height: 200px;
+    margin: 3px 5px 3px 5px;
+    -webkit-box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 1px 1px 7px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 0px 7px 1px rgba(0, 0, 0, 0.2);
+}
+
+.product-list .product-properties {
+    font-size: 14px;
+    padding: 2px;
+    min-height: 60px;
+    max-width: 125px;
+}
+
+.product-list .urun-baslik a {
+    font-size: 16px;
+    color: #3789fc;
+    font-weight: normal;
+}
+
+.product-list .urun-ozellik {
+    color: #333;
+    word-break: break-all;
+}
+
+.product-list .gallery {
+    height: 120px;
+    max-width: 130px;
+}
+
+.product-list .product-review {
+    display: inline-block;
+    margin: auto;
+    min-width: 73px;
+    min-height: 20px;
+}
+
+.product-list .product-price {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #f69100;
+}
+
+.product-list .product-price small {
+    font-size: 10px;
+    font-weight: normal;
+}
+
+.product-list .product-review-img {
+    margin-top: 7px;
+    float: left;
+    width: 3px;
+    height: 5px;
+    background-image: url("product-review.png")/*tpa=http://www.sonfasil.com/assets/images/product-review.png*/;
+}
+
+.product-list .product-review-button {
+    padding: 2px 2px 0 2px;
+    float: left;
+    min-width: 60px;
+    min-height: 20px;
+    background: #ffd65e; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffd65e 0%, #febf04 38%, #febf04 59%, #ffd65e 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd65e), color-stop(38%,#febf04), color-stop(59%,#febf04), color-stop(100%,#ffd65e)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ffd65e 0%,#febf04 38%,#febf04 59%,#ffd65e 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffd65e 0%,#febf04 38%,#febf04 59%,#ffd65e 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffd65e 0%,#febf04 38%,#febf04 59%,#ffd65e 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ffd65e 0%,#febf04 38%,#febf04 59%,#ffd65e 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#ffd65e',GradientType=0 ); /* IE6-9 */
+}
+
+.product-list .product-review-a {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    padding: 10px 10px 10px 10px;
+}
+
+.tubip_urun_ozellik {
+    max-width: 100px !important;
+}

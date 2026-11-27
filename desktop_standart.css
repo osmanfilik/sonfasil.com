@@ -1,0 +1,108 @@
+.product-list {    
+    max-width: 100%;
+    text-align: center;
+}
+
+.product-list .product-item {
+    padding: 3px;
+    display: inline-block;
+    text-align: center;
+    width: 160px;
+    min-height: 250px;
+    border-left: 1px solid #DCDCDC;
+    border-bottom: 1px solid #DCDCDC;
+    margin: 8px 0 15px 0;
+    /*margin: 8px 7px 15px 7px;
+    -webkit-box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.2);*/
+}
+
+.product-list .product-item:hover {
+    -webkit-box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.35);
+    -moz-box-shadow:    0px 3px 0px 0px rgba(0,0,0,0.35);
+    box-shadow:         0px 3px 0px 0px rgba(0,0,0,0.35);
+}
+
+.product-list .product-properties {
+    padding: 2px;
+    min-height: 100px;
+}
+
+.product-list .urun-baslik {
+
+}
+
+.product-list .urun-baslik a {
+    font-size: 14px;
+    color: #3789fc;
+    font-weight: normal;
+}
+
+.product-list .urun-ozellik {
+    color: #333;
+    /*word-break: break-all;*/
+    margin: -7px 0 7px 0;
+}
+
+.product-list .gallery {
+    max-height: 115px;
+    max-width: 150px;
+}
+
+.product-list .product-left-image{
+    height:120px;
+} 
+
+.product-list .money-review {
+    min-height: 25px;
+}
+
+.product-list .product-review {
+    display: inline-block;
+    margin: auto;
+    min-width: 60px;
+    min-height: 20px;
+}
+
+.product-list .product-price {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #f69100;
+    margin-top: -5px;
+}
+
+.product-list .product-price small {
+    font-size: 10px;
+    font-weight: normal;
+}
+
+.product-list .product-review-img {
+    margin-top: 7px;
+    float: left;
+    width: 3px;
+    height: 5px;
+    background-image: url("product-review.png")/*tpa=http://www.sonfasil.com/assets/images/product-review.png*/;
+}
+
+.product-list .product-review-button {
+    padding: 2px 2px 0 2px;
+    float: left;
+    min-width: 60px;
+    min-height: 20px;
+    background: #ffd65e; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffd65e 0%, #febf04 38%, #febf04 59%, #ffd65e 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd65e), color-stop(38%,#febf04), color-stop(59%,#febf04), color-stop(100%,#ffd65e)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ffd65e 0%,#febf04 38%,#febf04 59%,#ffd65e 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffd65e 0%,#febf04 38%,#febf04 59%,#ffd65e 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffd65e 0%,#febf04 38%,#febf04 59%,#ffd65e 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ffd65e 0%,#febf04 38%,#febf04 59%,#ffd65e 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd65e', endColorstr='#ffd65e',GradientType=0 ); /* IE6-9 */
+}
+
+.product-list .product-review-a {
+    font-weight: bold;
+    color: #333;
+    padding: 10px 15px 10px 15px;
+}
